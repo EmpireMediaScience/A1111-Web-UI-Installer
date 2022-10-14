@@ -1,0 +1,7 @@
+desktop.ini
+.env
+.DS_store
+/Advanced Installer/*-SetupFiles
+/Advanced Installer/*-cache
+/Advanced Installer/*.back.aip
+*bu.aip
