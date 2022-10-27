@@ -23,10 +23,10 @@
     <ROW Property="InstallDlg" Comments="yes"/>
     <ROW Property="MSIFASTINSTALL" MultiBuildValue="DefaultBuild:1"/>
     <ROW Property="Manufacturer" Value="Empire Media Science"/>
-    <ROW Property="ProductCode" Value="2057:{E05B1931-A8A1-4032-B446-CDF1096871BB} " Type="16"/>
+    <ROW Property="ProductCode" Value="2057:{10D76340-5A0C-46A2-BAD3-AC20B3B02C99} " Type="16"/>
     <ROW Property="ProductLanguage" Value="2057"/>
     <ROW Property="ProductName" Value="A1111&apos;s Web UI Autoinstaller"/>
-    <ROW Property="ProductVersion" Value="0.0.2"/>
+    <ROW Property="ProductVersion" Value="0.0.3"/>
     <ROW Property="REBOOT" MultiBuildValue="DefaultBuild:ReallySuppress"/>
     <ROW Property="RTXCHK" Value="no" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
@@ -54,7 +54,7 @@
     <ROW Directory="stablediffusionwebui_Dir" Directory_Parent="APPDIR" DefaultDir="STABLE~1|stable-diffusion-webui"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{FD2174BD-E87B-4808-A289-D90077D47CA5}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{43C35788-0088-4928-95F3-1CCBEB6E6420}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_DisableModify" ComponentId="{F2050EAB-4FE0-4037-BD04-5CC3D395CCD6}" Directory_="APPDIR" Attributes="260" KeyPath="NoModify" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{322478CB-F066-4B71-8495-3C6C9A25CA59}" Directory_="APPDIR" Attributes="260" KeyPath="AI_ExePath"/>
     <ROW Component="APPDIR" ComponentId="{8CF866A2-A911-49F3-990F-8C58E2C86E81}" Directory_="APPDIR" Attributes="0"/>
@@ -180,7 +180,7 @@
     <ROW Dialog_="NewDialog_2" Control="Bitmap" Type="Bitmap" X="0" Y="0" Width="345" Height="400" Attributes="1" Text="[Background]" Order="200"/>
     <ROW Dialog_="NewDialog_2" Control="Next" Type="ImageButton" X="251" Y="359" Width="78" Height="28" Attributes="1" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="300" Options="1" ExtType="ImageButton" ExtData="[ButtonText_Next]" ExtDataLocId="-"/>
     <ROW Dialog_="NewDialog_2" Control="Back" Type="ImageButton" X="17" Y="359" Width="78" Height="28" Attributes="3" Text="[BackButton]" TextStyle="[MetroButtonText]" Order="400" Options="1" ExtType="ImageButton" ExtData="[ButtonText_Back]" ExtDataLocId="-"/>
-    <ROW Dialog_="NewDialog_2" Control="SubTitle" Type="Text" X="17" Y="105" Width="312" Height="34" Attributes="196611" Text="Download the SD1.4 model, be patient it&apos;s a 5GB file and can take a while" TextStyle="[SubTitleStyle]" Order="500"/>
+    <ROW Dialog_="NewDialog_2" Control="SubTitle" Type="Text" X="17" Y="105" Width="312" Height="34" Attributes="196611" Text="Download the SD1.5 model, be patient it&apos;s a big file and can take a while" TextStyle="[SubTitleStyle]" Order="500"/>
     <ROW Dialog_="NewDialog_2" Control="ProductNameTitle" Type="Text" X="83" Y="21" Width="245" Height="50" Attributes="196611" Text="[ProductName]" TextStyle="[ProductNameForSplash]" Order="600"/>
     <ROW Dialog_="NewDialog_2" Control="CompanyText" Type="Text" X="83" Y="16" Width="191" Height="12" Attributes="196611" Text="[Manufacturer]" TextStyle="[ManufacturerFont]" Order="700"/>
     <ROW Dialog_="NewDialog_2" Control="ProductLogo" Type="Bitmap" X="17" Y="5" Width="59" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="800"/>
