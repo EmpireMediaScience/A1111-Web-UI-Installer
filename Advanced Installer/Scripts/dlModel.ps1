@@ -3,7 +3,7 @@ try {
     $installPath = AI_GetMsiProperty APPDIR 
     $modelsPath = "$installPath\stable-diffusion-webui\models\Stable-diffusion"
     $WebClient = New-Object System.Net.WebClient
-    $WebClient.DownloadFile("https://drive.yerf.org/wl/?id=EBfTrmcCCUAGaQBXVIj5lJmEhjoP1tgl&mode=grid&download=1", "$modelsPath\model.ckpt")
+    $WebClient.DownloadFile("https://anga.tv/ems/model.ckpt", "$modelsPath\SD15NewVAEpruned.ckpt")
 }
 catch {
     [system.windows.messagebox]::Show("Something went wrong with the download", '  Error', 'OK', 'Error')
