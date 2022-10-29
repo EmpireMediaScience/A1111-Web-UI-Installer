@@ -21,12 +21,13 @@
     <ROW Property="AppLogoIcon" Value="applogoicon.bmp" MultiBuildValue="DefaultBuild:logo2.jpg" Type="1" MsiKey="AppLogoIcon"/>
     <ROW Property="GitCloneSuccess" Value="0"/>
     <ROW Property="InstallDlg" Comments="yes"/>
+    <ROW Property="MODEL_CHECK" Value="installModel" Type="4"/>
     <ROW Property="MSIFASTINSTALL" MultiBuildValue="DefaultBuild:1"/>
     <ROW Property="Manufacturer" Value="Empire Media Science"/>
-    <ROW Property="ProductCode" Value="2057:{10D76340-5A0C-46A2-BAD3-AC20B3B02C99} " Type="16"/>
+    <ROW Property="ProductCode" Value="2057:{A1C6E60C-A47E-4651-BFB4-9970F94F1DF3} " Type="16"/>
     <ROW Property="ProductLanguage" Value="2057"/>
     <ROW Property="ProductName" Value="A1111&apos;s Web UI Autoinstaller"/>
-    <ROW Property="ProductVersion" Value="0.0.3"/>
+    <ROW Property="ProductVersion" Value="0.0.4"/>
     <ROW Property="REBOOT" MultiBuildValue="DefaultBuild:ReallySuppress"/>
     <ROW Property="RTXCHK" Value="no" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
@@ -48,29 +49,29 @@
     <ROW Directory="CommonAppDataFolder" Directory_Parent="TARGETDIR" DefaultDir="COMMON~1|CommonAppDataFolder" IsPseudoRoot="1"/>
     <ROW Directory="InstallDlg" Directory_Parent="TARGETDIR" DefaultDir="INSTAL~1|InstallDlg:dsfd" IsPseudoRoot="1"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
-    <ROW Directory="basic_Dir" Directory_Parent="stablediffusionwebui_Dir" DefaultDir=".:basic" DirectoryOptions="3"/>
+    <ROW Directory="basic_Dir" Directory_Parent="stablediffusionwebui_Dir" DefaultDir="basic"/>
     <ROW Directory="regid.199509.com.example_Dir" Directory_Parent="CommonAppDataFolder" DefaultDir="REGID1~1.EXA|regid.1995-09.com.example"/>
-    <ROW Directory="rtx3XXX_Dir" Directory_Parent="stablediffusionwebui_Dir" DefaultDir=".:rtx3XXX" DirectoryOptions="3"/>
+    <ROW Directory="rtx3XXX_Dir" Directory_Parent="stablediffusionwebui_Dir" DefaultDir="rtx3XXX"/>
     <ROW Directory="stablediffusionwebui_Dir" Directory_Parent="APPDIR" DefaultDir="STABLE~1|stable-diffusion-webui"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{43C35788-0088-4928-95F3-1CCBEB6E6420}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{44F94EFA-F29C-4087-9BED-30808B3FE825}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_DisableModify" ComponentId="{F2050EAB-4FE0-4037-BD04-5CC3D395CCD6}" Directory_="APPDIR" Attributes="260" KeyPath="NoModify" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{322478CB-F066-4B71-8495-3C6C9A25CA59}" Directory_="APPDIR" Attributes="260" KeyPath="AI_ExePath"/>
     <ROW Component="APPDIR" ComponentId="{8CF866A2-A911-49F3-990F-8C58E2C86E81}" Directory_="APPDIR" Attributes="0"/>
     <ROW Component="InstallDlg" ComponentId="{43D6052F-DBBE-4963-A5D7-1DA28EDA7216}" Directory_="InstallDlg" Attributes="0"/>
     <ROW Component="ProductInformation" ComponentId="{89B7657B-A9AC-47E0-934E-DFD5C27F709B}" Directory_="APPDIR" Attributes="260" KeyPath="Version"/>
     <ROW Component="regid.199509.com.example" ComponentId="{CED1F5AE-CD32-43C2-B701-4C359940B9A3}" Directory_="regid.199509.com.example_Dir" Attributes="0"/>
-    <ROW Component="webuiuser.bat" ComponentId="{BD0F1557-67F6-44EB-8D03-B8E455288D76}" Directory_="basic_Dir" Attributes="0" Condition="RTXCHK = &quot;no&quot;" KeyPath="webuiuser.bat" Type="0"/>
-    <ROW Component="webuiuser3000.bat" ComponentId="{014BCF26-5D01-4CF7-9CA9-E3C85F6F7563}" Directory_="rtx3XXX_Dir" Attributes="0" Condition="RTXCHK = &quot;yes&quot;" KeyPath="webuiuser.bat_2" Type="0"/>
+    <ROW Component="webuiuser.bat" ComponentId="{9521F881-648C-4EDB-8C13-EA8D942B3791}" Directory_="basic_Dir" Attributes="0" KeyPath="webuiuser.bat" Type="0"/>
+    <ROW Component="webuiuser.bat_1" ComponentId="{FABDD29B-4F0F-44F3-BD2E-0553F911DBED}" Directory_="rtx3XXX_Dir" Attributes="0" KeyPath="webuiuser.bat_1" Type="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
-    <ROW File="webuiuser.bat" Component_="webuiuser.bat" FileName="WEBUI-~1.BAT|webui-user.bat" Version="65535.65535.65535.65535" Attributes="0" SourcePath="Prerequisite Files\stable-diffusion-webui\basic\webui-user.bat" SelfReg="false"/>
-    <ROW File="webuiuser.bat_2" Component_="webuiuser3000.bat" FileName="WEBUI-~2.BAT|webui-user.bat" Version="65535.65535.65535.65535" Attributes="0" SourcePath="Prerequisite Files\stable-diffusion-webui\rtx3XXX\webui-user.bat" SelfReg="false"/>
+    <ROW File="webuiuser.bat" Component_="webuiuser.bat" FileName="WEBUI-~1.BAT|webui-user.bat" Attributes="0" SourcePath="Prerequisite Files\stable-diffusion-webui\basic\webui-user.bat" SelfReg="false"/>
+    <ROW File="webuiuser.bat_1" Component_="webuiuser.bat_1" FileName="WEBUI-~1.BAT|webui-user.bat" Attributes="0" SourcePath="Prerequisite Files\stable-diffusion-webui\rtx3XXX\webui-user.bat" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.AiComponentAliasComponent">
     <ROW AliasRowId="InstallDlg" AliasRowOperation="1"/>
@@ -106,9 +107,6 @@
     <ROW Fragment="InstallDlg.aip" Path="&lt;AI_THEMES&gt;surface\fragments\InstallDlg.aip"/>
     <ROW Fragment="LicenseAgreementDlg.aip" Path="&lt;AI_THEMES&gt;surface\fragments\LicenseAgreementDlg.aip"/>
     <ROW Fragment="MaintenanceTypeDlg.aip" Path="&lt;AI_THEMES&gt;surface\fragments\MaintenanceTypeDlg.aip"/>
-    <ROW Fragment="PreparePrereqDlg.aip" Path="&lt;AI_THEMES&gt;surface\fragments\PreparePrereqDlg.aip"/>
-    <ROW Fragment="PrerequisitesDlg.aip" Path="&lt;AI_THEMES&gt;surface\fragments\PrerequisitesDlg.aip"/>
-    <ROW Fragment="ProgressPrereqDlg.aip" Path="&lt;AI_THEMES&gt;surface\fragments\ProgressPrereqDlg.aip"/>
     <ROW Fragment="SequenceDialogs.aip" Path="&lt;AI_THEMES&gt;surface\fragments\SequenceDialogs.aip"/>
     <ROW Fragment="Sequences.aip" Path="&lt;AI_FRAGS&gt;Sequences.aip"/>
     <ROW Fragment="StaticUIStrings.aip" Path="&lt;AI_FRAGS&gt;StaticUIStrings.aip"/>
@@ -117,7 +115,6 @@
     <ROW Fragment="Validation.aip" Path="&lt;AI_FRAGS&gt;Validation.aip"/>
     <ROW Fragment="VerifyRemoveDlg.aip" Path="&lt;AI_THEMES&gt;surface\fragments\VerifyRemoveDlg.aip"/>
     <ROW Fragment="VerifyRepairDlg.aip" Path="&lt;AI_THEMES&gt;surface\fragments\VerifyRepairDlg.aip"/>
-    <ROW Fragment="WelcomePrereqDlg.aip" Path="&lt;AI_THEMES&gt;surface\fragments\WelcomePrereqDlg.aip"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiActionTextComponent">
     <ROW Action="AI_DeleteLzma" Description="Deleting files extracted from archive" DescriptionLocId="ActionText.Description.AI_DeleteLzma" TemplateLocId="-"/>
@@ -145,17 +142,31 @@
     <ROW Name="gitclone.ps1" SourcePath="Advanced Installer\Scripts\gitclone.ps1"/>
     <ROW Name="logo2.jpg" SourcePath="Advanced Installer\Looks\Exports\logo2.jpg"/>
     <ROW Name="lzmaextractor.dll" SourcePath="&lt;AI_CUSTACTS&gt;lzmaextractor.dll"/>
+    <ROW Name="prereqs.ps1" SourcePath="Advanced Installer\Scripts\prereqs.ps1"/>
     <ROW Name="viewer.exe" SourcePath="&lt;AI_CUSTACTS&gt;viewer.exe"/>
     <ROW Name="xmlCfg.dll" SourcePath="&lt;AI_CUSTACTS&gt;xmlCfg.dll"/>
   </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCheckBoxComponent">
+    <ROW Property="MODEL_CHECK" Value="installModel"/>
+    <ROW Property="UNDERSTAND" Value="understand"/>
+  </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
     <ROW Dialog_="CustomizeDlg" Control="CustomizeDlgDialogInitializer" Type="DialogInitializer" X="0" Y="0" Width="0" Height="0" Attributes="0" Order="-1" TextLocId="-" HelpLocId="-" ExtDataLocId="-"/>
-    <ROW Dialog_="InstallDlg" Control="Description" Type="Text" X="17" Y="104" Width="299" Height="38" Attributes="589827" Text="Where do you want the UI to be stored ? Can be wherever, just don&apos;t bury it in endless long named folders" Order="400" MsiKey="InstallDlg#Description"/>
-    <ROW Dialog_="InstallDlg" Control="LicenseCheckbox" Type="ImageCheckBox" X="17" Y="295" Width="311" Height="20" Attributes="3" Property="AGREE_CHECKBOX" Text="[checkbox]" Order="500" MsiKey="InstallDlg#LicenseCheckbox" ExtType="ImageCheckBox" ExtData="I understand"/>
-    <ROW Dialog_="InstallDlg" Control="YouMustAgreeCtrl" Type="Hyperlink" X="17" Y="262" Width="311" Height="33" Attributes="196611" Text="&lt;a href=&quot;&quot;&gt;If a previous install is present, this will erase it ! Make sure to backup your other models and configs&lt;/a&gt;" TextStyle="[HyperlinkFont]" Order="1000" MsiKey="InstallDlg#YouMustAgreeCtrl"/>
-    <ROW Dialog_="InstallDlg" Control="ProductNameTitle" Type="Text" X="83" Y="21" Width="245" Height="50" Attributes="196611" Text="[ProductName]" TextStyle="[ProductNameForSplash]" Order="1100" TextLocId="Metro.Control.Text.ProductName" MsiKey="InstallDlg#ProductNameTitle"/>
-    <ROW Dialog_="InstallDlg" Control="CompanyText" Type="Text" X="83" Y="16" Width="191" Height="12" Attributes="196611" Text="[Manufacturer]" TextStyle="[ManufacturerFont]" Order="1200" TextLocId="Metro.Control.Text.Manufacturer" MsiKey="InstallDlg#CompanyText"/>
-    <ROW Dialog_="InstallDlg" Control="ProductLogo" Type="Bitmap" X="17" Y="5" Width="59" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="1300" MsiKey="InstallDlg#ProductLogo"/>
+    <ROW Dialog_="InstallDlg" Control="Description" Type="Text" X="17" Y="130" Width="299" Height="12" Attributes="589827" Text="Where do you want the UI to be stored ?" Order="400" MsiKey="InstallDlg#Description"/>
+    <ROW Dialog_="InstallDlg" Control="Next" Type="ImageButton" X="7" Y="364" Width="78" Height="28" Attributes="0" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="500" MsiKey="InstallDlg#Next" Options="1" ExtType="ImageButton" ExtData="Install"/>
+    <ROW Dialog_="InstallDlg" Control="LicenseCheckbox" Type="ImageCheckBox" X="34" Y="371" Width="311" Height="20" Attributes="2" Property="AGREE_CHECKBOX" Text="[checkbox]" Order="600" MsiKey="InstallDlg#LicenseCheckbox" ExtType="ImageCheckBox" ExtData="I agree to the License terms and conditions." ExtDataLocId="Metro.Control.Text.WelcomeDlg.AgreeToLicense"/>
+    <ROW Dialog_="InstallDlg" Control="FolderEdit" Type="PathEdit" X="17" Y="148" Width="290" Height="20" Attributes="7" Property="APPDIR" Text="Control.Text.InstallDlg#Edit_1" TextStyle="[InputCtrlFont]" Order="700" TextLocId="Control.Text.InstallDlg#Edit_1" MsiKey="InstallDlg#FolderEdit"/>
+    <ROW Dialog_="InstallDlg" Control="Browse" Type="ImageButton" X="308" Y="148" Width="21" Height="20" Attributes="3" Text="[browsebutton]" TextStyle="[MetroButtonText]" Order="800" MsiKey="InstallDlg#Browse" ExtType="ImageButton" ExtData="..." ExtDataLocId="Metro.Control.ExtData.WelcomeDlg.BrowseTxt"/>
+    <ROW Dialog_="InstallDlg" Control="YouMustAgreeCtrl" Type="Hyperlink" X="17" Y="253" Width="311" Height="12" Attributes="196611" Text="&lt;a href=&quot;&quot;&gt;IMPORTANT DETAILS&lt;/a&gt;" TextStyle="[HyperlinkFont]" Order="900" MsiKey="InstallDlg#YouMustAgreeCtrl"/>
+    <ROW Dialog_="InstallDlg" Control="ProductNameTitle" Type="Text" X="64" Y="80" Width="227" Height="50" Attributes="196611" Text="[ProductName]" TextStyle="[ProductNameForSplash]" Order="1000" TextLocId="Metro.Control.Text.ProductName" MsiKey="InstallDlg#ProductNameTitle"/>
+    <ROW Dialog_="InstallDlg" Control="ProductLogo" Type="Bitmap" X="143" Y="17" Width="59" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="1100" MsiKey="InstallDlg#ProductLogo"/>
+    <ROW Dialog_="InstallDlg" Control="InstallModel" Type="CheckBox" X="17" Y="192" Width="306" Height="18" Attributes="3" Property="MODEL_CHECK" Text="Install SD Checkpoint" Order="1200"/>
+    <ROW Dialog_="InstallDlg" Control="modelChkInfo" Type="Text" X="17" Y="210" Width="312" Height="22" Attributes="65539" Property="TEXT_1_PROP" Text="If left unchecked, you&apos;ll have to download an place your models in the webui yourself" TextStyle="SubTitle8" Order="1300"/>
+    <ROW Dialog_="InstallDlg" Control="Text_1" Type="Text" X="17" Y="169" Width="312" Height="10" Attributes="65539" Property="TEXT_1_PROP_1" Text="It can be wherever, just don&apos;t bury it in endless long named folders" TextStyle="SubTitle8" Order="1400"/>
+    <ROW Dialog_="InstallDlg" Control="Text_2" Type="Text" X="17" Y="292" Width="292" Height="21" Attributes="65539" Property="TEXT_1_PROP_2" Text="• Once you&apos;ve clicked Install, please be patient as it can take a while, especially if you&apos;ve checked &quot;Install SD Checkpoint&quot;" TextStyle="SubTitle8_SubTitle8" Order="1500"/>
+    <ROW Dialog_="InstallDlg" Control="Text_3" Type="Text" X="17" Y="270" Width="292" Height="22" Attributes="65539" Property="TEXT_1_PROP_2_1" Text="• This will erase previous versions installed in the selected path, perform any backup necessary (models, configs etc)" TextStyle="SubTitle8_SubTitle8" Order="1600"/>
+    <ROW Dialog_="InstallDlg" Control="Understand" Type="CheckBox" X="17" Y="322" Width="84" Height="18" Attributes="3" Property="UNDERSTAND" Text="I understand" Order="1700"/>
+    <ROW Dialog_="InstallDlg" Control="InstallBTN" Type="ImageButton" X="132" Y="344" Width="78" Height="28" Attributes="1" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="1800" ExtType="ImageButton" ExtData="Install"/>
     <ROW Dialog_="LicenseAgreementDlg" Control="AgreementText" Type="ScrollableText" X="17" Y="122" Width="312" Height="227" Attributes="3" Property="EulaRead" Text="Advanced Installer\eula.rtf" Order="600" TextLocId="_2" MsiKey="LicenseAgreementDlg#AgreementText"/>
     <ROW Dialog_="MsiRMFilesInUse" Control="Cancel" Type="ImageButton" X="163" Y="359" Width="78" Height="28" Attributes="2" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="100" MsiKey="MsiRMFilesInUse#Cancel" Options="1" ExtType="ImageButton" ExtData="[ButtonText_Cancel]" ExtDataLocId="-"/>
     <ROW Dialog_="NewDialog" Control="Cancel" Type="ImageButton" X="163" Y="359" Width="78" Height="28" Attributes="2" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="100" Options="1" ExtType="ImageButton" ExtData="[ButtonText_Cancel]" ExtDataLocId="-"/>
@@ -187,7 +198,6 @@
     <ROW Dialog_="NewDialog_2" Control="modelDlBtn" Type="ImageButton" X="106" Y="149" Width="120" Height="28" Attributes="3" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="900" ExtType="ImageButton" ExtData="Model.ckpt"/>
     <ROW Dialog_="NewDialog_2" Control="Text_1" Type="Text" X="17" Y="188" Width="312" Height="95" Attributes="196611" Text="If you already have a model file, you can skip this, and once the installation is done, place it in [stablediffusionwebui_Dir]\models\Stable-diffusion" TextStyle="[SubTitleStyle]" Order="1000"/>
     <ROW Dialog_="NewDialog_2" Control="skipbtn" Type="ImageButton" X="139" Y="359" Width="78" Height="28" Attributes="3" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="1100" ExtType="ImageButton" ExtData="Skip"/>
-    <ROW Dialog_="NewDialog_3" Control="NewDialog_3DialogInitializer" Type="DialogInitializer" X="0" Y="0" Width="0" Height="0" Attributes="0" Order="-1" TextLocId="-" HelpLocId="-" ExtDataLocId="-"/>
     <ROW Dialog_="NewDialog_3" Control="Cancel" Type="ImageButton" X="163" Y="359" Width="78" Height="28" Attributes="2" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="100" Options="1" ExtType="ImageButton" ExtData="[ButtonText_Cancel]" ExtDataLocId="-"/>
     <ROW Dialog_="NewDialog_3" Control="Bitmap" Type="Bitmap" X="0" Y="0" Width="345" Height="400" Attributes="1" Text="[Background]" Order="200"/>
     <ROW Dialog_="NewDialog_3" Control="Next" Type="ImageButton" X="251" Y="359" Width="78" Height="28" Attributes="3" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="300" Options="1" ExtType="ImageButton" ExtData="[ButtonText_Next]" ExtDataLocId="-"/>
@@ -201,19 +211,6 @@
     <ROW Dialog_="PatchWelcomeDlg" Control="ProductNameTitle" Type="Text" X="83" Y="21" Width="245" Height="50" Attributes="196611" Text="[ProductName]" TextStyle="[ProductNameForSplash]" Order="600" TextLocId="Metro.Control.Text.ProductName" MsiKey="PatchWelcomeDlg#ProductNameTitle"/>
     <ROW Dialog_="PatchWelcomeDlg" Control="CompanyText" Type="Text" X="83" Y="16" Width="191" Height="12" Attributes="196611" Text="[Manufacturer]" TextStyle="[ManufacturerFont]" Order="700" TextLocId="Metro.Control.Text.Manufacturer" MsiKey="PatchWelcomeDlg#CompanyText"/>
     <ROW Dialog_="PatchWelcomeDlg" Control="ProductLogo" Type="Bitmap" X="17" Y="5" Width="59" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="800" MsiKey="PatchWelcomeDlg#ProductLogo"/>
-    <ROW Dialog_="PreparePrereqDlg" Control="ProgressAnimation" Type="Bitmap" X="123" Y="83" Width="113" Height="30" Attributes="1048577" Text="PreparePrereqDlgProgress.gif" Order="800" MsiKey="PreparePrereqDlg#ProgressAnimation"/>
-    <ROW Dialog_="PrerequisitesDlg" Control="Cancel" Type="ImageButton" X="163" Y="359" Width="78" Height="28" Attributes="2" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="100" MsiKey="PrerequisitesDlg#Cancel" Options="1" ExtType="ImageButton" ExtData="[ButtonText_Cancel]" ExtDataLocId="-"/>
-    <ROW Dialog_="PrerequisitesDlg" Control="PrerequisiteSelector" Type="PrerequisiteSelector" X="17" Y="221" Width="312" Height="128" Attributes="3" Property="PrereqSelProp" Text="{110}{80}{70}{70}Name,Required,Found,Action" Order="500" TextLocId="Control.Text.PrerequisitesDlg#PrerequisiteSelector" MsiKey="PrerequisitesDlg#PrerequisiteSelector" ExtType="PrerequisiteSelector"/>
-    <ROW Dialog_="PrerequisitesDlg" Control="ProductNameTitle" Type="Text" X="83" Y="21" Width="245" Height="50" Attributes="196611" Text="[ProductName]" TextStyle="[ProductNameForSplash]" Order="600" TextLocId="Metro.Control.Text.ProductName" MsiKey="PrerequisitesDlg#ProductNameTitle"/>
-    <ROW Dialog_="PrerequisitesDlg" Control="CompanyText" Type="Text" X="83" Y="16" Width="191" Height="12" Attributes="196611" Text="[Manufacturer]" TextStyle="[ManufacturerFont]" Order="700" TextLocId="Metro.Control.Text.Manufacturer" MsiKey="PrerequisitesDlg#CompanyText"/>
-    <ROW Dialog_="PrerequisitesDlg" Control="ProductLogo" Type="Bitmap" X="17" Y="5" Width="59" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="800" MsiKey="PrerequisitesDlg#ProductLogo"/>
-    <ROW Dialog_="PrerequisitesDlg" Control="Description" Type="Text" X="16" Y="82" Width="312" Height="37" Attributes="196611" Text="Check both those boxes unless you know they&apos;re already installed and added to PATH, if not, pay attention:" Order="900"/>
-    <ROW Dialog_="PrerequisitesDlg" Control="Text_1" Type="Text" X="17" Y="119" Width="312" Height="44" Attributes="196611" Text="• During GIT installation, make sure to check &quot;GIT from the command line...&quot; when it&apos;s asking you about the PATH env, don&apos;t mind the other options (uncheck the release note at the end)" Order="1000"/>
-    <ROW Dialog_="PrerequisitesDlg" Control="Text_2" Type="Text" X="16" Y="170" Width="312" Height="44" Attributes="196611" Text="• During Python installation, make sure to check &quot;Install Python 3.10 to PATH&quot; at the bottom when the installer starts, don&apos;t mind the other options" Order="1100"/>
-    <ROW Dialog_="ProgressPrereqDlg" Control="ActionText" Type="Text" X="17" Y="191" Width="309" Height="11" Attributes="196611" TextStyle="SubnoteFont" Order="800" MsiKey="ProgressPrereqDlg#ActionText"/>
-    <ROW Dialog_="ProgressPrereqDlg" Control="ProgressBar" Type="StyledProgressBar" X="17" Y="185" Width="312" Height="5" Attributes="65537" Text="PrereqProgressImage.png" Order="900" MsiKey="ProgressPrereqDlg#ProgressBar" ExtType="StyledProgressBar"/>
-    <ROW Dialog_="ProgressPrereqDlg" Control="StatusLabel" Type="Text" X="17" Y="171" Width="45" Height="13" Attributes="196611" Text="Status:" TextStyle="SubnoteFont" Order="1000" TextLocId="Control.Text.ProgressDlg#StatusLabel" MsiKey="ProgressPrereqDlg#StatusLabel"/>
-    <ROW Dialog_="ProgressPrereqDlg" Control="Text" Type="Text" X="17" Y="105" Width="300" Height="30" Attributes="196611" Text="Please wait while the [Wizard] [Progress2] prerequisites for [ProductName].  This may take several minutes." Order="1100" TextLocId="Control.Text.ProgressPrereqDlg#Text" MsiKey="ProgressPrereqDlg#Text"/>
     <ROW Dialog_="VerifyReadyDlg" Control="Cancel" Type="ImageButton" X="163" Y="359" Width="78" Height="28" Attributes="2" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="100" MsiKey="VerifyReadyDlg#Cancel" Options="1" ExtType="ImageButton" ExtData="[ButtonText_Cancel]" ExtDataLocId="-"/>
     <ROW Dialog_="VerifyReadyDlg" Control="Back" Type="PushButton" X="5" Y="381" Width="11" Height="11" Attributes="2" Text="Control.Text.VerifyReadyDlg#Back" Help="Back|" Order="200" TextLocId="Control.Text.VerifyReadyDlg#Back" HelpLocId="Air.Control.Help#Back" MsiKey="VerifyReadyDlg#Back" Options="1" ExtType="PushButton" ExtData="[ButtonText_Back]" ExtDataLocId="-"/>
     <ROW Dialog_="VerifyReadyDlg" Control="ReadyToInstall" Type="Text" X="17" Y="105" Width="312" Height="19" Attributes="196611" Text="Ready to Install" TextStyle="[SubTitleStyle]" Order="400" TextLocId="Control.Text.VerifyReadyDlg#Title" MsiKey="VerifyReadyDlg#ReadyToInstall"/>
@@ -226,9 +223,7 @@
     <ROW Dialog_="VerifyRemoveDlg" Control="Cancel" Type="ImageButton" X="163" Y="359" Width="78" Height="28" Attributes="2" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="100" MsiKey="VerifyRemoveDlg#Cancel" Options="1" ExtType="ImageButton" ExtData="[ButtonText_Cancel]" ExtDataLocId="-"/>
     <ROW Dialog_="VerifyRepairDlg" Control="Bitmap" Type="Bitmap" X="0" Y="0" Width="345" Height="400" Attributes="1" Text="[Background]" Order="100" MsiKey="VerifyRepairDlg#Bitmap"/>
     <ROW Dialog_="VerifyRepairDlg" Control="Cancel" Type="ImageButton" X="163" Y="359" Width="78" Height="28" Attributes="2" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="200" MsiKey="VerifyRepairDlg#Cancel" Options="1" ExtType="ImageButton" ExtData="[ButtonText_Cancel]" ExtDataLocId="-"/>
-    <ROW Dialog_="WelcomePrereqDlg" Control="Description" Type="Text" X="17" Y="139" Width="312" Height="211" Attributes="196611" Text="You will need GIT and Python 3.10.6 to run the Web UI, FOLLOW THE INSTRUCTIONS OR NOTHING WILL WORK" Order="800" MsiKey="WelcomePrereqDlg#Description"/>
-    <ROW Dialog_="WelcomePrereqDlg" Control="SubTitle" Type="Text" X="17" Y="105" Width="312" Height="34" Attributes="196611" Text="Welcome to the Prerequisites [Wizard]" TextStyle="[SubTitleStyle]" Order="900" TextLocId="Control.Text.WelcomePrereqDlg#SubTitle" MsiKey="WelcomePrereqDlg#SubTitle"/>
-    <ATTRIBUTE name="DeletedRows" value="ExitDialog#AdvInst@InstallDlg#AdvInst@PrerequisitesDlg#SubTitle@ProgressDlg#AdvInst"/>
+    <ATTRIBUTE name="DeletedRows" value="InstallDlg#AdvInst@InstallDlg#CompanyText@InstallDlg#InstallButton@InstallDlg.aip@ProgressDlg#AdvInst@UI.aip"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlConditionComponent">
     <ROW Dialog_="NewDialog" Control_="Next" Action="Enable" Condition="GitCloneSuccess = 1"/>
@@ -236,12 +231,17 @@
     <ROW Dialog_="NewDialog_2" Control_="modelDlBtn" Action="Disable" Condition="modelDling = 1"/>
     <ROW Dialog_="NewDialog_2" Control_="Next" Action="Enable" Condition="modelDling = 2"/>
     <ROW Dialog_="NewDialog_2" Control_="skipbtn" Action="Enable" Condition="modelDling = 2"/>
+    <ROW Dialog_="InstallDlg" Control_="Next" Action="Enable" Condition="UNDERSTAND = &quot;understand&quot;"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Action="Enable" Condition="UNDERSTAND = &quot;understand&quot;"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Action="Disable" Condition="UNDERSTAND &lt;&gt; &quot;understand&quot;"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Action="Disable" Condition="installingGit = &quot;1&quot;"/>
+    <ATTRIBUTE name="DeletedRows" value="InstallDlg#InstallButton#Disable#NOT AGREE_CHECKBOX@InstallDlg#InstallButton#Enable#AGREE_CHECKBOX@InstallDlg#InstallButton#Hide#(Text_Next &lt;&gt; Text_Install) AND (InstallDlg)@InstallDlg#Next#Show#(Text_Next &lt;&gt; Text_Install) AND (InstallDlg)@InstallDlg.aip"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
-    <ROW Dialog_="InstallDlg" Control_="Next" Event="NewDialog" Argument="NewDialog" Condition="AI_INSTALL" Ordering="301"/>
+    <ROW Dialog_="InstallDlg" Control_="Next" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="307"/>
     <ROW Dialog_="InstallDlg" Control_="YouMustAgreeCtrl" Event="NewDialog" Argument="LicenseAgreementDlg" Condition="AI_INSTALL AND AiLicenseAgreement" Ordering="301"/>
     <ROW Dialog_="LicenseAgreementDlg" Control_="Back" Event="NewDialog" Argument="InstallDlg" Condition="AI_INSTALL AND AiLicenseAgreement" Ordering="1"/>
-    <ROW Dialog_="LicenseAgreementDlg" Control_="Next" Event="NewDialog" Argument="NewDialog" Condition="AI_INSTALL AND AiLicenseAgreement" Ordering="101"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="Next" Event="EndDialog" Argument="Return" Condition="AI_INSTALL AND AiLicenseAgreement" Ordering="101"/>
     <ROW Dialog_="MaintenanceTypeDlg" Control_="ChangeButton" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="501"/>
     <ROW Dialog_="MaintenanceTypeDlg" Control_="RemoveButton" Event="NewDialog" Argument="VerifyRemoveDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="699"/>
     <ROW Dialog_="VerifyRemoveDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="1"/>
@@ -271,13 +271,7 @@
     <ROW Dialog_="PatchWelcomeDlg" Control_="PatchWelcomeDlgDialogInitializer" Event="[Text_Next]" Argument="[Text_Install]" Condition="AI_PATCH" Ordering="3" Options="2"/>
     <ROW Dialog_="PatchWelcomeDlg" Control_="Back" Event="[ButtonText_Next]" Argument="[AI_ButtonText_Next_Orig]" Condition="AI_PATCH" Ordering="0" Options="2"/>
     <ROW Dialog_="PatchWelcomeDlg" Control_="Back" Event="[Text_Next]" Argument="[AI_Text_Next_Orig]" Condition="AI_PATCH" Ordering="1" Options="2"/>
-    <ROW Dialog_="WelcomePrereqDlg" Control_="Next" Event="NewDialog" Argument="PrerequisitesDlg" Condition="AI_BOOTSTRAPPER" Ordering="1"/>
-    <ROW Dialog_="PrerequisitesDlg" Control_="Next" Event="EndDialog" Argument="Return" Condition="AI_BOOTSTRAPPER" Ordering="1"/>
-    <ROW Dialog_="PrerequisitesDlg" Control_="Back" Event="NewDialog" Argument="WelcomePrereqDlg" Condition="AI_BOOTSTRAPPER" Ordering="1"/>
     <ROW Dialog_="NewDialog" Control_="Cancel" Event="SpawnDialog" Argument="CancelDlg" Condition="1" Ordering="100"/>
-    <ROW Dialog_="NewDialog" Control_="Next" Event="NewDialog" Argument="NewDialog_2" Condition="AI_INSTALL" Ordering="1"/>
-    <ROW Dialog_="NewDialog" Control_="Back" Event="NewDialog" Argument="InstallDlg" Condition="AI_INSTALL" Ordering="1"/>
-    <ROW Dialog_="NewDialog" Control_="Back" Event="NewDialog" Argument="LicenseAgreementDlg" Condition="AI_INSTALL AND AiLicenseAgreement" Ordering="2"/>
     <ROW Dialog_="NewDialog" Control_="gitclonebtn" Event="DoAction" Argument="Gitclone" Condition="AI_INSTALL" Ordering="5"/>
     <ROW Dialog_="NewDialog" Control_="gitclonebtn" Event="DoAction" Argument="AI_DATA_SETTER_3" Condition="AI_INSTALL" Ordering="4"/>
     <ROW Dialog_="NewDialog" Control_="gitclonebtn" Event="[AiRefreshDlg]" Argument="0" Condition="AI_INSTALL" Ordering="3"/>
@@ -291,21 +285,42 @@
     <ROW Dialog_="NewDialog" Control_="gitclonebtn" Event="[installingGit]" Argument="1" Condition="AI_INSTALL" Ordering="1"/>
     <ROW Dialog_="NewDialog" Control_="gitclonebtn" Event="[AiRefreshDlg]" Argument="0" Condition="AI_INSTALL AND 1" Ordering="6"/>
     <ROW Dialog_="NewDialog_2" Control_="Cancel" Event="SpawnDialog" Argument="CancelDlg" Condition="1" Ordering="100"/>
-    <ROW Dialog_="NewDialog_2" Control_="Next" Event="NewDialog" Argument="NewDialog_3" Condition="AI_INSTALL" Ordering="1"/>
-    <ROW Dialog_="NewDialog_2" Control_="Back" Event="NewDialog" Argument="NewDialog" Condition="AI_INSTALL" Ordering="1"/>
     <ROW Dialog_="NewDialog_3" Control_="Cancel" Event="SpawnDialog" Argument="CancelDlg" Condition="1" Ordering="100"/>
-    <ROW Dialog_="NewDialog_3" Control_="Next" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="1"/>
-    <ROW Dialog_="NewDialog_3" Control_="Back" Event="NewDialog" Argument="NewDialog_2" Condition="AI_INSTALL" Ordering="1"/>
-    <ROW Dialog_="NewDialog_3" Control_="Next" Event="SpawnDialog" Argument="OutOfRbDiskDlg" Condition="AI_INSTALL AND OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND (PROMPTROLLBACKCOST=&quot;P&quot; OR NOT PROMPTROLLBACKCOST)" Ordering="2" Options="2"/>
-    <ROW Dialog_="NewDialog_3" Control_="Next" Event="EnableRollback" Argument="False" Condition="AI_INSTALL AND OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST=&quot;D&quot;" Ordering="3" Options="2"/>
-    <ROW Dialog_="NewDialog_3" Control_="Next" Event="SpawnDialog" Argument="OutOfDiskDlg" Condition="AI_INSTALL AND ( (OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 1) OR (OutOfDiskSpace = 1 AND PROMPTROLLBACKCOST=&quot;F&quot;) )" Ordering="4" Options="2"/>
-    <ROW Dialog_="NewDialog_3" Control_="NewDialog_3DialogInitializer" Event="[AI_ButtonText_Next_Orig]" Argument="[ButtonText_Next]" Condition="AI_INSTALL" Ordering="0" Options="2"/>
-    <ROW Dialog_="NewDialog_3" Control_="NewDialog_3DialogInitializer" Event="[ButtonText_Next]" Argument="[[AI_CommitButton]]" Condition="AI_INSTALL" Ordering="1" Options="2"/>
-    <ROW Dialog_="NewDialog_3" Control_="NewDialog_3DialogInitializer" Event="[AI_Text_Next_Orig]" Argument="[Text_Next]" Condition="AI_INSTALL" Ordering="2" Options="2"/>
-    <ROW Dialog_="NewDialog_3" Control_="NewDialog_3DialogInitializer" Event="[Text_Next]" Argument="[Text_Install]" Condition="AI_INSTALL" Ordering="3" Options="2"/>
-    <ROW Dialog_="NewDialog_3" Control_="Back" Event="[ButtonText_Next]" Argument="[AI_ButtonText_Next_Orig]" Condition="AI_INSTALL" Ordering="2" Options="2"/>
-    <ROW Dialog_="NewDialog_3" Control_="Back" Event="[Text_Next]" Argument="[AI_Text_Next_Orig]" Condition="AI_INSTALL" Ordering="3" Options="2"/>
     <ROW Dialog_="NewDialog_2" Control_="skipbtn" Event="NewDialog" Argument="NewDialog_3" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="InstallDlg" Control_="Next" Event="DoAction" Argument="Gitclone" Condition="AI_INSTALL" Ordering="302"/>
+    <ROW Dialog_="InstallDlg" Control_="Next" Event="DoAction" Argument="AI_DATA_SETTER_3" Condition="AI_INSTALL" Ordering="301"/>
+    <ROW Dialog_="InstallDlg" Control_="Next" Event="DoAction" Argument="dlModel" Condition="AI_INSTALL AND ( MODEL_CHECK = &quot;installModel&quot; )" Ordering="306"/>
+    <ROW Dialog_="InstallDlg" Control_="Next" Event="DoAction" Argument="AI_DATA_SETTER_4" Condition="AI_INSTALL AND ( MODEL_CHECK = &quot;installModel&quot; )" Ordering="305"/>
+    <ROW Dialog_="InstallDlg" Control_="Next" Event="SpawnDialog" Argument="OutOfRbDiskDlg" Condition="AI_INSTALL AND OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND (PROMPTROLLBACKCOST=&quot;P&quot; OR NOT PROMPTROLLBACKCOST)" Ordering="308" Options="2"/>
+    <ROW Dialog_="InstallDlg" Control_="Next" Event="EnableRollback" Argument="False" Condition="AI_INSTALL AND OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST=&quot;D&quot;" Ordering="309" Options="2"/>
+    <ROW Dialog_="InstallDlg" Control_="Next" Event="SpawnDialog" Argument="OutOfDiskDlg" Condition="AI_INSTALL AND ( (OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 1) OR (OutOfDiskSpace = 1 AND PROMPTROLLBACKCOST=&quot;F&quot;) )" Ordering="310" Options="2"/>
+    <ROW Dialog_="InstallDlg" Control_="YouMustAgreeCtrl" Event="[ButtonText_Next]" Argument="[AI_ButtonText_Next_Orig]" Condition="AI_INSTALL" Ordering="302" Options="2"/>
+    <ROW Dialog_="InstallDlg" Control_="YouMustAgreeCtrl" Event="[Text_Next]" Argument="[AI_Text_Next_Orig]" Condition="AI_INSTALL" Ordering="303" Options="2"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="SetTargetPath" Argument="APPDIR" Condition="AI_INSTALL" Ordering="0"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="[InstallDlg]" Argument="{}" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="DoAction" Argument="Gitclone" Condition="AI_INSTALL" Ordering="8"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="DoAction" Argument="AI_DATA_SETTER_3" Condition="AI_INSTALL" Ordering="7"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="DoAction" Argument="dlModel" Condition="AI_INSTALL AND ( MODEL_CHECK = &quot;installModel&quot; )" Ordering="10"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="DoAction" Argument="AI_DATA_SETTER_4" Condition="AI_INSTALL AND ( MODEL_CHECK = &quot;installModel&quot; )" Ordering="9"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="12"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="SpawnDialog" Argument="OutOfRbDiskDlg" Condition="AI_INSTALL AND OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND (PROMPTROLLBACKCOST=&quot;P&quot; OR NOT PROMPTROLLBACKCOST)" Ordering="13"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="EnableRollback" Argument="False" Condition="AI_INSTALL AND OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST=&quot;D&quot;" Ordering="14"/>
+    <ROW Dialog_="InstallDlg" Control_="Back" Event="[ButtonText_Next]" Argument="[AI_ButtonText_Next_Orig]" Condition="AI_INSTALL" Ordering="0" Options="2"/>
+    <ROW Dialog_="InstallDlg" Control_="Back" Event="[Text_Next]" Argument="[AI_Text_Next_Orig]" Condition="AI_INSTALL" Ordering="1" Options="2"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="Next" Event="SpawnDialog" Argument="OutOfRbDiskDlg" Condition="AI_INSTALL AND AiLicenseAgreement AND OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND (PROMPTROLLBACKCOST=&quot;P&quot; OR NOT PROMPTROLLBACKCOST)" Ordering="102" Options="2"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="Next" Event="EnableRollback" Argument="False" Condition="AI_INSTALL AND AiLicenseAgreement AND OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST=&quot;D&quot;" Ordering="103" Options="2"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="Next" Event="SpawnDialog" Argument="OutOfDiskDlg" Condition="AI_INSTALL AND AiLicenseAgreement AND ( (OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 1) OR (OutOfDiskSpace = 1 AND PROMPTROLLBACKCOST=&quot;F&quot;) )" Ordering="104" Options="2"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="LicenseAgreementDlgDialogInitializer" Event="[AI_ButtonText_Next_Orig]" Argument="[ButtonText_Next]" Condition="AI_INSTALL AND AiLicenseAgreement" Ordering="101" Options="2"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="LicenseAgreementDlgDialogInitializer" Event="[ButtonText_Next]" Argument="[[AI_CommitButton]]" Condition="AI_INSTALL AND AiLicenseAgreement" Ordering="102" Options="2"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="LicenseAgreementDlgDialogInitializer" Event="[AI_Text_Next_Orig]" Argument="[Text_Next]" Condition="AI_INSTALL AND AiLicenseAgreement" Ordering="103" Options="2"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="LicenseAgreementDlgDialogInitializer" Event="[Text_Next]" Argument="[Text_Install]" Condition="AI_INSTALL AND AiLicenseAgreement" Ordering="104" Options="2"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="Back" Event="[ButtonText_Next]" Argument="[AI_ButtonText_Next_Orig]" Condition="AI_INSTALL AND AiLicenseAgreement" Ordering="2" Options="2"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="Back" Event="[Text_Next]" Argument="[AI_Text_Next_Orig]" Condition="AI_INSTALL AND AiLicenseAgreement" Ordering="3" Options="2"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="SpawnDialog" Argument="OutOfDiskDlg" Condition="AI_INSTALL AND ( (OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 1) OR (OutOfDiskSpace = 1 AND PROMPTROLLBACKCOST=&quot;F&quot;) )" Ordering="11"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="[installingGit]" Argument="1" Condition="AI_INSTALL" Ordering="3"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="DoAction" Argument="prereqs" Condition="AI_INSTALL" Ordering="6"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="DoAction" Argument="AI_DATA_SETTER_5" Condition="AI_INSTALL" Ordering="5"/>
+    <ATTRIBUTE name="DeletedRows" value="InstallDlg#InstallButton#SetTargetPath#APPDIR#AI_INSTALL@InstallDlg#InstallButton#[AiEventsControl]#Next#1@InstallDlg#InstallDlgDialogInitializer#[InstallDlg]#1#AI_INSTALL@InstallDlg#Next#[AiLicenseAgreement]#{}#AI_INSTALL@InstallDlg#YouMustAgreeCtrl#SetTargetPath#APPDIR#AI_INSTALL@InstallDlg#YouMustAgreeCtrl#[InstallDlg]#{}#AI_INSTALL"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
@@ -313,13 +328,13 @@
     <ROW Directory_="InstallDlg" Component_="InstallDlg" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
-    <ROW Action="AI_AppSearchEx" Type="1" Source="Prereq.dll" Target="DoAppSearchEx"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH_ORIGINAL" Target="[AI_SETUPEXEPATH]"/>
     <ROW Action="AI_DATA_SETTER" Type="51" Source="CustomActionData" Target="[AI_SETUPEXEPATH]"/>
     <ROW Action="AI_DATA_SETTER_1" Type="51" Source="CustomActionData" Target="[~]"/>
     <ROW Action="AI_DATA_SETTER_2" Type="51" Source="CustomActionData" Target="[~]"/>
     <ROW Action="AI_DATA_SETTER_3" Type="51" Source="CustomActionData" Target="AEYAbABhAGcAcwACADcAAQBTAGMAcgBpAHAAdABTAHIAYwBCAGkAbgBhAHIAeQBSAG8AdwBJAGQAAgBnAGkAdABjAGwAbwBuAGUALgBwAHMAMQ=="/>
     <ROW Action="AI_DATA_SETTER_4" Type="51" Source="CustomActionData" Target="AEYAbABhAGcAcwACADcAAQBTAGMAcgBpAHAAdABTAHIAYwBCAGkAbgBhAHIAeQBSAG8AdwBJAGQAAgBkAGwATQBvAGQAZQBsAC4AcABzADE="/>
+    <ROW Action="AI_DATA_SETTER_5" Type="51" Source="CustomActionData" Target="AEYAbABhAGcAcwACADMAAQBTAGMAcgBpAHAAdABTAHIAYwBCAGkAbgBhAHIAeQBSAG8AdwBJAGQAAgBwAHIAZQByAGUAcQBzAC4AcABzADE="/>
     <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
     <ROW Action="AI_DeleteCadLzma" Type="51" Source="AI_DeleteLzma" Target="[AI_SETUPEXEPATH]"/>
     <ROW Action="AI_DeleteLzma" Type="1025" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
@@ -355,8 +370,10 @@
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
     <ROW Action="dlModel" Type="1" Source="PowerShellScriptLauncher.dll" Target="RunPowerShellFileScript" WithoutSeq="true" Options="134217729" AdditionalSeq="AI_DATA_SETTER_4"/>
+    <ROW Action="prereqs" Type="1" Source="PowerShellScriptLauncher.dll" Target="RunPowerShellFileScript" WithoutSeq="true" Options="134217729" AdditionalSeq="AI_DATA_SETTER_5"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDialogComponent">
+    <ROW Dialog="InstallDlg" HCentering="50" VCentering="50" Width="345" Height="400" Attributes="3" Title="[ProductName] [Setup]" Control_Default="Back" Control_Cancel="Cancel" TitleLocId="Dialog.InstallDlg" MsiKey="InstallDlg"/>
     <ROW Dialog="NewDialog" HCentering="50" VCentering="50" Width="345" Height="400" Attributes="3" Title="[ProductName] [Setup]" Control_Default="Next" Control_Cancel="Cancel" TitleLocId="Dialog.TemplateDlg"/>
     <ROW Dialog="NewDialog_1" HCentering="50" VCentering="50" Width="345" Height="400" Attributes="3" Title="[ProductName] [Setup]" Control_Default="Next" Control_Cancel="Cancel" TitleLocId="Dialog.TemplateDlg"/>
     <ROW Dialog="NewDialog_2" HCentering="50" VCentering="50" Width="345" Height="400" Attributes="3" Title="[ProductName] [Setup]" Control_Default="Next" Control_Cancel="Cancel" TitleLocId="Dialog.TemplateDlg"/>
@@ -371,7 +388,7 @@
     <ROW Feature_="MainFeature" Component_="regid.199509.com.example"/>
     <ROW Feature_="MainFeature" Component_="InstallDlg"/>
     <ROW Feature_="MainFeature" Component_="webuiuser.bat"/>
-    <ROW Feature_="MainFeature" Component_="webuiuser3000.bat"/>
+    <ROW Feature_="MainFeature" Component_="webuiuser.bat_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="logoAlpha.exe" SourcePath="Advanced Installer\Looks\Exports\logoAlpha.ico" Index="0"/>
@@ -383,7 +400,6 @@
     <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1397"/>
     <ROW Action="AI_ResolveKnownFolders" Sequence="52"/>
     <ROW Action="AI_EnableDebugLog" Sequence="51"/>
-    <ROW Action="AI_AppSearchEx" Sequence="103"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99" Builds="DefaultBuild"/>
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="101" Builds="DefaultBuild"/>
     <ROW Action="AI_DeleteCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="199" Builds="DefaultBuild"/>
@@ -410,7 +426,6 @@
     <ROW Action="AI_ResolveKnownFolders" Sequence="53"/>
     <ROW Action="AI_DpiContentScale" Sequence="52"/>
     <ROW Action="AI_EnableDebugLog" Sequence="51"/>
-    <ROW Action="AI_AppSearchEx" Sequence="103"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99"/>
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="102"/>
     <ROW Action="AI_DetectSoftware" Sequence="101"/>
@@ -477,6 +492,7 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiTextStyleComponent">
     <ROW TextStyle="BrandingStyle" FaceName="Segoe UI" Size="8" Color="2171376" MultiBuildColor="DefaultBuild:2565927" StyleBits="0" MsiKey="BrandingStyle"/>
     <ROW TextStyle="InputCtrlFont" FaceName="Segoe UI" Size="8" Color="16777215" MultiBuildColor="DefaultBuild:14079702" StyleBits="0" MsiKey="InputCtrlFont"/>
+    <ROW TextStyle="SubTitle8_SubTitle8" FaceName="Verdana" Size="8" Color="14079702" StyleBits="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="surface"/>
@@ -484,15 +500,6 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiUpgradeComponent">
     <ROW UpgradeCode="[|UpgradeCode]" VersionMin="0.0.1" VersionMax="[|ProductVersion]" Attributes="257" ActionProperty="OLDPRODUCTS"/>
     <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
-  </COMPONENT>
-  <COMPONENT cid="caphyon.advinst.msicomp.PreReqComponent">
-    <ROW PrereqKey="RequiredApplication" DisplayName="Git" SetupFileUrl="https://github.com/git-for-windows/git/releases/download/v2.38.0.windows.1/Git-2.38.0-64-bit.exe" Location="1" ExactSize="0" Operator="0" Options="yi" TargetName="Required Application"/>
-    <ROW PrereqKey="RequiredApplication_1" DisplayName="Python 3.10.6" SetupFileUrl="https://www.python.org/ftp/python/3.10.8/python-3.10.8-amd64.exe" Location="1" ExactSize="0" Operator="0" Options="yi" TargetName="Required Application"/>
-    <ATTRIBUTE name="PrereqsOrder" value="RequiredApplication_1 RequiredApplication"/>
-  </COMPONENT>
-  <COMPONENT cid="caphyon.advinst.msicomp.PreReqSearchComponent">
-    <ROW SearchKey="Software" Prereq="RequiredApplication_1" SearchType="5" SearchString="HKLM\Software\" Order="2" Property="PreReqSearch_2"/>
-    <ROW SearchKey="SystemFolderfile.dll" Prereq="RequiredApplication" SearchType="6" SearchString="HKLM\Software\" Order="1" Property="PreReqSearch"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.SynchronizedFolderComponent">
     <ROW Directory_="stablediffusionwebui_Dir" SourcePath="Prerequisite Files\stable-diffusion-webui" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>

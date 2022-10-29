@@ -15,6 +15,4 @@ catch {
     return
     exit
 }
-AI_SetMsiProperty GitCloneSuccess 1
-[system.windows.messagebox]::Show("The WebUI was successfuly installed you can go on", '  Success', 'OK', 'Info')
 
