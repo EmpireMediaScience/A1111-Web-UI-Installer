@@ -6,7 +6,7 @@ Set-StrictMode -Version 2
 Import-Module .\logger.psm1 -Force -Global -Prefix "logger."
 
 # General Variables
-$InstallPath = (get-item $PSScriptRoot ).parent.parent.FullName
+$InstallPath = (get-item $PSScriptRoot ).parent.FullName
 <# $DocsPath = [environment]::getfolderpath("mydocuments")
 $InstallPath = "$DocsPath\A1111's Web UI Autoinstaller" #>
 $webuiPath = "$InstallPath\stable-diffusion-webui"
