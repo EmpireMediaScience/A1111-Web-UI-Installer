@@ -5,3 +5,5 @@ desktop.ini
 /Advanced Installer/*-cache
 /Advanced Installer/*.back.aip
 *bu.aip
+config.csv
+.vscode
