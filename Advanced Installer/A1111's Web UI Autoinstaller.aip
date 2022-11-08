@@ -24,10 +24,10 @@
     <ROW Property="MSIFASTINSTALL" MultiBuildValue="DefaultBuild:1"/>
     <ROW Property="Manufacturer" Value="Empire Media Science"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="2057:{68948DF0-5B0F-4869-826B-28FAC9AA9BE9} " Type="16"/>
+    <ROW Property="ProductCode" Value="2057:{27B9D78C-013A-4502-BC1A-4CCD4D81D2ED} " Type="16"/>
     <ROW Property="ProductLanguage" Value="2057"/>
     <ROW Property="ProductName" Value="A1111&apos;s Web UI Autoinstaller"/>
-    <ROW Property="ProductVersion" Value="0.0.8"/>
+    <ROW Property="ProductVersion" Value="0.0.9"/>
     <ROW Property="REBOOT" MultiBuildValue="DefaultBuild:ReallySuppress"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{ED3F2830-A9E0-46B4-9D7E-C242564349CB}"/>
@@ -53,7 +53,7 @@
     <ROW Directory="stablediffusionwebui_Dir" Directory_Parent="APPDIR" DefaultDir="STABLE~1|stable-diffusion-webui"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{ECC0B839-DA3D-448B-9248-2D88045F005A}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{7C116C18-5FF0-452A-8341-5BF92F0D4C46}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_DisableModify" ComponentId="{F2050EAB-4FE0-4037-BD04-5CC3D395CCD6}" Directory_="APPDIR" Attributes="260" KeyPath="NoModify" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{FFC3DAE9-F4E8-4D93-BDC4-91EB6AF9787F}" Directory_="APPDIR" Attributes="260" KeyPath="AI_ExePath"/>
     <ROW Component="APPDIR" ComponentId="{8CF866A2-A911-49F3-990F-8C58E2C86E81}" Directory_="APPDIR" Attributes="0"/>
@@ -61,7 +61,7 @@
     <ROW Component="ProductInformation" ComponentId="{89B7657B-A9AC-47E0-934E-DFD5C27F709B}" Directory_="APPDIR" Attributes="260" KeyPath="Version"/>
     <ROW Component="definitions.json" ComponentId="{6A0F435C-A63A-448F-9ED7-320D31F7F1E2}" Directory_="Launcher_Dir" Attributes="0" KeyPath="definitions.json" Type="0"/>
     <ROW Component="regid.199509.com.example" ComponentId="{CED1F5AE-CD32-43C2-B701-4C359940B9A3}" Directory_="regid.199509.com.example_Dir" Attributes="0"/>
-    <ROW Component="stablediffusionwebui" ComponentId="{80E5670A-1D75-4AB1-B9D5-598784512B03}" Directory_="stablediffusionwebui_Dir" Attributes="0"/>
+    <ROW Component="stablediffusionwebui" ComponentId="{10CF3B16-547D-4F30-BD15-0F0226175D42}" Directory_="stablediffusionwebui_Dir" Attributes="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
@@ -86,6 +86,12 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.AiFeatureComponentsAliasComponent">
     <ROW AliasRowId="MainFeature#InstallDlg" AliasRowOperation="1"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.AiPersistentDataComponent">
+    <ROW PersistentRow="stablediffusionwebui_Dir" Type="1" Condition="1"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.AiRemoveFileComponent">
+    <ROW RemoveFile="_" Options="3"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
     <ROW BootstrOptKey="GlobalOptions" DownloadFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\prerequisites" Options="2"/>
@@ -123,6 +129,21 @@
     <ROW Fragment="WelcomePrereqDlg.aip" Path="&lt;AI_THEMES&gt;surface\fragments\WelcomePrereqDlg.aip"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiActionTextComponent">
+    <ROW Action="AI_AiBackupImmediate" Description="Preparing backup operation" DescriptionLocId="ActionText.Description.AI_AiBackupImmediate" Template="Path: [1]" TemplateLocId="ActionText.Template.AI_AiBackupImmediate"/>
+    <ROW Action="AI_AiBackupRollback" Description="Rollback backup" DescriptionLocId="ActionText.Description.AI_AiBackupRollback" Template="Path: [1]" TemplateLocId="ActionText.Template.AI_AiBackupRollback"/>
+    <ROW Action="AI_AiBackupRollbackImpersonate" Description="Rollback backup" DescriptionLocId="ActionText.Description.AI_AiBackupRollback" Template="Path: [1]" TemplateLocId="ActionText.Template.AI_AiBackupRollback"/>
+    <ROW Action="AI_AiRemoveFilesCommit" Description="Executing file removal operations." DescriptionLocId="ActionText.Description.AI_AiRemoveFilesCommit" Template="Removing file: [1]" TemplateLocId="ActionText.Template.AI_AiRemoveFilesCommit"/>
+    <ROW Action="AI_AiRemoveFilesCommit_Impersonate" Description="Executing file removal operations." DescriptionLocId="ActionText.Description.AI_AiRemoveFilesCommit" Template="Removing file: [1]" TemplateLocId="ActionText.Template.AI_AiRemoveFilesCommit"/>
+    <ROW Action="AI_AiRemoveFilesDeferred_Permanent" Description="Preparing files for removal" DescriptionLocId="ActionText.Description.AI_AiRemoveFilesDeferred_Permanent" Template="Preparing file: [1]" TemplateLocId="ActionText.Template.AI_AiRemoveFilesDeferred_Permanent"/>
+    <ROW Action="AI_AiRemoveFilesDeferred_Permanent_Impersonate" Description="Preparing files for removal" DescriptionLocId="ActionText.Description.AI_AiRemoveFilesDeferred_Permanent" Template="Preparing file: [1]" TemplateLocId="ActionText.Template.AI_AiRemoveFilesDeferred_Permanent"/>
+    <ROW Action="AI_AiRemoveFilesDeferred_Undoable" Description="Preparing files for removal" DescriptionLocId="ActionText.Description.AI_AiRemoveFilesDeferred_Undoable" Template="Preparing file: [1]" TemplateLocId="ActionText.Template.AI_AiRemoveFilesDeferred_Undoable"/>
+    <ROW Action="AI_AiRemoveFilesDeferred_Undoable_Impersonate" Description="Preparing files for removal" DescriptionLocId="ActionText.Description.AI_AiRemoveFilesDeferred_Undoable" Template="Preparing file: [1]" TemplateLocId="ActionText.Template.AI_AiRemoveFilesDeferred_Undoable"/>
+    <ROW Action="AI_AiRemoveFilesImmediate" Description="Generating actions to remove files." DescriptionLocId="ActionText.Description.AI_AiRemoveFilesImmediate" Template="Preparing file: [1]" TemplateLocId="ActionText.Template.AI_AiRemoveFilesImmediate"/>
+    <ROW Action="AI_AiRemoveFilesRollback" Description="Restoring removed files" DescriptionLocId="ActionText.Description.AI_AiRemoveFilesRollback" Template="Restoring file: [1]" TemplateLocId="ActionText.Template.AI_AiRemoveFilesRollback"/>
+    <ROW Action="AI_AiRemoveFilesRollback_Impersonate" Description="Restoring removed files" DescriptionLocId="ActionText.Description.AI_AiRemoveFilesRollback" Template="Restoring file: [1]" TemplateLocId="ActionText.Template.AI_AiRemoveFilesRollback"/>
+    <ROW Action="AI_AiRestoreDeferred" Description="Executing restore operation" DescriptionLocId="ActionText.Description.AI_AiRestoreDeferred" Template="Path: [1]" TemplateLocId="ActionText.Template.AI_AiRestoreDeferred"/>
+    <ROW Action="AI_AiRestoreDeferredImpersonate" Description="Executing restore operation" DescriptionLocId="ActionText.Description.AI_AiRestoreDeferred" Template="Path: [1]" TemplateLocId="ActionText.Template.AI_AiRestoreDeferred"/>
+    <ROW Action="AI_AiRestoreRollback" Description="Rollback restore" DescriptionLocId="ActionText.Description.AI_AiRestoreRollback" Template="Path: [1]" TemplateLocId="ActionText.Template.AI_AiRestoreRollback"/>
     <ROW Action="AI_DeleteLzma" Description="Deleting files extracted from archive" DescriptionLocId="ActionText.Description.AI_DeleteLzma" TemplateLocId="-"/>
     <ROW Action="AI_DeleteRLzma" Description="Deleting files extracted from archive" DescriptionLocId="ActionText.Description.AI_DeleteLzma" TemplateLocId="-"/>
     <ROW Action="AI_ExtractFiles" Description="Extracting files from archive" DescriptionLocId="ActionText.Description.AI_ExtractLzma" TemplateLocId="-"/>
@@ -142,6 +163,7 @@
     <ROW Name="ExternalUICleaner.dll" SourcePath="&lt;AI_CUSTACTS&gt;ExternalUICleaner.dll"/>
     <ROW Name="PowerShellScriptLauncher.dll" SourcePath="&lt;AI_CUSTACTS&gt;PowerShellScriptLauncher.dll"/>
     <ROW Name="Prereq.dll" SourcePath="&lt;AI_CUSTACTS&gt;Prereq.dll"/>
+    <ROW Name="ResourceCleaner.dll" SourcePath="&lt;AI_CUSTACTS&gt;ResourceCleaner.dll"/>
     <ROW Name="ShortcutFlags.dll" SourcePath="&lt;AI_CUSTACTS&gt;ShortcutFlags.dll"/>
     <ROW Name="SoftwareDetector.dll" SourcePath="&lt;AI_CUSTACTS&gt;SoftwareDetector.dll"/>
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
@@ -169,7 +191,7 @@
     <ROW Dialog_="InstallDlg" Control="ProductLogo" Type="Bitmap" X="143" Y="17" Width="59" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="1100" MsiKey="InstallDlg#ProductLogo"/>
     <ROW Dialog_="InstallDlg" Control="InstallModel" Type="CheckBox" X="17" Y="197" Width="306" Height="18" Attributes="3" Property="MODEL_CHECK" Text="Install SD Checkpoint" Order="1200"/>
     <ROW Dialog_="InstallDlg" Control="modelChkInfo" Type="Text" X="17" Y="215" Width="312" Height="22" Attributes="65539" Property="TEXT_1_PROP" Text="Uncheck this if you already have one or more checkpoint models (you&apos;ll be able to select a model folder from the launcher)" TextStyle="SubTitle8" Order="1300"/>
-    <ROW Dialog_="InstallDlg" Control="Text_1" Type="Text" X="17" Y="162" Width="312" Height="30" Attributes="65539" Property="TEXT_1_PROP_1" Text="If you don&apos;t use the default path, create a subfolder for the installation, else everything will be wiped in that folder !" TextStyle="Warning" Order="1400"/>
+    <ROW Dialog_="InstallDlg" Control="Text_1" Type="Text" X="17" Y="162" Width="312" Height="30" Attributes="65539" Property="TEXT_1_PROP_1" Text="If you don&apos;t use the default folder above, It is recommended to create a subfolder to keep things tidy" TextStyle="SubTitle8" Order="1400"/>
     <ROW Dialog_="InstallDlg" Control="Text_2" Type="Text" X="17" Y="292" Width="292" Height="21" Attributes="65539" Property="TEXT_1_PROP_2" Text="• Once you&apos;ve clicked Install, please be patient as it can take a while, especially if you&apos;ve checked &quot;Install SD Checkpoint&quot;" TextStyle="SubTitle8_SubTitle8" Order="1500"/>
     <ROW Dialog_="InstallDlg" Control="Text_3" Type="Text" X="17" Y="270" Width="292" Height="22" Attributes="65539" Property="TEXT_1_PROP_2_1" Text="• This will erase previous versions installed in the selected path, perform any backup necessary (models, configs etc)" TextStyle="SubTitle8_SubTitle8" Order="1600"/>
     <ROW Dialog_="InstallDlg" Control="Understand" Type="CheckBox" X="17" Y="322" Width="84" Height="18" Attributes="3" Property="UNDERSTAND" Text="I understand" Order="1700"/>
@@ -301,15 +323,33 @@
     <ROW Dialog_="PrerequisitesDlg" Control_="Next" Event="EndDialog" Argument="Return" Condition="AI_BOOTSTRAPPER" Ordering="1"/>
     <ROW Dialog_="PrerequisitesDlg" Control_="Back" Event="NewDialog" Argument="WelcomePrereqDlg" Condition="AI_BOOTSTRAPPER" Ordering="1"/>
     <ROW Dialog_="WelcomePrereqDlg" Control_="WelcomePrereqDlgDialogInitializer" Event="NewDialog" Argument="PrerequisitesDlg" Condition="AI_BOOTSTRAPPER" Ordering="1"/>
+    <ROW Dialog_="FatalError" Control_="Finish" Event="DoAction" Argument="AI_AiBackupCleanup" Condition="1" Ordering="201"/>
+    <ROW Dialog_="UserExit" Control_="Finish" Event="DoAction" Argument="AI_AiBackupCleanup" Condition="1" Ordering="101"/>
     <ATTRIBUTE name="DeletedRows" value="InstallDlg#InstallButton#SetTargetPath#APPDIR#AI_INSTALL@InstallDlg#InstallButton#[AiEventsControl]#Next#1@InstallDlg#InstallDlgDialogInitializer#[InstallDlg]#1#AI_INSTALL@InstallDlg#Next#[AiLicenseAgreement]#{}#AI_INSTALL@InstallDlg#YouMustAgreeCtrl#SetTargetPath#APPDIR#AI_INSTALL@InstallDlg#YouMustAgreeCtrl#[InstallDlg]#{}#AI_INSTALL"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
     <ROW Directory_="regid.199509.com.example_Dir" Component_="regid.199509.com.example" ManualDelete="false"/>
     <ROW Directory_="InstallDlg" Component_="InstallDlg" ManualDelete="false"/>
-    <ROW Directory_="stablediffusionwebui_Dir" Component_="stablediffusionwebui" ManualDelete="false"/>
+    <ROW Directory_="stablediffusionwebui_Dir" Component_="stablediffusionwebui" ManualDelete="true"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
+    <ROW Action="AI_AiBackupCleanup" Type="1" Source="ResourceCleaner.dll" Target="OnAiBackupCleanup" WithoutSeq="true"/>
+    <ROW Action="AI_AiBackupImmediate" Type="1" Source="ResourceCleaner.dll" Target="OnAiBackupImmediate"/>
+    <ROW Action="AI_AiBackupRollback" Type="11521" Source="ResourceCleaner.dll" Target="OnAiBackupRollback"/>
+    <ROW Action="AI_AiBackupRollbackImpersonate" Type="9473" Source="ResourceCleaner.dll" Target="OnAiBackupRollbackImpersonate"/>
+    <ROW Action="AI_AiRemoveFilesCommit" Type="11777" Source="ResourceCleaner.dll" Target="OnAiRemoveFilesCommit" WithoutSeq="true"/>
+    <ROW Action="AI_AiRemoveFilesCommit_Impersonate" Type="9729" Source="ResourceCleaner.dll" Target="OnAiRemoveFilesCommitImpersonate" WithoutSeq="true"/>
+    <ROW Action="AI_AiRemoveFilesDeferred_Permanent" Type="11265" Source="ResourceCleaner.dll" Target="OnAiRemoveFilesPermanent" WithoutSeq="true"/>
+    <ROW Action="AI_AiRemoveFilesDeferred_Permanent_Impersonate" Type="9217" Source="ResourceCleaner.dll" Target="OnAiRemoveFilesPermanentImpersonate" WithoutSeq="true"/>
+    <ROW Action="AI_AiRemoveFilesDeferred_Undoable" Type="11265" Source="ResourceCleaner.dll" Target="OnAiRemoveFilesUndoable" WithoutSeq="true"/>
+    <ROW Action="AI_AiRemoveFilesDeferred_Undoable_Impersonate" Type="9217" Source="ResourceCleaner.dll" Target="OnAiRemoveFilesUndoableImpersonate" WithoutSeq="true"/>
+    <ROW Action="AI_AiRemoveFilesImmediate" Type="1" Source="ResourceCleaner.dll" Target="OnAiRemoveFilesImmediate"/>
+    <ROW Action="AI_AiRemoveFilesRollback" Type="11521" Source="ResourceCleaner.dll" Target="OnAiUndoRemoveFiles" WithoutSeq="true"/>
+    <ROW Action="AI_AiRemoveFilesRollback_Impersonate" Type="9473" Source="ResourceCleaner.dll" Target="OnAiUndoRemoveFilesImpersonate" WithoutSeq="true"/>
+    <ROW Action="AI_AiRestoreDeferred" Type="11265" Source="ResourceCleaner.dll" Target="OnAiRestoreDeferred"/>
+    <ROW Action="AI_AiRestoreDeferredImpersonate" Type="9217" Source="ResourceCleaner.dll" Target="OnAiRestoreDeferredImpersonate"/>
+    <ROW Action="AI_AiRestoreRollback" Type="11521" Source="ResourceCleaner.dll" Target="OnAiRestoreRollback" WithoutSeq="true"/>
     <ROW Action="AI_AppSearchEx" Type="1" Source="Prereq.dll" Target="DoAppSearchEx"/>
     <ROW Action="AI_ApplyShortcutFlags" Type="3073" Source="ShortcutFlags.dll" Target="UpdateShortcutFlags" WithoutSeq="true"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH_ORIGINAL" Target="[AI_SETUPEXEPATH]"/>
@@ -372,9 +412,9 @@
     <ROW Feature_="MainFeature" Component_="AI_DisableModify"/>
     <ROW Feature_="MainFeature" Component_="regid.199509.com.example"/>
     <ROW Feature_="MainFeature" Component_="InstallDlg"/>
-    <ROW Feature_="MainFeature" Component_="stablediffusionwebui"/>
     <ROW Feature_="MainFeature" Component_="AI_ExePath"/>
     <ROW Feature_="MainFeature" Component_="definitions.json"/>
+    <ROW Feature_="MainFeature" Component_="stablediffusionwebui"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="logoAlpha.exe" SourcePath="Advanced Installer\Looks\Exports\logoAlpha.ico" Index="0"/>
@@ -382,13 +422,13 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="748"/>
-    <ROW Action="AI_STORE_LOCATION" Condition="(Not Installed) OR REINSTALL" Sequence="1502"/>
+    <ROW Action="AI_STORE_LOCATION" Condition="(Not Installed) OR REINSTALL" Sequence="1504"/>
     <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1397"/>
     <ROW Action="AI_ResolveKnownFolders" Sequence="52"/>
     <ROW Action="AI_EnableDebugLog" Sequence="51"/>
     <ROW Action="AI_DetectSoftware" Sequence="103"/>
-    <ROW Action="AI_GetArpIconPath" Sequence="1401"/>
-    <ROW Action="AI_RemoveExternalUIStub" Condition="(REMOVE=&quot;ALL&quot;) AND ((VersionNT &gt; 500) OR((VersionNT = 500) AND (ServicePackLevel &gt;= 4)))" Sequence="1501"/>
+    <ROW Action="AI_GetArpIconPath" Sequence="1402"/>
+    <ROW Action="AI_RemoveExternalUIStub" Condition="(REMOVE=&quot;ALL&quot;) AND ((VersionNT &gt; 500) OR((VersionNT = 500) AND (ServicePackLevel &gt;= 4)))" Sequence="1503"/>
     <ROW Action="AI_XmlInstall" Condition="(REMOVE &lt;&gt; &quot;ALL&quot;)" Sequence="5102"/>
     <ROW Action="AI_DATA_SETTER_1" Condition="(REMOVE &lt;&gt; &quot;ALL&quot;)" Sequence="5101"/>
     <ROW Action="AI_XmlUninstall" Condition="(REMOVE)" Sequence="3102"/>
@@ -409,6 +449,12 @@
     <ROW Action="AI_PrepareShortcutFlags" Condition="(VersionNT &gt; 501) AND ((NOT Installed) OR (Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;)))" Sequence="4501"/>
     <ROW Action="AI_PinShortcuts" Condition="(VersionNT &gt; 600) AND ((NOT Installed) OR (Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;)))" Sequence="6499"/>
     <ROW Action="AI_UnpinShortcuts" Condition="(VersionNT &gt; 600) AND (REMOVE = &quot;ALL&quot;)" Sequence="3199"/>
+    <ROW Action="AI_AiRemoveFilesImmediate" Sequence="3499"/>
+    <ROW Action="AI_AiBackupImmediate" Sequence="1401"/>
+    <ROW Action="AI_AiBackupRollback" Sequence="1502"/>
+    <ROW Action="AI_AiBackupRollbackImpersonate" Sequence="1501"/>
+    <ROW Action="AI_AiRestoreDeferredImpersonate" Sequence="6598"/>
+    <ROW Action="AI_AiRestoreDeferred" Sequence="6599"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="InstallDlg" Condition="AI_INSTALL" Sequence="1230" SeqType="3" MsiKey="WelcomeDlg"/>
@@ -473,8 +519,12 @@
     <ROW Registry="VersionMinor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMinor" Value="#0" Component_="AI_CustomARPName" VirtualValue="#"/>
     <ROW Registry="Windows" Root="-1" Key="Software\Microsoft\Windows" Name="\"/>
   </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRemoveFileComponent">
+    <ROW FileKey="_" Component_="definitions.json" DirProperty="stablediffusionwebui_Dir" InstallMode="2"/>
+    <ROW FileKey="__1" Component_="definitions.json" DirProperty="Launcher_Dir" InstallMode="2"/>
+  </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="A1111sWebUI" Directory_="APPDIR" Name="A1111&apos;~2|A1111&apos;s WebUI (Pin to Taskbar)" Component_="stablediffusionwebui" Target="[WindowsVolume]\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" Arguments="-ExecutionPolicy Bypass -File &quot;[Launcher_Dir]LauncherUI.ps1&quot;" Hotkey="0" Icon_="logoAlpha.exe" IconIndex="0" ShowCmd="1" WkDir="Launcher_Dir" CustomFlags="1"/>
+    <ROW Shortcut="A1111sWebUI" Directory_="APPDIR" Name="A1111&apos;~2|A1111&apos;s WebUI (Pin to Taskbar)" Component_="definitions.json" Target="[WindowsVolume]\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" Arguments="-ExecutionPolicy Bypass -File &quot;[Launcher_Dir]LauncherUI.ps1&quot;" Hotkey="0" Icon_="logoAlpha.exe" IconIndex="0" ShowCmd="1" WkDir="Launcher_Dir" CustomFlags="1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiTextStyleComponent">
     <ROW TextStyle="BrandingStyle" FaceName="Segoe UI" Size="8" Color="2171376" MultiBuildColor="DefaultBuild:2565927" StyleBits="0" MsiKey="BrandingStyle"/>
