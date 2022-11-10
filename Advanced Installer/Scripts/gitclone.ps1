@@ -2,6 +2,13 @@ Add-Type -AssemblyName PresentationFramework
 
 try {
     $installPath = AI_GetMsiProperty APPDIR
+    if (Test-Path $installPath) {
+        Write-Host "The path is $installPath" 
+    }
+    else {
+        Write-Host "Creating $installPath"
+        New-Item -ItemType Directory -Path $installPath
+    }
     <#     $installPath = "D:\Documents\A1111's Web UI Autoinstaller"     #>
     Write-Output "The path is $installPath" 
     $webuiPath = "$installPath\stable-diffusion-webui"
