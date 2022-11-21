@@ -12,6 +12,12 @@
     "type": "arg"
   },
   {
+    "name": "Do Not Convert Model to FP16",
+    "arg": "no-half",
+    "Description": "Speeds up and fix glitches with GTX16XX cards",
+    "type": "arg"
+  },
+  {
     "name": "Checkpoint Folder",
     "arg": "ckpt-dir",
     "Description": "(Optional) Where your .ckpt files are stored",

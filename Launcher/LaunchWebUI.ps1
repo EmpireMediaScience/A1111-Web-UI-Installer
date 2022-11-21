@@ -16,7 +16,9 @@ foreach ($setting in $settings) {
             "git-Ext" { 
                 Update-Extensions $true 
             }
-            "git-UI" { Update-WebUI $true }
+            "git-UI" { 
+                Update-WebUI $true 
+            }
             Default {}
         }
     }
