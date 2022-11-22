@@ -40,5 +40,11 @@
     "arg": "git-Ext",
     "Description": "Updates the Extensions at launch",
     "type": "git"
+  },
+  {
+    "name": "Clear Generated Images",
+    "arg": "git-ClearOutputs",
+    "Description": "Clear all previously generated images at launch",
+    "type": "git"
   }
 ]

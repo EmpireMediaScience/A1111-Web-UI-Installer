@@ -36,7 +36,8 @@ function Makeform {
     $title = New-Object System.Windows.Forms.Label
     $title.Text = "AUTOMATIC1111 WEBUI"
     $title.Font = New-Object System.Drawing.Font("Segoe UI", 12, [System.Drawing.FontStyle]::Regular)
-    $title.Size = "50,30"
+    $title.Size = "50,40"
+    $title.Padding = "0,0,0,10"
     $title.Dock = "Top"
     $title.TextAlign = "middlecenter"
     $form.Controls.Add($title)
@@ -71,7 +72,7 @@ function Makeform {
         }
         $paramDesc.ForeColor = $secondaryColor
         $paramDesc.Dock = "Bottom"
-        $paramDesc.Size = "200, 50"
+        $paramDesc.Size = "200, 40"
         $form.Controls.Add($paramDesc)
         $UIparam
     }

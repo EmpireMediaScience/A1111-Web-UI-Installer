@@ -19,6 +19,9 @@ foreach ($setting in $settings) {
             "git-UI" { 
                 Update-WebUI $true 
             }
+            "git-ClearOutputs" {
+                Clear-Outputs
+            }
             Default {}
         }
     }

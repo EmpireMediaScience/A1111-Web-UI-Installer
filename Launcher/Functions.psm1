@@ -144,6 +144,17 @@ function  Select-File([string]$InitialDirectory) {
     return $dialog.FileName 
 }
 
+function Clear-Outputs {
+    $Exprompt = [system.windows.messagebox]::Show("All previously generated images will be deleted, are you sure ?`n`nClick 'No' to not delete any image this time`n`nUncheck 'Clear Generated Images' in the launcher to disable it", 'Warning', 'YesNo', 'Warning')
+    if ($Exprompt -eq "Yes") {
+        logger.action "Clearing all outputs in default output directories" 
+        if ($outputsPath) {
+            Get-ChildItem $outputsPath -Force -Recurse -File -Filter *.png | Remove-Item -Force
+            Get-ChildItem $outputsPath -Force -Recurse -File -Filter *.jpg | Remove-Item -Force
+        }
+    }
+}
+
 #Updates
 function Update-WebUI ($enabled) {
     if ($enabled) {
