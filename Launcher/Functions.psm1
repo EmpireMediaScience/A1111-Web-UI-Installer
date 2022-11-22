@@ -1,7 +1,7 @@
 . "$PSScriptRoot\shared.ps1"
 Import-Module "$PSScriptRoot\logger.psm1" -Force -Global -Prefix "logger."
-# General Utilities
 
+# General Utilities
 function Write-Settings($settings) {
     logger.action "Updating Settings File"
     $settings | ConvertTo-Json -Depth 100 | Out-File $settingsPath
@@ -102,7 +102,19 @@ function Convert-BatToGitOptions ($batFile) {
     }
     return $GitOptions
 }
-
+function Search-RegForPyPath {
+    $pyCore = Get-ItemProperty -path "hkcu:\Software\Python\PythonCore\3.10\InstallPath"
+    if ($pyCore) {
+        $path = $pyCore.ExecutablePath
+        logger.info "Python 3.10 path found :`n$path"
+        return $path
+    }
+    else {
+        logger.warn "Python 3.10 not found, you probably have the wrong version installed and the WebUI might not work"
+        return ""
+    }
+    
+}
 function Format-Config($config) {
     $config2 = @()
     foreach ($param in $config) {
@@ -132,9 +144,7 @@ function  Select-File([string]$InitialDirectory) {
     return $dialog.FileName 
 }
 
-
 #Updates
-
 function Update-WebUI ($enabled) {
     if ($enabled) {
         logger.action "Updating Webui"
