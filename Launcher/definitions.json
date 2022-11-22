@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Low VRAM",
+    "arg": "medvram",
+    "Description": "Allows cards with low VRAM (<8G) to work",
+    "type": "arg"
+  },
+  {
+    "name": "Enable Xformers",
+    "arg": "xformers",
+    "Description": "Speeds up RTX 3000/4000 Cards",
+    "type": "arg"
+  },
+  {
+    "name": "Do Not Convert Model to FP16",
+    "arg": "no-half",
+    "Description": "Speeds up and fix glitches with GTX16XX cards",
+    "type": "arg"
+  },
+  {
+    "name": "Checkpoint Folder",
+    "arg": "ckpt-dir",
+    "Description": "(Optional) Where your .ckpt files are stored",
+    "type": "path"
+  },
+  {
+    "name": "Default VAE File",
+    "arg": "vae-path",
+    "Description": "(Optional) The VAE file you want to use",
+    "type": "path"
+  },
+  {
+    "name": "Auto-Update WebUI",
+    "arg": "git-UI",
+    "Description": "Updates the WebUI at launch",
+    "type": "git"
+  },
+  {
+    "name": "Auto-Update Extensions",
+    "arg": "git-Ext",
+    "Description": "Updates the Extensions at launch",
+    "type": "git"
+  },
+  {
+    "name": "Clear Generated Images",
+    "arg": "git-ClearOutputs",
+    "Description": "Clear all previously generated images at launch",
+    "type": "git"
+  }
+]

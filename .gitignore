@@ -1,0 +1,11 @@
+desktop.ini
+.env
+.DS_store
+/Advanced Installer/*-SetupFiles
+/Advanced Installer/*-cache
+/Advanced Installer/*.back.aip
+*bu.aip
+config.csv
+.vscode
+settings.json
+/stable-diffusion-webui
