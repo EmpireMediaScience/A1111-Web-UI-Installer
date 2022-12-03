@@ -51,6 +51,26 @@ function Makeform {
         else {
             $UIparam = New-Object System.Windows.Forms.Checkbox
             $UIparam.Checked = $setting.enabled
+            if ($def.type -eq "git") {
+                $forceBTN = New-Object System.Windows.Forms.Button
+                $forceBTN.Text = "Do It Now !"
+                $forceBTN.Tag = $def.arg
+                $forceBTN.Add_Click({
+                        switch ($this.Tag) {
+                            "git-Ext" { 
+                                Update-Extensions $true 
+                            }
+                            "git-UI" { 
+                                Update-WebUI $true 
+                            }
+                            "git-ClearOutputs" {
+                                Clear-Outputs
+                            }
+                            Default {}
+                        }
+                    })
+                $forceBTN.Dock = "Bottom"
+            }
         }
         $UIparam.Add_Click({ 
                 Update-UISettings $this
@@ -73,6 +93,9 @@ function Makeform {
         $paramDesc.ForeColor = $secondaryColor
         $paramDesc.Dock = "Bottom"
         $paramDesc.Size = "200, 40"
+        if ($def.type -eq "git") { 
+            $form.Controls.Add($forceBTN) 
+        }
         $form.Controls.Add($paramDesc)
         $UIparam
     }
