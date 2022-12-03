@@ -152,6 +152,7 @@ function Clear-Outputs {
             Get-ChildItem $outputsPath -Force -Recurse -File -Filter *.png | Remove-Item -Force
             Get-ChildItem $outputsPath -Force -Recurse -File -Filter *.jpg | Remove-Item -Force
         }
+        logger.info "Done"
     }
 }
 
@@ -161,6 +162,7 @@ function Update-WebUI ($enabled) {
         logger.action "Updating Webui"
         Set-Location $webuiPath
         git pull origin
+        logger.info "Done"
     }
 }
 
@@ -174,6 +176,7 @@ function Update-Extensions ($enabled) {
                 Set-Location $ext
                 git pull origin 
             }
+            logger.info "Done"
             return
         }
         logger.info "No extension found in the extensions folder"
