@@ -6,30 +6,38 @@ function Write-Settings($settings) {
     logger.action "Updating Settings File"
     $settings | ConvertTo-Json -Depth 100 | Out-File $settingsPath
 }
-function New-Settings {
-    logger.action "Settings not file found, creating"
+function New-Settings ($oldsettings) {   
     $defs = Import-Defs
-    $settings = @()
-    for ($i = 0; $i -lt $defs.Count; $i++) {
-        $settings += @{ 
-            arg     = $defs[$i].arg
+    $newSettings = @()
+    foreach ($def in $defs) {
+        $newSettings += @{ 
+            arg     = $def.arg
             enabled = $false
             value   = "" 
         }
     }
-    Write-Settings $settings
-    return $settings
+    if ($oldsettings) {
+        foreach ($oldSetting in $oldsettings) {
+            $newSetting = $newSettings | Where-Object { $_.arg -eq $oldSetting.arg }
+            $newSetting.arg = $oldSetting.arg
+            $newSetting.enabled = $oldSetting.enabled
+            $newSetting.value = $oldSetting.value
+        }
+    }
+    Write-Settings $newSettings
+    return $newSettings
 }
-function Restore-Settings {
-    
+function Restore-Settings {    
+    $oldsettings = ""
     if (Test-Path $settingsPath) {
         $settingsfile = Get-Content $settingsPath
-        logger.action "Settings file found, loading"
-        $settings = $settingsfile | ConvertFrom-Json
+        logger.info "Settings file found, loading"
+        $oldsettings = $settingsfile | ConvertFrom-Json
     }
     else {
-        $settings = New-Settings
+        logger.info "Settings not file found, creating"
     }
+    $settings = New-Settings $oldsettings
     return $settings
 }
 function Update-Settings($param, $settings) {
@@ -47,11 +55,16 @@ function Update-Settings($param, $settings) {
             $setting.enabled = $true
         }
     }
+    elseif ($param.Tag -eq "string") {
+        logger.info "Additional Args updated"
+        $setting.value = $param.text
+    }
     else {
         logger.info "$($param.text) updated to $($param.Checked)"
         $setting.enabled = $param.Checked
     }
     Write-Settings $settings
+        
 }
 function Import-Defs {
     $defs = Get-Content .\definitions.json | ConvertFrom-Json
@@ -61,7 +74,10 @@ function Convert-SettingsToArguments ($settings) {
     $string = ""
     foreach ($setting in $settings) {
         if ($setting.arg -ilike "git*" ) {
-            <# Action to perform if the condition is true #>
+            # Not Command Line Arg Related
+        }
+        elseif ($setting.arg -eq "Add" ) {
+            $string += "$($setting.value) "
         }
         else {
             if ($setting.enabled -eq $true) {

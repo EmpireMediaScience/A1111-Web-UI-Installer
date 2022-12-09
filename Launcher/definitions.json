@@ -1,5 +1,23 @@
 [
   {
+    "name": "Auto-Update WebUI",
+    "arg": "git-UI",
+    "Description": "Updates the WebUI at launch",
+    "type": "git"
+  },
+  {
+    "name": "Auto-Update Extensions",
+    "arg": "git-Ext",
+    "Description": "Updates the Extensions at launch",
+    "type": "git"
+  },
+  {
+    "name": "Clear Generated Images",
+    "arg": "git-ClearOutputs",
+    "Description": "Clear all generated images at launch",
+    "type": "git"
+  },
+  {
     "name": "Low VRAM",
     "arg": "medvram",
     "Description": "Allows cards with low VRAM (<8G) to work",
@@ -30,21 +48,9 @@
     "type": "path"
   },
   {
-    "name": "Auto-Update WebUI",
-    "arg": "git-UI",
-    "Description": "Updates the WebUI at launch",
-    "type": "git"
-  },
-  {
-    "name": "Auto-Update Extensions",
-    "arg": "git-Ext",
-    "Description": "Updates the Extensions at launch",
-    "type": "git"
-  },
-  {
-    "name": "Clear Generated Images",
-    "arg": "git-ClearOutputs",
-    "Description": "Clear all previously generated images at launch",
-    "type": "git"
+    "name": "Additional Arguments",
+    "arg": "add",
+    "Description": "(Optional) Additional arguments",
+    "type": "string"
   }
 ]
