@@ -15,7 +15,7 @@ If you want to improve the installer, git clone or fork & Pull (this project mai
 - This has only been tested on **NVIDIA Graphics Cards** ([**Make sure you're up to date**](https://www.nvidia.com/download/index.aspx)
 )
 - **This installer is not affiliated with the original [Automatic1111 Stable Diffusion WebUI](https://github.com/AUTOMATIC1111/stable-diffusion-webui)** repository, if you get errors after clicking **`LAUNCH WEBUI`**, they'll be related to the WebUI itself and not this installer, so do not report them here, but [**here**](https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/new/choose)
-- On the other hand, if you find a glitch before that or have a feature request, please [**fill an issue**](https://github.com/EmpireMediaScience/A1111-Web-UI-Installer/issues) and more importantly **join [the new Automatic1111's SD WebUI discord](https://discord.gg/5KRHgNpz) to discuss the project and get general help about the WebUI**
+- On the other hand, if you find a glitch before that or have a feature request, please [**fill an issue**](https://github.com/EmpireMediaScience/A1111-Web-UI-Installer/issues) and more importantly **join [the new Automatic1111's SD WebUI discord](https://discord.gg/xU8y74HG4d) to discuss the project and get general help about the WebUI**
  > ⚠️ This installer will always clone the latest bleeding edge update of the WebUI. Some Updates can break it
 
 ## **The Installer**
