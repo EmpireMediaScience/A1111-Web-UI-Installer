@@ -61,8 +61,15 @@ When double clicking ***A1111 WebUI (Pin to Taskbar)*** You should be greeted wi
 ## **`Launch Options`**
 - [x] **Low VRAM** : Allows cards with low VRAM to be able to generate images, this will increase render time, but will make things smooth
 - [x] **Xformers** : Greatly speeds up RTX 3000 / 4000 cards, can sometimes work with previous gens cards as well !
-- [x] **Do Not Convert Model to FP16** : Leave it on if everything works and you don't have a GTX16XX series card
-- **`Checkpoint Folder`** : If you don't have a specific checkpoint folder, do not click this, but if you do, select it there
-- **`Default VAE`** : This will allow you to select a default separate for all models VAE file
+- **`Checkpoint Folder`** : If you don't have a specific checkpoint folder, do not click this, else select it there 💡*click the path to reset*
+- **`Default VAE`** : This will allow you to select a default separate for all models VAE file 💡*click the path to reset*
 - **Additional Arguments** : If you know what you're doing, you can add additional launch arguments for the UI here, as you would have done in webui-user.bat. 
   >⚠️ ***Click SAVE to confirm the additional arguments, else they won't be saved***
+
+## **`Misc`**
+- Launch Options Overview for easy verification & debug
+- Launcher Version displayed
+- Main GPU & VRAM displayed
+- Ablity to copy the WebUI Commit Hash (practical for opening GitHub issues)
+- Direct link to the Issues section of the Installer/Launcher Github
+- Direct link to the Issues section of the WebUI

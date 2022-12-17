@@ -18,7 +18,7 @@
     "type": "git"
   },
   {
-    "name": "Low VRAM",
+    "name": "Low VRAM (medvram)",
     "arg": "medvram",
     "Description": "Allows cards with low VRAM (<8G) to work",
     "type": "arg"
@@ -26,13 +26,7 @@
   {
     "name": "Enable Xformers",
     "arg": "xformers",
-    "Description": "Speeds up RTX 3000/4000 Cards",
-    "type": "arg"
-  },
-  {
-    "name": "Do Not Convert Model to FP16",
-    "arg": "no-half",
-    "Description": "Speeds up and fix glitches with GTX16XX cards",
+    "Description": "Great speed up for most graphics cards",
     "type": "arg"
   },
   {

@@ -4,14 +4,18 @@ Import-Module .\Functions.psm1 -Force
 
 # Ui general variables
 $settings = Restore-Settings
+$Version = Get-Version
 
-function Invoke-WebUI {
-    $form.Close()
-    & .\LaunchWebUI.ps1 $settings
+$GPUInfo = Get-GPUInfo
+$GPUText = "No Compatible GPU Found"
+if ($GPUInfo) {
+    $GPUText = "$($GPUInfo.Model) $($GPUInfo.VRAM) GB"
 }
-Function Update-UISettings($param) {
-    Update-Settings $param $settings
-    Convert-SettingsToArguments $settings
+
+$Hash = Get-WebUICommitHash
+$HashText = "No Hash Found"
+if ($Hash) {
+    $HashText = "$($Hash.Substring(0, 7))..."
 }
 Function MakeNewForm {
     logger.info "Refreshing UI`n"
@@ -19,8 +23,29 @@ Function MakeNewForm {
     $form.Dispose()
     MakeForm
 }
+function Invoke-WebUI {
+    $form.Close()
+    & .\LaunchWebUI.ps1 $settings
+}
+
+Function Reset-Path($param) {
+    $setting = $settings | Where-Object { $_.arg -eq $param.Name }
+    $setting.enabled = $false
+    $setting.value = ""
+    $argsies = Convert-SettingsToArguments $settings
+    Write-Settings $settings
+    MakeNewForm
+    $ArgsField.text = $argsies
+}
+Function Update-UISettings($param) {
+    Update-Settings $param $settings
+    $argsies = Convert-SettingsToArguments $settings
+    $ArgsField.text = $argsies
+}
+
 function Makeform {
     $defs = Import-Defs
+    $argsies = Convert-SettingsToArguments $settings
 
     $form = New-Object System.Windows.Forms.Form
     $form.StartPosition = 'CenterScreen'
@@ -33,6 +58,11 @@ function Makeform {
     $form.AutoSize = $true
     $form.Padding = 20
     $form.Size = "350,500"
+
+    $versionLabel = New-Object System.Windows.Forms.Label
+    $versionLabel.Text = "Launcher V$($Version.Long)"
+    $versionLabel.ForeColor = $secondaryColor
+    $form.Controls.Add($versionLabel)
 
     $title = New-Object System.Windows.Forms.Label
     $title.Text = "AUTOMATIC1111 WEBUI"
@@ -52,6 +82,7 @@ function Makeform {
 
     $GeneralDesc = New-Object System.Windows.Forms.Label
     $GeneralDesc.Text = "General Settings"
+    $GeneralDesc.TextAlign = "MiddleCenter" 
     $GeneralDesc.Dock = "Bottom"
 
     $GeneralContainer.Controls.Add($GeneralDesc)
@@ -125,6 +156,7 @@ function Makeform {
 
     $ArgDesc = New-Object System.Windows.Forms.Label
     $ArgDesc.Text = "Launch Options"
+    $ArgDesc.TextAlign = "MiddleCenter"
     $ArgDesc.Dock = "Bottom"
 
     $ArgContainer.Controls.Add($ArgDesc)
@@ -135,10 +167,14 @@ function Makeform {
             if ($def.type -eq "path") {
                 $UIparam = New-Object System.Windows.Forms.Button
                 $UIparam.BackColor = $buttonColor
+                $paramDesc = New-Object System.Windows.Forms.LinkLabel
+                $paramDesc.LinkColor = $secondaryColor
+                $paramDesc.LinkBehavior = [System.Windows.Forms.LinkBehavior]::NeverUnderline;
             }
             else {
                 $UIparam = New-Object System.Windows.Forms.Checkbox
                 $UIparam.Checked = $setting.enabled
+                $paramDesc = New-Object System.Windows.Forms.Label
             }
           
             $UIparam.Add_Click({ 
@@ -151,13 +187,19 @@ function Makeform {
             $UIparam.Name = $def.arg
             $UIparam.Text = $def.name
             $UIparam.Dock = "Bottom"
-            $UIparam.Size = "100, 20"
-
-            $paramDesc = New-Object System.Windows.Forms.Label
+            $UIparam.Size = "100, 20"     
             $paramDesc.Text = $def.description
             $paramDesc.Tag = $def.arg + "desc"
+            $paramDesc.Name = $def.arg
             if ($setting.value) {
-                $paramDesc.Text = $setting.value
+                if ($setting.value.Length -lt 25) {
+                    $paramDesc.Text = "RESET - $($setting.value)" 
+                }
+                else {
+                    $paramDesc.Text = "RESET - $($setting.value.Substring(0, 25))..."  
+                }
+                
+                $paramDesc.Add_Click({ Reset-Path $this })
             }
             $paramDesc.ForeColor = $secondaryColor
             $paramDesc.Dock = "Bottom"
@@ -174,7 +216,8 @@ function Makeform {
     }
 
     $addDesc = New-Object System.Windows.Forms.Label
-    $addDesc.Text = "Additional Arguments"
+    $addDesc.Text = "Additional Launch Options"
+    $addDesc.TextAlign = "MiddleCenter" 
     $addDesc.Dock = "Bottom"
     $addDesc.Size = "200, 20"
     $ArgContainer.Controls.Add($addDesc)
@@ -203,6 +246,26 @@ function Makeform {
 
     $form.Controls.Add($ArgContainer)
     
+    #Args
+
+    $argsText = New-Object System.Windows.Forms.Label
+    $argsText.TextAlign = "MiddleCenter" 
+    $argsText.Text = "Overview"
+    $argsText.Dock = "Bottom"
+    $form.Controls.Add($argsText)
+
+    $ArgsField = New-Object System.Windows.Forms.TextBox
+    $ArgsField.Multiline = $true
+    $ArgsField.Size = "1000,60"
+    $ArgsField.ScrollBars = "Vertical"
+    $ArgsField.Dock = "Bottom"
+    $ArgsField.ReadOnly = $true
+    $ArgsField.BorderStyle = "None"
+    $ArgsField.BackColor = $buttonColor
+    $ArgsField.ForeColor = $accentColor
+    $ArgsField.Text = $argsies
+    $Form.Controls.Add($ArgsField)
+
     #Run & Exit
 
     $runbox = New-Object System.Windows.Forms.Panel
@@ -230,6 +293,53 @@ function Makeform {
     $runbox.Controls.Add($Exitbutton)
 
     $form.Controls.Add($runbox)
+
+    # Hardware Info
+
+    $HWContainer = New-Object System.Windows.Forms.Panel
+    $HWContainer.Dock = "Bottom"
+    $HWContainer.Size = "1000,80"
+
+    $GPULabel = New-Object System.Windows.Forms.Label
+    $GPULabel.Text = $GPUText
+    $GPULabel.TextAlign = "MiddleCenter"
+    $GPULabel.ForeColor = $secondaryColor
+    $GPULabel.Dock = "Bottom"
+    $HWContainer.Controls.Add($GPULabel)
+
+    $HashLabel = New-Object System.Windows.Forms.LinkLabel
+    $HashLabel.Text = "WebUI Hash (Click to copy) : $HashText"
+    $HashLabel.TextAlign = "MiddleCenter"
+    $HashLabel.LinkColor = $secondaryColor
+    $HashLabel.LinkBehavior = [System.Windows.Forms.LinkBehavior]::NeverUnderline;
+    $HashLabel.Add_Click({ 
+            Set-Clipboard $Hash
+            logger.info $Hash, "copied to the clipboard" 
+        })
+    $HashLabel.Dock = "Bottom"
+    $HWContainer.Controls.Add($HashLabel)
+
+    $helpLabel = New-Object System.Windows.Forms.LinkLabel
+    $helpLabel.Text = "Launcher Help"
+    $helpLabel.LinkColor = $secondaryColor
+    $helpLabel.LinkBehavior = [System.Windows.Forms.LinkBehavior]::NeverUnderline;
+    $helpLabel.Add_Click({ Start-Process "https://github.com/EmpireMediaScience/A1111-Web-UI-Installer/issues" })
+    $helpLabel.Dock = "Bottom"
+    $helpLabel.Size = "1000,15"
+    $helpLabel.TextAlign = "MiddleCenter"
+    $HWContainer.Controls.Add($helpLabel)
+
+    $LhelpLabel = New-Object System.Windows.Forms.LinkLabel
+    $LhelpLabel.Text = "WebUI Help"
+    $LhelpLabel.LinkColor = $secondaryColor
+    $LhelpLabel.LinkBehavior = [System.Windows.Forms.LinkBehavior]::NeverUnderline;
+    $LhelpLabel.Add_Click({ Start-Process "https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/new/choose" })
+    $LhelpLabel.Dock = "Bottom"
+    $LhelpLabel.Size = "1000,15"
+    $LhelpLabel.TextAlign = "MiddleCenter"
+    $HWContainer.Controls.Add($LhelpLabel)
+
+    $Form.Controls.Add($HWContainer)
 
     $Form.ShowDialog()
 }

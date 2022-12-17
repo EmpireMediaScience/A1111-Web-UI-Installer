@@ -2,6 +2,49 @@
 Import-Module "$PSScriptRoot\logger.psm1" -Force -Global -Prefix "logger."
 
 # General Utilities
+function Get-Version {
+    logger.action "Fetching Launcher Version"
+    $result = @{
+        Long  = ""
+        Short = ""
+    }
+    $softInfo = Get-ItemProperty -LiteralPath 'hkcu:\Software\Empire Media Science\A1111 Web UI Autoinstaller'
+    if ($softInfo) {
+        logger.info "Version $($softInfo.Version) Found"
+        $short = $softInfo.Version.Split(".")
+        $result.Long = $softInfo.Version
+        $result.Short = $short[0] + "." + $short[1]
+    }
+    else {
+        logger.info "Version Not Found"
+        $result.Long = "Version Not Found"
+        $result.Short = "2023.01"
+    }
+    return $result
+}
+function Get-GPUInfo {
+    $adapterMemory = (Get-ItemProperty -Path "HKLM:\SYSTEM\ControlSet001\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0*" -Name "HardwareInformation.AdapterString", "HardwareInformation.qwMemorySize" -Exclude PSPath -ErrorAction SilentlyContinue)
+
+    $adapters = @()
+
+    foreach ($adapter in $adapterMemory) {
+        if ($adapter."HardwareInformation.AdapterString" -ilike "NVIDIA*") {
+            $adapterObject = @{
+                Model = $adapter."HardwareInformation.AdapterString"
+                VRAM  = [math]::round($adapter."HardwareInformation.qwMemorySize" / 1GB)
+            }
+            $adapters += $adapterObject
+        }
+    }
+    switch ($adapters.Count) {
+        { $_ -gt 0 } { return @($adapters)[0] }
+        { $_ -eq 0 } { return $false }
+    }
+}
+function Get-WebUICommitHash {
+    $hash = Get-Content $hashPath
+    if ($hash) { return $hash }
+}
 function Write-Settings($settings) {
     logger.action "Updating Settings File"
     $settings | ConvertTo-Json -Depth 100 | Out-File $settingsPath
@@ -19,9 +62,11 @@ function New-Settings ($oldsettings) {
     if ($oldsettings) {
         foreach ($oldSetting in $oldsettings) {
             $newSetting = $newSettings | Where-Object { $_.arg -eq $oldSetting.arg }
-            $newSetting.arg = $oldSetting.arg
-            $newSetting.enabled = $oldSetting.enabled
-            $newSetting.value = $oldSetting.value
+            if ($newSetting) {
+                $newSetting.arg = $oldSetting.arg
+                $newSetting.enabled = $oldSetting.enabled
+                $newSetting.value = $oldSetting.value
+            }
         }
     }
     Write-Settings $newSettings
@@ -90,7 +135,12 @@ function Convert-SettingsToArguments ($settings) {
             }
         }
     }
-    logger.info "Arguments are now:", $string
+    if ($string -ne " ") {
+        logger.info "Arguments are now:", $string
+    }
+    else {
+        logger.info "No arguments set"
+    }
     return $string
 }
 
@@ -300,4 +350,3 @@ function Convert-PSObjectToHashtable {
         }
     }
 }
-
