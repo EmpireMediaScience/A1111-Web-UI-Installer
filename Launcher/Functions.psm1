@@ -239,7 +239,7 @@ function Update-Extensions ($enabled) {
         if ($exts) {
             foreach ($ext in $exts) {         
                 logger.action "Updating Extension: $ext"
-                Set-Location $ext
+                Set-Location $ext.Fullname
                 git pull origin 
             }
             logger.info "Done"
