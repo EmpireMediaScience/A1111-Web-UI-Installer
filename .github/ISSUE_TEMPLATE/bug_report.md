@@ -1,38 +1,61 @@
----
-name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
-assignees: ''
+name: Bug Report
+description: You think somethings is broken with the installer/launcher
+title: "[Bug]: "
+labels: ["bug-report"]
 
----
-
-**Describe the bug**
-A clear and concise description of what the bug is.
-
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
-
-**Expected behavior**
-A clear and concise description of what you expected to happen.
-
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
-
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
-
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
-
-**Additional context**
-Add any other context about the problem here.
+body:
+  - type: checkboxes
+    attributes:
+      label: Have you read the readme, especially the Warning part ?
+      description: Read the readme as either your questions are already answered there, or maybe you shouldn't answer them here to begin with.
+      options:
+        - label: I have read the readme, especially the Warning Part, and this problem occured before I pressed "Launch WebUI"
+          required: true
+  - type: checkboxes
+    attributes:
+      label: Is there an existing issue for this?
+      description: Please search to see if an issue already exists for the bug you encountered, and that it hasn't been fixed in a recent build/commit.
+      options:
+        - label: I have searched the existing issues and checked the recent builds/commits
+          required: true
+  - type: markdown
+    attributes:
+      value: |
+        *Please fill this form with as much information as possible, don't forget to fill "What OS..." and "What browsers" and *provide screenshots if possible**
+  - type: textarea
+    id: what-did
+    attributes:
+      label: What happened?
+      description: Tell us what happened in a very clear and simple way
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce the problem
+      description: Please provide us with precise step by step information on how to reproduce the bug
+      value: |
+        1. Go to .... 
+        2. Press ....
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: what-should
+    attributes:
+      label: What should have happened?
+      description: tell what you think the normal behavior should be
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version of the Installer/Launcher where the problem happens
+      description: Which released version are you trying to install ? (Do not write *Latest version*, as this means nothing)
+    validations:
+      required: true
+  - type: textarea
+    id: misc
+    attributes:
+      label: Additional information, context and logs
+      description: Please provide us with any relevant additional info, context or log output.
