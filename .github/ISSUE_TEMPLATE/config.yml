@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Community Support
+    url: https://discord.gg/vrfEcaBTRC
+    about: The discord where the main dev chills from time to time
+  - name: WebUI Support
+    url: https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/new/choose
+    about: Where to ask questions if your issue is related to the WebUI, not the Launcher/Installer
