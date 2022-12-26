@@ -14,9 +14,9 @@ body:
   - type: checkboxes
     attributes:
       label: Is there an existing issue for this?
-      description: Please search to see if an issue already exists for the bug you encountered, and that it hasn't been fixed in a recent build/commit.
+      description: Please search to see if an issue already exists for the bug you encountered, and that it hasn't been fixed in a recent release.
       options:
-        - label: I have searched the existing issues and checked the recent builds/commits
+        - label: I have searched the existing issues and checked the recent release
           required: true
   - type: markdown
     attributes:
