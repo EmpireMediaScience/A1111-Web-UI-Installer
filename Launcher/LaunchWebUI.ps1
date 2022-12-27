@@ -33,8 +33,9 @@ $arguments = Convert-SettingsToArguments $settings
 
 Set-Location $webuiPath
 
+$pyPath = Search-RegForPyPath
 $env:GIT = ""
-$env:PYTHON = Search-RegForPyPath
+$env:PYTHON = "`"$pyPath`""
 $env:VENV_DIR = ""
 $env:COMMANDLINE_ARGS = "--autolaunch " + $arguments
 

@@ -169,11 +169,11 @@ function Convert-BatToGitOptions ($batFile) {
     return $GitOptions
 }
 function Search-RegForPyPath {
-    $pyCore = Get-ItemProperty -path "hkcu:\Software\Python\PythonCore\3.10\InstallPath"
+    $pyCore = Get-ItemProperty -path "hkcu:\Software\Python\PythonCore\3.10\InstallPath" -ErrorAction SilentlyContinue
     if ($pyCore) {
-        $path = $pyCore.ExecutablePath
-        logger.info "Python 3.10 path found :`n$path"
-        return $path
+        $pyPath = $pyCore.ExecutablePath
+        logger.info "Python 3.10 path found :`n$pyPath"
+        return $pyPath
     }
     else {
         logger.warn "Python 3.10 not found, you probably have the wrong version installed and the WebUI might not work"
