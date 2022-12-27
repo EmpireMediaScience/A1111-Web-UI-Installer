@@ -11,8 +11,8 @@ If you want to improve the installer, git clone or Fork & Pull Request (this pro
 
 ## **`⚠️ WARNING ⚠️`**
 
-- This only Works on Windows 10 and 11
-- This has only been tested on **NVIDIA Graphics Cards** ([**Make sure you're up to date**](https://www.nvidia.com/download/index.aspx)
+- This only Works on Windows 10 and 11 x64
+- This has only been tested on **NVIDIA Graphics Cards** ([**Make sure your drivers are up to date !**](https://www.nvidia.com/download/index.aspx)
 )
 - This installer installs the original [Automatic1111 Stable Diffusion WebUI](https://github.com/AUTOMATIC1111/stable-diffusion-webui) repository **but is not affiliated with it**, if you get questions or errors after clicking **`LAUNCH WEBUI`**, they'll be related to the WebUI itself and not this installer, so do not ask or report them here, but [**here**](https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/new/choose)
 - On the other hand, if you find a glitch before that or have a feature request, please [**fill an issue**](https://github.com/EmpireMediaScience/A1111-Web-UI-Installer/issues) and more importantly **join [the new Automatic1111's SD WebUI discord](https://discord.gg/xU8y74HG4d) to discuss the project and get general help about the WebUI**
@@ -39,9 +39,11 @@ If you want to improve the installer, git clone or Fork & Pull Request (this pro
 9.  Once installed, a folder will open with a shortcut called ***A1111 WebUI (Pin to Taskbar)***
 10. You can drag & drop it on your taskbar if you wish, this is the launcher for the WebUI
 11. Launch the shortcut to open the **[Custom Launcher](#the-launcher)**
-12. Once you've selected what you wanted, click **`LAUNCH WEBUI`**, this will launch a CMD window, logging what it's doing 
+12. Once you've selected what you wanted, click **`LAUNCH WEBUI`**, this will quit the launcher and proceed in the terminal window, logging what it's doing 
       >⚠️**Be patient** this will take a while at first, when it's ready, it will open the webUI in your browser
-13. When you're done using the WebUI, close the browser tab & close the CMD window
+
+      >⚠️**Read the WARN message**
+13. When you're done using the WebUI, close the browser tab & close the terminal window
     
 
 # THE LAUNCHER

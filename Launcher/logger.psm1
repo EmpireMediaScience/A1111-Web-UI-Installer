@@ -11,5 +11,10 @@ function warn ($object) {
     Write-Host "[WARNING]" -BackgroundColor "Yellow" -ForegroundColor "Black" -NoNewline; Write-Host ("", $object) -ForegroundColor "Yellow" 
 }
 function pop ($object) {
-    Write-Host "[POP]" -BackgroundColor "Magenta" -ForegroundColor "Black" -NoNewline; Write-Host ("", $object) -ForegroundColor "Magenta" 
+    space
+    Write-Host "[INFO]" -BackgroundColor "Cyan" -ForegroundColor "Black" -NoNewline; Write-Host ("", $object) -ForegroundColor "Cyan" 
+    space
+}
+function space {
+    Write-Host "---------------`n---------------`n---------------" -ForegroundColor "Red"
 }

@@ -24,8 +24,47 @@ Function MakeNewForm {
     MakeForm
 }
 function Invoke-WebUI {
+    Param(
+        $settings
+    )
+
+    git config --global --add safe.directory '*'
+
+    # Executing updates
+    foreach ($setting in $settings) {
+        if ($setting.arg -ilike "git*" -And $setting.enabled -eq $true) {
+            switch ($setting.arg) {
+                "git-Ext" { 
+                    Update-Extensions $true 
+                }
+                "git-UI" { 
+                    Update-WebUI $true 
+                }
+                "git-ClearOutputs" {
+                    Clear-Outputs
+                }
+                Default {}
+            }
+        }
+    }
+
+    # Parsing args from settings
+    $arguments = Convert-SettingsToArguments $settings
+
+    Set-Location $webuiPath
+
+    $pyPath = Search-RegForPyPath
+    $env:GIT = ""
+    $env:PYTHON = "`"$pyPath`""
+    $env:VENV_DIR = ""
+    $env:COMMANDLINE_ARGS = "--autolaunch " + $arguments
+
+    Start-Process "$webuiPath/webui.bat" -NoNewWindow
+    Set-Location $PSScriptRoot
     $form.Close()
-    & .\LaunchWebUI.ps1 $settings
+    logger.pop "WEBUI LAUNCHING VIA EMS LAUNCHER, EXIT THIS WINDOW TO STOP THE WEBUI"
+    logger.warn "If you see the line 'commit hash : XXXX' or 'Installing Torch...' bellow, any error happening afterwards is not related to the launcher, but the WebUI itself which EMS is not affiliated with, we won't be able to help you fix those, you'll have to ask them on Automatic1111's github, not ours."
+    logger.space
 }
 
 Function Reset-Path($param) {
@@ -278,7 +317,7 @@ function Makeform {
     $Runbutton.Text = "LAUNCH WEBUI"
     $Runbutton.Size = "50,40"
     $Runbutton.ForeColor = $accentColor
-    $Runbutton.Add_Click({ Invoke-WebUI })
+    $Runbutton.Add_Click({ Invoke-WebUI $settings })
     $Runbutton.FlatStyle = $style
     $runbox.Controls.Add($Runbutton)
 
@@ -288,7 +327,9 @@ function Makeform {
     $Exitbutton.Text = "EXIT"
     $Exitbutton.Size = "50,30"
     $Exitbutton.ForeColor = "White"
-    $Exitbutton.Add_Click({ $form.Close() })
+    $Exitbutton.Add_Click({
+            [System.Windows.Forms.Application]::Exit()
+        })
     $Exitbutton.FlatStyle = $style
     $runbox.Controls.Add($Exitbutton)
 
