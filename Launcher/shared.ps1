@@ -6,6 +6,9 @@ Set-StrictMode -Version 2
 Import-Module .\logger.psm1 -Force -Global -Prefix "logger."
 
 # General Variables
+$tempFolder = (Get-Item -Path env:\temp).Value
+$ProgressPreference = 'SilentlyContinue'
+
 $InstallPath = (get-item $PSScriptRoot ).parent.FullName
 $webuiPath = "$InstallPath\stable-diffusion-webui"
 $launcherPath = "$InstallPath\Launcher"
@@ -17,7 +20,6 @@ $hashPath = "$webuiPath\.git\refs\heads\master"
 # Dependencies
 $dependenciesPath = "$InstallPath\Dependencies"
 $gitPath = "$dependenciesPath\Git\bin\git.exe"
-New-Alias gitp $gitPath -ErrorAction SilentlyContinue
 $pyPath = "$dependenciesPath\py310\python.exe"
 
 

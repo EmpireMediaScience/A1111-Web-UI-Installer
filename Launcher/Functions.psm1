@@ -2,6 +2,25 @@
 Import-Module "$PSScriptRoot\logger.psm1" -Force -Global -Prefix "logger."
 
 # General Utilities
+function Install-pyPortable {
+    if (!(Test-Path $pyPath)) {
+        logger.info "Python was not found, downloading, please be patient"
+        Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.10.8/python-3.10.8-embed-amd64.zip" -OutFile "$tempFolder\python.zip"
+        Expand-Archive -Path "$tempFolder\python.zip" -DestinationPath "$dependenciesPath\py310"
+        return
+    }
+    logger.info "Python Found at $pyPath"
+}
+function Install-gitPortable {
+    if (!(Test-Path $gitPath)) {
+        logger.info "Git was not found, downloading, please be patient"
+        Invoke-WebRequest -Uri "https://anga.tv/ems/PortableGit.zip" -OutFile "$tempFolder\PortableGit.zip"
+        Expand-Archive -Path "$tempFolder\PortableGit.zip" -DestinationPath "$dependenciesPath\Git"
+        New-Alias gitp $gitPath -ErrorAction SilentlyContinue
+        return
+    }
+    logger.info "Git Found at $gitPath"
+}
 function Get-Version {
     logger.action "Fetching Launcher Version"
     $result = @{

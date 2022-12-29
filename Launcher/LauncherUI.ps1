@@ -385,4 +385,6 @@ function Makeform {
     $Form.ShowDialog()
 }
 logger.action "Opening A1111 WebUI Launcher"
+Install-pyPortable
+Install-gitPortable
 MakeForm
