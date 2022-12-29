@@ -176,10 +176,17 @@ function Search-RegForPyPath {
         return $pyPath
     }
     else {
-        logger.warn "Python 3.10 not found, you probably have the wrong version installed and the WebUI might not work"
-        return ""
+        $pyCoreLM = Get-ItemProperty -path "hklm:\Software\Python\PythonCore\3.10\InstallPath" -ErrorAction SilentlyContinue
+        if ($pyCoreLM) {
+            $pyPath = $pyCoreLM.ExecutablePath
+            logger.info "Python 3.10 path found :`n$pyPath"
+            return $pyPath
+        }
+        else {
+            logger.warn "Python 3.10 not found, you probably have the wrong version installed and the WebUI might not work"
+            return ""        
+        }
     }
-    
 }
 function Format-Config($config) {
     $config2 = @()
