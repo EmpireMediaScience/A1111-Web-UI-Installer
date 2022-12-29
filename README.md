@@ -19,31 +19,27 @@ If you want to improve the installer, git clone or Fork & Pull Request (this pro
  > ⚠️ This installer will always clone the latest bleeding edge update of the WebUI. Some Updates can break it
 
 ## **The Installer**
-1. Download the [**latest release**](https://github.com/EmpireMediaScience/A1111-Web-UI-Installer/releases)
-2. Click <kbd>Next</kbd> on the Welcome screen
-3. On the **Prerequisites Screen**, select the programs you want to install and click <kbd>Next</kbd> 
-   >⚠️ If you have no idea what those programs are, keep them checked
-4. If everything goes right you'll be greated with this screen :
-
+1. Download the [**latest release**](https://github.com/EmpireMediaScience/A1111-Web-UI-Installer/releases) and run it
+2. If everything goes right you'll be greated with this screen :
  ![Installer](./Media/Installer.png)
 
-5. **Select where you want to install the WebUI**
+3. **Select where you want to install the WebUI**
    >Default is fine but if you want to install things somewhere else, it is highly recommended to do it in a dedicated empty folder, else it's going to be pretty messy
-7. **The checkboxes:**
+4. **The checkboxes:**
    1.  [x] **Clean Install** : Keep it checked if this is your first install via this Auto Installer. Uncheck it if you only want to update the Launcher and keep your existing WebUI intact (with your settings/models/extensions etc.)
          >**Note** (experimented users only): It ***may*** be possible to add the Launcher to an existing WebUI folder that you had manually git cloned (without this installer), as long as you move the WebUI folder into a subfolder, and chose said subfolder as the Install Path during the install. **But I haven't tested it and it could result in some random stuff**
-   1.  [x] **Install SD Checkpoint** : Select it if you don't have already have a Checkpoints/Models folder
+   2.  [x] **Install SD Checkpoint** : Select it if you don't have already have a Checkpoints/Models folder
          >⚠️ if you have no idea what this means, leave the box checked
-   2.   [x] **I Understand** : Read the "Important Details" and check it if you understand
-8. Click <kbd>Install</kbd> and **remember, this can take a while**
-9.  Once installed, a folder will open with a shortcut called ***A1111 WebUI (Pin to Taskbar)***
-10. You can drag & drop it on your taskbar if you wish, this is the launcher for the WebUI
-11. Launch the shortcut to open the **[Custom Launcher](#the-launcher)**
-12. Once you've selected what you wanted, click **`LAUNCH WEBUI`**, this will quit the launcher and proceed in the terminal window, logging what it's doing 
+   3.   [x] **I Understand** : Read the "Important Details" and check it if you understand
+5. Click <kbd>Install</kbd> and **remember, this can take a while**
+6.  Once installed, a folder will open with a shortcut called ***A1111 WebUI (Pin to Taskbar)***
+7.  You can drag & drop it on your taskbar if you wish, this is the launcher for the WebUI
+8.  Launch the shortcut to open the **[Custom Launcher](#the-launcher)**
+9.  Once you've selected what you wanted, click **`LAUNCH WEBUI`**, this will quit the launcher and proceed in the terminal window, logging what it's doing 
       >⚠️**Be patient** this will take a while at first, when it's ready, it will open the webUI in your browser
 
       >⚠️**Read the WARN message**
-13. When you're done using the WebUI, close the browser tab & close the terminal window
+10. When you're done using the WebUI, close the browser tab & close the terminal window
     
 
 # THE LAUNCHER
