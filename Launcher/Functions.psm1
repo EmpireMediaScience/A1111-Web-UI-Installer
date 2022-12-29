@@ -20,6 +20,26 @@ function Install-gitPortable {
     }
     logger.info "Git Found at $gitPath"
 }
+function Install-WebUI {
+    if (!(Test-Path $webuiPath)) {
+        logger.action "Automatic1111 SD WebUI was not found, cloning git"
+        & $gitPath clone https://github.com/AUTOMATIC1111/stable-diffusion-webui $webuiPath
+        return
+    }
+    logger.info "Automatic1111 SD WebUI found at $webuiPath"
+}
+function Import-BaseModel {
+    $ckptDirSetting = $settings | Where-Object { $_.arg -eq "ckpt-dir" }
+    if (($ckptDirSetting.enabled -eq $false) -and !(Get-ChildItem $modelsPath | Where-Object { $_.extension -ne ".txt" })) {
+        $Exprompt = [system.windows.messagebox]::Show("No model was found on your installation, do you want to download the Stable Diffusion 1.5 base model ?`n`nIf you don't know what that is, you probably want to click Yes`n`nThis will take a while so be patient", 'Confirmation', 'YesNo')
+        if ($Exprompt -eq "Yes") {
+            logger.action "Downloading Base Model, this can take a while" 
+            $WebClient = New-Object System.Net.WebClient
+            $WebClient.DownloadFile("https://anga.tv/ems/model.ckpt", "$modelsPath\SD15NewVAEpruned.ckpt")
+            logger.info "Done"
+        }
+    }
+}
 function Get-Version {
     logger.action "Fetching Launcher Version"
     $result = @{
@@ -70,7 +90,7 @@ function Write-Settings($settings) {
 function New-Settings ($oldsettings) {   
     $defs = Import-Defs
     $newSettings = @()
-    foreach ($def in $defs) {
+    foreach ($def in $defs) { 
         $newSettings += @{ 
             arg     = $def.arg
             enabled = $false

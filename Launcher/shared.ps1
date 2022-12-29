@@ -11,6 +11,7 @@ $ProgressPreference = 'SilentlyContinue'
 
 $InstallPath = (get-item $PSScriptRoot ).parent.FullName
 $webuiPath = "$InstallPath\stable-diffusion-webui"
+$modelsPath = "$webuiPath\models\Stable-diffusion"
 $launcherPath = "$InstallPath\Launcher"
 $extPath = "$webuiPath\extensions"
 $settingsPath = ".\settings.json"

@@ -12,6 +12,11 @@ if ($GPUInfo) {
     $GPUText = "$($GPUInfo.Model) $($GPUInfo.VRAM) GB"
 }
 
+Install-pyPortable
+Install-gitPortable
+Install-WebUI
+Import-BaseModel
+
 $Hash = Get-WebUICommitHash
 $HashText = "No Hash Found"
 if ($Hash) {
@@ -76,6 +81,7 @@ Function Reset-Path($param) {
     MakeNewForm
     $ArgsField.text = $argsies
 }
+
 Function Update-UISettings($param) {
     Update-Settings $param $settings
     $argsies = Convert-SettingsToArguments $settings
@@ -328,7 +334,7 @@ function Makeform {
     $Exitbutton.Size = "50,30"
     $Exitbutton.ForeColor = "White"
     $Exitbutton.Add_Click({
-            [System.Windows.Forms.Application]::Exit()
+            $form.Close()
         })
     $Exitbutton.FlatStyle = $style
     $runbox.Controls.Add($Exitbutton)
@@ -385,6 +391,4 @@ function Makeform {
     $Form.ShowDialog()
 }
 logger.action "Opening A1111 WebUI Launcher"
-Install-pyPortable
-Install-gitPortable
 MakeForm

@@ -21,14 +21,13 @@
     <ROW Property="CLEAN_INSTALL" Value="clean" Type="4"/>
     <ROW Property="GitCloneSuccess" Value="0"/>
     <ROW Property="InstallDlg" Comments="yes"/>
-    <ROW Property="MODEL_CHECK" Value="installModel" Type="4"/>
     <ROW Property="MSIFASTINSTALL" MultiBuildValue="DefaultBuild:3"/>
     <ROW Property="Manufacturer" Value="Empire Media Science"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="2057:{2B413D6F-BBB9-4DE3-ADE8-ACEB1EBE3329} " Type="16"/>
+    <ROW Property="ProductCode" Value="2057:{9F49312E-985F-4974-B177-31102BBB070F} " Type="16"/>
     <ROW Property="ProductLanguage" Value="2057"/>
     <ROW Property="ProductName" Value="A1111 Web UI Autoinstaller"/>
-    <ROW Property="ProductVersion" Value="1.5.0"/>
+    <ROW Property="ProductVersion" Value="1.5.1"/>
     <ROW Property="REBOOT" MultiBuildValue="DefaultBuild:ReallySuppress"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{ED3F2830-A9E0-46B4-9D7E-C242564349CB}"/>
@@ -48,21 +47,85 @@
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
     <ROW Directory="CommonAppDataFolder" Directory_Parent="TARGETDIR" DefaultDir="COMMON~1|CommonAppDataFolder" IsPseudoRoot="1"/>
     <ROW Directory="Dependencies_Dir" Directory_Parent="APPDIR" DefaultDir="DEPEND~1|Dependencies"/>
+    <ROW Directory="ISSUE_TEMPLATE_Dir" Directory_Parent="github_Dir" DefaultDir="ISSUE_~1|ISSUE_TEMPLATE"/>
     <ROW Directory="InstallDlg" Directory_Parent="TARGETDIR" DefaultDir="INSTAL~1|InstallDlg:dsfd" IsPseudoRoot="1"/>
+    <ROW Directory="LDSR_Dir" Directory_Parent="extensionsbuiltin_Dir" DefaultDir="LDSR"/>
     <ROW Directory="Launcher_Dir" Directory_Parent="APPDIR" DefaultDir="Launcher"/>
+    <ROW Directory="PULL_REQUEST_TEMPLATE_Dir" Directory_Parent="github_Dir" DefaultDir="PULL_R~1|PULL_REQUEST_TEMPLATE"/>
+    <ROW Directory="ScuNET_Dir" Directory_Parent="extensionsbuiltin_Dir" DefaultDir="ScuNET"/>
+    <ROW Directory="Stablediffusion_Dir" Directory_Parent="models_Dir" DefaultDir="STABLE~1|Stable-diffusion"/>
+    <ROW Directory="SwinIR_Dir" Directory_Parent="extensionsbuiltin_Dir" DefaultDir="SwinIR"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
+    <ROW Directory="VAE_Dir" Directory_Parent="models_Dir" DefaultDir="VAE"/>
+    <ROW Directory="VAEapprox_Dir" Directory_Parent="models_Dir" DefaultDir="VAE-AP~1|VAE-approx"/>
+    <ROW Directory="advanced_features_Dir" Directory_Parent="test_Dir" DefaultDir="ADVANC~1|advanced_features"/>
+    <ROW Directory="api_Dir" Directory_Parent="modules_Dir" DefaultDir="api"/>
+    <ROW Directory="basic_features_Dir" Directory_Parent="test_Dir" DefaultDir="BASIC_~1|basic_features"/>
+    <ROW Directory="codeformer_Dir" Directory_Parent="modules_Dir" DefaultDir="CODEFO~1|codeformer"/>
+    <ROW Directory="deepbooru_Dir" Directory_Parent="models_Dir" DefaultDir="DEEPBO~1|deepbooru"/>
+    <ROW Directory="embeddings_Dir" Directory_Parent="stablediffusionwebui_Dir" DefaultDir="EMBEDD~1|embeddings"/>
+    <ROW Directory="extensions_Dir" Directory_Parent="stablediffusionwebui_Dir" DefaultDir="EXTENS~1|extensions"/>
+    <ROW Directory="extensionsbuiltin_Dir" Directory_Parent="stablediffusionwebui_Dir" DefaultDir="EXTENS~2|extensions-builtin"/>
+    <ROW Directory="github_Dir" Directory_Parent="stablediffusionwebui_Dir" DefaultDir="GITHUB~1|.github"/>
+    <ROW Directory="hypernetworks_Dir" Directory_Parent="modules_Dir" DefaultDir="HYPERN~1|hypernetworks"/>
+    <ROW Directory="javascript_1_Dir" Directory_Parent="stablediffusionwebui_Dir" DefaultDir="JAVASC~1|javascript"/>
+    <ROW Directory="javascript_Dir" Directory_Parent="promptbracketchecker_Dir" DefaultDir="JAVASC~1|javascript"/>
+    <ROW Directory="localizations_Dir" Directory_Parent="stablediffusionwebui_Dir" DefaultDir="LOCALI~1|localizations"/>
+    <ROW Directory="models_Dir" Directory_Parent="stablediffusionwebui_Dir" DefaultDir="models"/>
+    <ROW Directory="modules_Dir" Directory_Parent="stablediffusionwebui_Dir" DefaultDir="modules"/>
+    <ROW Directory="promptbracketchecker_Dir" Directory_Parent="extensionsbuiltin_Dir" DefaultDir="PROMPT~1|prompt-bracket-checker"/>
     <ROW Directory="regid.199509.com.example_Dir" Directory_Parent="CommonAppDataFolder" DefaultDir="REGID1~1.EXA|regid.1995-09.com.example"/>
+    <ROW Directory="scripts_1_Dir" Directory_Parent="ScuNET_Dir" DefaultDir="scripts"/>
+    <ROW Directory="scripts_2_Dir" Directory_Parent="SwinIR_Dir" DefaultDir="scripts"/>
+    <ROW Directory="scripts_3_Dir" Directory_Parent="stablediffusionwebui_Dir" DefaultDir="scripts"/>
+    <ROW Directory="scripts_Dir" Directory_Parent="LDSR_Dir" DefaultDir="scripts"/>
+    <ROW Directory="stablediffusionwebui_Dir" Directory_Parent="Launcher_Dir" DefaultDir="STABLE~1|stable-diffusion-webui"/>
+    <ROW Directory="test_Dir" Directory_Parent="stablediffusionwebui_Dir" DefaultDir="test"/>
+    <ROW Directory="test_files_Dir" Directory_Parent="test_Dir" DefaultDir="TEST_F~1|test_files"/>
+    <ROW Directory="textual_inversion_Dir" Directory_Parent="modules_Dir" DefaultDir="TEXTUA~1|textual_inversion"/>
+    <ROW Directory="textual_inversion_templates_Dir" Directory_Parent="stablediffusionwebui_Dir" DefaultDir="TEXTUA~1|textual_inversion_templates"/>
+    <ROW Directory="workflows_Dir" Directory_Parent="github_Dir" DefaultDir="WORKFL~1|workflows"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{D11BFB6A-21ED-4B2A-AC5B-ABB35CDAC8ED}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{1F67F18D-8C8A-4817-A26B-A1BEFC2618E4}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_DisableModify" ComponentId="{F2050EAB-4FE0-4037-BD04-5CC3D395CCD6}" Directory_="APPDIR" Attributes="260" KeyPath="NoModify" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{B811E420-F0BA-4852-9CFC-442518C5004C}" Directory_="APPDIR" Attributes="260" KeyPath="AI_ExePath"/>
     <ROW Component="APPDIR" ComponentId="{8CF866A2-A911-49F3-990F-8C58E2C86E81}" Directory_="APPDIR" Attributes="0"/>
     <ROW Component="InstallDlg" ComponentId="{43D6052F-DBBE-4963-A5D7-1DA28EDA7216}" Directory_="InstallDlg" Attributes="0"/>
+    <ROW Component="PlaceTextualInversionembeddingshere.txt" ComponentId="{51E9CE11-6C45-41D9-AE0B-0CC7A7CE09CA}" Directory_="embeddings_Dir" Attributes="0" KeyPath="PlaceTextualInversionembeddingshere.txt" Type="0"/>
     <ROW Component="ProductInformation" ComponentId="{89B7657B-A9AC-47E0-934E-DFD5C27F709B}" Directory_="APPDIR" Attributes="260" KeyPath="Version"/>
+    <ROW Component="PutStableDiffusioncheckpointshere.txt" ComponentId="{89A7AC00-B7A3-404B-AC85-ED0DECFEBEB3}" Directory_="Stablediffusion_Dir" Attributes="0" KeyPath="PutStableDiffusioncheckpointshere.txt" Type="0"/>
+    <ROW Component="PutVAEhere.txt" ComponentId="{221A7BC0-54A9-40D1-A154-0467FBB94F1E}" Directory_="VAE_Dir" Attributes="0" KeyPath="PutVAEhere.txt" Type="0"/>
+    <ROW Component="Putlocalizationfileshere.txt" ComponentId="{202DAAD6-C73C-435C-8F11-54984DADF8AB}" Directory_="localizations_Dir" Attributes="0" KeyPath="Putlocalizationfileshere.txt" Type="0"/>
+    <ROW Component="Putyourdeepboorureleaseprojectfolderhere.txt" ComponentId="{E4286481-DFAD-4814-BE01-77A209EAB906}" Directory_="deepbooru_Dir" Attributes="0" KeyPath="Putyourdeepboorureleaseprojectfolderhere.txt" Type="0"/>
+    <ROW Component="api.py" ComponentId="{F49D6069-51DC-4571-B50E-BCDC761D3CD1}" Directory_="api_Dir" Attributes="0" KeyPath="api.py" Type="0"/>
+    <ROW Component="artists.py" ComponentId="{1EFD97CB-1491-4039-B3AE-A38985247B91}" Directory_="modules_Dir" Attributes="0" KeyPath="artists.py" Type="0"/>
+    <ROW Component="aspectRatioOverlay.js" ComponentId="{AD97F390-0B11-4BF4-B583-E10955564CF9}" Directory_="javascript_1_Dir" Attributes="0" KeyPath="aspectRatioOverlay.js" Type="0"/>
+    <ROW Component="autocrop.py" ComponentId="{89FBA587-B392-45A2-B1EE-0ACCC9021F5C}" Directory_="textual_inversion_Dir" Attributes="0" KeyPath="autocrop.py" Type="0"/>
+    <ROW Component="bug_report.yml" ComponentId="{BAC9776A-DD0C-4A4B-8653-236A0167CB0E}" Directory_="ISSUE_TEMPLATE_Dir" Attributes="0" KeyPath="bug_report.yml" Type="0"/>
+    <ROW Component="codeformer_arch.py" ComponentId="{A89EDE9C-DE6D-410D-B518-0DB9093B6976}" Directory_="codeformer_Dir" Attributes="0" KeyPath="codeformer_arch.py" Type="0"/>
+    <ROW Component="custom_code.py" ComponentId="{38AE2F6E-83A2-4B9C-BED6-EC6606A0AB09}" Directory_="scripts_3_Dir" Attributes="0" KeyPath="custom_code.py" Type="0"/>
     <ROW Component="definitions.json" ComponentId="{6A0F435C-A63A-448F-9ED7-320D31F7F1E2}" Directory_="Launcher_Dir" Attributes="0" KeyPath="definitions.json" Type="0"/>
     <ROW Component="dependencieshere.txt" ComponentId="{10B0B391-93FF-4572-82FD-FF68AE826F49}" Directory_="Dependencies_Dir" Attributes="0" KeyPath="dependencieshere.txt" Type="0"/>
+    <ROW Component="empty.pt" ComponentId="{FB2D91F1-3953-4A1C-94D9-C9822DA2F92B}" Directory_="test_files_Dir" Attributes="0" KeyPath="empty.pt" Type="0"/>
+    <ROW Component="extras_test.py" ComponentId="{6E209839-456D-4ADF-BB20-B93EC70D42BD}" Directory_="advanced_features_Dir" Attributes="0" KeyPath="extras_test.py" Type="0"/>
+    <ROW Component="gitignore" ComponentId="{CADA58BE-477C-40EF-A719-D5BEAC7CEB34}" Directory_="stablediffusionwebui_Dir" Attributes="0" KeyPath="gitignore" Type="0"/>
+    <ROW Component="hypernetwork.py" ComponentId="{165AF231-7EF8-45EE-B2F3-B0876DF257B3}" Directory_="hypernetworks_Dir" Attributes="0" KeyPath="hypernetwork.py" Type="0"/>
+    <ROW Component="hypernetwork.txt" ComponentId="{07674ACA-F9CB-42BE-A329-53BA559FBA2C}" Directory_="textual_inversion_templates_Dir" Attributes="0" KeyPath="hypernetwork.txt" Type="0"/>
+    <ROW Component="img2img_test.py" ComponentId="{E7B0ED4A-1513-453C-B556-ECA19A9D6E4A}" Directory_="basic_features_Dir" Attributes="0" KeyPath="img2img_test.py" Type="0"/>
+    <ROW Component="ldsr_model.py" ComponentId="{F1B110D9-2709-4A29-A3D5-7C9BE1499BCD}" Directory_="scripts_Dir" Attributes="0" KeyPath="ldsr_model.py" Type="0"/>
+    <ROW Component="ldsr_model_arch.py" ComponentId="{77801655-18A2-433C-9193-33C844B19B91}" Directory_="LDSR_Dir" Attributes="0" KeyPath="ldsr_model_arch.py" Type="0"/>
+    <ROW Component="model.pt" ComponentId="{8768B2B7-2CC1-4386-85C5-6827572B4DBC}" Directory_="VAEapprox_Dir" Attributes="0" KeyPath="model.pt" Type="0"/>
+    <ROW Component="on_pull_request.yaml" ComponentId="{F6D3C8D3-B312-4B39-B4B7-82484645E96F}" Directory_="workflows_Dir" Attributes="0" KeyPath="on_pull_request.yaml" Type="0"/>
+    <ROW Component="preload.py" ComponentId="{CC1715D7-4DDD-4760-A8BD-A154994F0DED}" Directory_="ScuNET_Dir" Attributes="0" KeyPath="preload.py_1" Type="0"/>
+    <ROW Component="preload.py_1" ComponentId="{F60FF00F-99F8-43D9-A0D3-1C82534539BD}" Directory_="SwinIR_Dir" Attributes="0" KeyPath="preload.py_2" Type="0"/>
+    <ROW Component="promptbracketchecker.js" ComponentId="{48D87AB7-EF2E-4FD8-8376-3B10933E7567}" Directory_="javascript_Dir" Attributes="0" KeyPath="promptbracketchecker.js" Type="0"/>
+    <ROW Component="pull_request_template.md" ComponentId="{5BBE7BA2-A372-4B4F-9374-0C0E0B619800}" Directory_="PULL_REQUEST_TEMPLATE_Dir" Attributes="0" KeyPath="pull_request_template.md" Type="0"/>
+    <ROW Component="putextensionshere.txt" ComponentId="{62BA96E0-7725-45F4-BC18-62DD87AC01CD}" Directory_="extensions_Dir" Attributes="0" KeyPath="putextensionshere.txt" Type="0"/>
     <ROW Component="regid.199509.com.example" ComponentId="{CED1F5AE-CD32-43C2-B701-4C359940B9A3}" Directory_="regid.199509.com.example_Dir" Attributes="0"/>
+    <ROW Component="scunet_model.py" ComponentId="{9558D4D1-5755-4207-AB0E-DC318CE4F362}" Directory_="scripts_1_Dir" Attributes="0" KeyPath="scunet_model.py" Type="0"/>
+    <ROW Component="server_poll.py" ComponentId="{E6FA68F8-842C-4FA4-AD44-A3611A1F358A}" Directory_="test_Dir" Attributes="0" KeyPath="server_poll.py" Type="0"/>
+    <ROW Component="swinir_model.py" ComponentId="{FDA76205-D9AE-4867-AFE9-98E84A8CAE42}" Directory_="scripts_2_Dir" Attributes="0" KeyPath="swinir_model.py" Type="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
@@ -75,6 +138,158 @@
     <ROW File="logger.psm1" Component_="definitions.json" FileName="LOGGER~1.PSM|logger.psm1" Attributes="0" SourcePath="Launcher\logger.psm1" SelfReg="false"/>
     <ROW File="shared.ps1" Component_="definitions.json" FileName="shared.ps1" Attributes="0" SourcePath="Launcher\shared.ps1" SelfReg="false"/>
     <ROW File="dependencieshere.txt" Component_="dependencieshere.txt" FileName="DEPEND~1.TXT|dependencies-here.txt" Attributes="0" SourcePath="Dependencies\dependencies-here.txt" SelfReg="false"/>
+    <ROW File="bug_report.yml" Component_="bug_report.yml" FileName="BUG_RE~1.YML|bug_report.yml" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\.github\ISSUE_TEMPLATE\bug_report.yml" SelfReg="false"/>
+    <ROW File="config.yml" Component_="bug_report.yml" FileName="config.yml" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\.github\ISSUE_TEMPLATE\config.yml" SelfReg="false"/>
+    <ROW File="feature_request.yml" Component_="bug_report.yml" FileName="FEATUR~1.YML|feature_request.yml" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\.github\ISSUE_TEMPLATE\feature_request.yml" SelfReg="false"/>
+    <ROW File="pull_request_template.md" Component_="pull_request_template.md" FileName="PULL_R~1.MD|pull_request_template.md" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\.github\PULL_REQUEST_TEMPLATE\pull_request_template.md" SelfReg="false"/>
+    <ROW File="on_pull_request.yaml" Component_="on_pull_request.yaml" FileName="ON_PUL~1.YAM|on_pull_request.yaml" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\.github\workflows\on_pull_request.yaml" SelfReg="false"/>
+    <ROW File="run_tests.yaml" Component_="on_pull_request.yaml" FileName="RUN_TE~1.YAM|run_tests.yaml" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\.github\workflows\run_tests.yaml" SelfReg="false"/>
+    <ROW File="gitignore" Component_="gitignore" FileName="GITIGN~1|.gitignore" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\.gitignore" SelfReg="false"/>
+    <ROW File="pylintrc" Component_="gitignore" FileName="PYLINT~1|.pylintrc" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\.pylintrc" SelfReg="false"/>
+    <ROW File="artists.csv" Component_="gitignore" FileName="artists.csv" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\artists.csv" SelfReg="false"/>
+    <ROW File="CODEOWNERS" Component_="gitignore" FileName="CODEOW~1|CODEOWNERS" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\CODEOWNERS" SelfReg="false"/>
+    <ROW File="PlaceTextualInversionembeddingshere.txt" Component_="PlaceTextualInversionembeddingshere.txt" FileName="PLACET~1.TXT|Place Textual Inversion embeddings here.txt" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\embeddings\Place Textual Inversion embeddings here.txt" SelfReg="false"/>
+    <ROW File="environmentwsl2.yaml" Component_="gitignore" FileName="ENVIRO~1.YAM|environment-wsl2.yaml" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\environment-wsl2.yaml" SelfReg="false"/>
+    <ROW File="putextensionshere.txt" Component_="putextensionshere.txt" FileName="PUTEXT~1.TXT|put extensions here.txt" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\extensions\put extensions here.txt" SelfReg="false"/>
+    <ROW File="ldsr_model_arch.py" Component_="ldsr_model_arch.py" FileName="LDSR_M~1.PY|ldsr_model_arch.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\extensions-builtin\LDSR\ldsr_model_arch.py" SelfReg="false"/>
+    <ROW File="preload.py" Component_="ldsr_model_arch.py" FileName="preload.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\extensions-builtin\LDSR\preload.py" SelfReg="false"/>
+    <ROW File="ldsr_model.py" Component_="ldsr_model.py" FileName="LDSR_M~1.PY|ldsr_model.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\extensions-builtin\LDSR\scripts\ldsr_model.py" SelfReg="false"/>
+    <ROW File="sd_hijack_autoencoder.py" Component_="ldsr_model_arch.py" FileName="SD_HIJ~1.PY|sd_hijack_autoencoder.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\extensions-builtin\LDSR\sd_hijack_autoencoder.py" SelfReg="false"/>
+    <ROW File="sd_hijack_ddpm_v1.py" Component_="ldsr_model_arch.py" FileName="SD_HIJ~2.PY|sd_hijack_ddpm_v1.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\extensions-builtin\LDSR\sd_hijack_ddpm_v1.py" SelfReg="false"/>
+    <ROW File="promptbracketchecker.js" Component_="promptbracketchecker.js" FileName="PROMPT~1.JS|prompt-bracket-checker.js" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\extensions-builtin\prompt-bracket-checker\javascript\prompt-bracket-checker.js" SelfReg="false"/>
+    <ROW File="preload.py_1" Component_="preload.py" FileName="preload.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\extensions-builtin\ScuNET\preload.py" SelfReg="false"/>
+    <ROW File="scunet_model.py" Component_="scunet_model.py" FileName="SCUNET~1.PY|scunet_model.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\extensions-builtin\ScuNET\scripts\scunet_model.py" SelfReg="false"/>
+    <ROW File="scunet_model_arch.py" Component_="preload.py" FileName="SCUNET~1.PY|scunet_model_arch.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\extensions-builtin\ScuNET\scunet_model_arch.py" SelfReg="false"/>
+    <ROW File="preload.py_2" Component_="preload.py_1" FileName="preload.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\extensions-builtin\SwinIR\preload.py" SelfReg="false"/>
+    <ROW File="swinir_model.py" Component_="swinir_model.py" FileName="SWINIR~1.PY|swinir_model.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\extensions-builtin\SwinIR\scripts\swinir_model.py" SelfReg="false"/>
+    <ROW File="swinir_model_arch.py" Component_="preload.py_1" FileName="SWINIR~1.PY|swinir_model_arch.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\extensions-builtin\SwinIR\swinir_model_arch.py" SelfReg="false"/>
+    <ROW File="swinir_model_arch_v2.py" Component_="preload.py_1" FileName="SWINIR~2.PY|swinir_model_arch_v2.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\extensions-builtin\SwinIR\swinir_model_arch_v2.py" SelfReg="false"/>
+    <ROW File="aspectRatioOverlay.js" Component_="aspectRatioOverlay.js" FileName="ASPECT~1.JS|aspectRatioOverlay.js" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\javascript\aspectRatioOverlay.js" SelfReg="false"/>
+    <ROW File="contextMenus.js" Component_="aspectRatioOverlay.js" FileName="CONTEX~1.JS|contextMenus.js" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\javascript\contextMenus.js" SelfReg="false"/>
+    <ROW File="dragdrop.js" Component_="aspectRatioOverlay.js" FileName="dragdrop.js" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\javascript\dragdrop.js" SelfReg="false"/>
+    <ROW File="editattention.js" Component_="aspectRatioOverlay.js" FileName="EDIT-A~1.JS|edit-attention.js" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\javascript\edit-attention.js" SelfReg="false"/>
+    <ROW File="extensions.js" Component_="aspectRatioOverlay.js" FileName="EXTENS~1.JS|extensions.js" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\javascript\extensions.js" SelfReg="false"/>
+    <ROW File="generationParams.js" Component_="aspectRatioOverlay.js" FileName="GENERA~1.JS|generationParams.js" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\javascript\generationParams.js" SelfReg="false"/>
+    <ROW File="hints.js" Component_="aspectRatioOverlay.js" FileName="hints.js" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\javascript\hints.js" SelfReg="false"/>
+    <ROW File="imageMaskFix.js" Component_="aspectRatioOverlay.js" FileName="IMAGEM~1.JS|imageMaskFix.js" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\javascript\imageMaskFix.js" SelfReg="false"/>
+    <ROW File="imageParams.js" Component_="aspectRatioOverlay.js" FileName="IMAGEP~1.JS|imageParams.js" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\javascript\imageParams.js" SelfReg="false"/>
+    <ROW File="imageviewer.js" Component_="aspectRatioOverlay.js" FileName="IMAGEV~1.JS|imageviewer.js" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\javascript\imageviewer.js" SelfReg="false"/>
+    <ROW File="localization.js" Component_="aspectRatioOverlay.js" FileName="LOCALI~1.JS|localization.js" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\javascript\localization.js" SelfReg="false"/>
+    <ROW File="notification.js" Component_="aspectRatioOverlay.js" FileName="NOTIFI~1.JS|notification.js" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\javascript\notification.js" SelfReg="false"/>
+    <ROW File="progressbar.js" Component_="aspectRatioOverlay.js" FileName="PROGRE~1.JS|progressbar.js" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\javascript\progressbar.js" SelfReg="false"/>
+    <ROW File="textualInversion.js" Component_="aspectRatioOverlay.js" FileName="TEXTUA~1.JS|textualInversion.js" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\javascript\textualInversion.js" SelfReg="false"/>
+    <ROW File="ui.js" Component_="aspectRatioOverlay.js" FileName="ui.js" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\javascript\ui.js" SelfReg="false"/>
+    <ROW File="launch.py" Component_="gitignore" FileName="launch.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\launch.py" SelfReg="false"/>
+    <ROW File="Putlocalizationfileshere.txt" Component_="Putlocalizationfileshere.txt" FileName="PUTLOC~1.TXT|Put localization files here.txt" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\localizations\Put localization files here.txt" SelfReg="false"/>
+    <ROW File="Putyourdeepboorureleaseprojectfolderhere.txt" Component_="Putyourdeepboorureleaseprojectfolderhere.txt" FileName="PUTYOU~1.TXT|Put your deepbooru release project folder here.txt" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\models\deepbooru\Put your deepbooru release project folder here.txt" SelfReg="false"/>
+    <ROW File="PutStableDiffusioncheckpointshere.txt" Component_="PutStableDiffusioncheckpointshere.txt" FileName="PUTSTA~1.TXT|Put Stable Diffusion checkpoints here.txt" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\models\Stable-diffusion\Put Stable Diffusion checkpoints here.txt" SelfReg="false"/>
+    <ROW File="PutVAEhere.txt" Component_="PutVAEhere.txt" FileName="PUTVAE~1.TXT|Put VAE here.txt" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\models\VAE\Put VAE here.txt" SelfReg="false"/>
+    <ROW File="model.pt" Component_="model.pt" FileName="model.pt" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\models\VAE-approx\model.pt" SelfReg="false"/>
+    <ROW File="api.py" Component_="api.py" FileName="api.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\api\api.py" SelfReg="false"/>
+    <ROW File="models.py" Component_="api.py" FileName="models.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\api\models.py" SelfReg="false"/>
+    <ROW File="artists.py" Component_="artists.py" FileName="artists.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\artists.py" SelfReg="false"/>
+    <ROW File="call_queue.py" Component_="artists.py" FileName="CALL_Q~1.PY|call_queue.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\call_queue.py" SelfReg="false"/>
+    <ROW File="codeformer_arch.py" Component_="codeformer_arch.py" FileName="CODEFO~1.PY|codeformer_arch.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\codeformer\codeformer_arch.py" SelfReg="false"/>
+    <ROW File="vqgan_arch.py" Component_="codeformer_arch.py" FileName="VQGAN_~1.PY|vqgan_arch.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\codeformer\vqgan_arch.py" SelfReg="false"/>
+    <ROW File="codeformer_model.py" Component_="artists.py" FileName="CODEFO~1.PY|codeformer_model.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\codeformer_model.py" SelfReg="false"/>
+    <ROW File="deepbooru.py" Component_="artists.py" FileName="DEEPBO~1.PY|deepbooru.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\deepbooru.py" SelfReg="false"/>
+    <ROW File="deepbooru_model.py" Component_="artists.py" FileName="DEEPBO~2.PY|deepbooru_model.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\deepbooru_model.py" SelfReg="false"/>
+    <ROW File="devices.py" Component_="artists.py" FileName="devices.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\devices.py" SelfReg="false"/>
+    <ROW File="errors.py" Component_="artists.py" FileName="errors.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\errors.py" SelfReg="false"/>
+    <ROW File="esrgan_model.py" Component_="artists.py" FileName="ESRGAN~1.PY|esrgan_model.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\esrgan_model.py" SelfReg="false"/>
+    <ROW File="esrgan_model_arch.py" Component_="artists.py" FileName="ESRGAN~2.PY|esrgan_model_arch.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\esrgan_model_arch.py" SelfReg="false"/>
+    <ROW File="extensions.py" Component_="artists.py" FileName="EXTENS~1.PY|extensions.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\extensions.py" SelfReg="false"/>
+    <ROW File="extras.py" Component_="artists.py" FileName="extras.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\extras.py" SelfReg="false"/>
+    <ROW File="face_restoration.py" Component_="artists.py" FileName="FACE_R~1.PY|face_restoration.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\face_restoration.py" SelfReg="false"/>
+    <ROW File="generation_parameters_copypaste.py" Component_="artists.py" FileName="GENERA~1.PY|generation_parameters_copypaste.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\generation_parameters_copypaste.py" SelfReg="false"/>
+    <ROW File="gfpgan_model.py" Component_="artists.py" FileName="GFPGAN~1.PY|gfpgan_model.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\gfpgan_model.py" SelfReg="false"/>
+    <ROW File="hypernetwork.py" Component_="hypernetwork.py" FileName="HYPERN~1.PY|hypernetwork.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\hypernetworks\hypernetwork.py" SelfReg="false"/>
+    <ROW File="ui.py" Component_="hypernetwork.py" FileName="ui.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\hypernetworks\ui.py" SelfReg="false"/>
+    <ROW File="images.py" Component_="artists.py" FileName="images.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\images.py" SelfReg="false"/>
+    <ROW File="img2img.py" Component_="artists.py" FileName="img2img.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\img2img.py" SelfReg="false"/>
+    <ROW File="import_hook.py" Component_="artists.py" FileName="IMPORT~1.PY|import_hook.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\import_hook.py" SelfReg="false"/>
+    <ROW File="interrogate.py" Component_="artists.py" FileName="INTERR~1.PY|interrogate.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\interrogate.py" SelfReg="false"/>
+    <ROW File="localization.py" Component_="artists.py" FileName="LOCALI~1.PY|localization.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\localization.py" SelfReg="false"/>
+    <ROW File="lowvram.py" Component_="artists.py" FileName="lowvram.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\lowvram.py" SelfReg="false"/>
+    <ROW File="masking.py" Component_="artists.py" FileName="masking.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\masking.py" SelfReg="false"/>
+    <ROW File="memmon.py" Component_="artists.py" FileName="memmon.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\memmon.py" SelfReg="false"/>
+    <ROW File="modelloader.py" Component_="artists.py" FileName="MODELL~1.PY|modelloader.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\modelloader.py" SelfReg="false"/>
+    <ROW File="ngrok.py" Component_="artists.py" FileName="ngrok.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\ngrok.py" SelfReg="false"/>
+    <ROW File="paths.py" Component_="artists.py" FileName="paths.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\paths.py" SelfReg="false"/>
+    <ROW File="processing.py" Component_="artists.py" FileName="PROCES~1.PY|processing.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\processing.py" SelfReg="false"/>
+    <ROW File="prompt_parser.py" Component_="artists.py" FileName="PROMPT~1.PY|prompt_parser.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\prompt_parser.py" SelfReg="false"/>
+    <ROW File="realesrgan_model.py" Component_="artists.py" FileName="REALES~1.PY|realesrgan_model.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\realesrgan_model.py" SelfReg="false"/>
+    <ROW File="safe.py" Component_="artists.py" FileName="safe.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\safe.py" SelfReg="false"/>
+    <ROW File="scripts.py" Component_="artists.py" FileName="scripts.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\scripts.py" SelfReg="false"/>
+    <ROW File="script_callbacks.py" Component_="artists.py" FileName="SCRIPT~1.PY|script_callbacks.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\script_callbacks.py" SelfReg="false"/>
+    <ROW File="script_loading.py" Component_="artists.py" FileName="SCRIPT~2.PY|script_loading.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\script_loading.py" SelfReg="false"/>
+    <ROW File="sd_hijack.py" Component_="artists.py" FileName="SD_HIJ~1.PY|sd_hijack.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\sd_hijack.py" SelfReg="false"/>
+    <ROW File="sd_hijack_checkpoint.py" Component_="artists.py" FileName="SD_HIJ~2.PY|sd_hijack_checkpoint.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\sd_hijack_checkpoint.py" SelfReg="false"/>
+    <ROW File="sd_hijack_clip.py" Component_="artists.py" FileName="SD_HIJ~3.PY|sd_hijack_clip.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\sd_hijack_clip.py" SelfReg="false"/>
+    <ROW File="sd_hijack_inpainting.py" Component_="artists.py" FileName="SD_HIJ~4.PY|sd_hijack_inpainting.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\sd_hijack_inpainting.py" SelfReg="false"/>
+    <ROW File="sd_hijack_open_clip.py" Component_="artists.py" FileName="SD_HIJ~5.PY|sd_hijack_open_clip.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\sd_hijack_open_clip.py" SelfReg="false"/>
+    <ROW File="sd_hijack_optimizations.py" Component_="artists.py" FileName="SD_HIJ~6.PY|sd_hijack_optimizations.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\sd_hijack_optimizations.py" SelfReg="false"/>
+    <ROW File="sd_hijack_unet.py" Component_="artists.py" FileName="SD_HIJ~7.PY|sd_hijack_unet.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\sd_hijack_unet.py" SelfReg="false"/>
+    <ROW File="sd_models.py" Component_="artists.py" FileName="SD_MOD~1.PY|sd_models.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\sd_models.py" SelfReg="false"/>
+    <ROW File="sd_samplers.py" Component_="artists.py" FileName="SD_SAM~1.PY|sd_samplers.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\sd_samplers.py" SelfReg="false"/>
+    <ROW File="sd_vae.py" Component_="artists.py" FileName="sd_vae.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\sd_vae.py" SelfReg="false"/>
+    <ROW File="sd_vae_approx.py" Component_="artists.py" FileName="SD_VAE~1.PY|sd_vae_approx.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\sd_vae_approx.py" SelfReg="false"/>
+    <ROW File="shared.py" Component_="artists.py" FileName="shared.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\shared.py" SelfReg="false"/>
+    <ROW File="styles.py" Component_="artists.py" FileName="styles.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\styles.py" SelfReg="false"/>
+    <ROW File="autocrop.py" Component_="autocrop.py" FileName="autocrop.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\textual_inversion\autocrop.py" SelfReg="false"/>
+    <ROW File="dataset.py" Component_="autocrop.py" FileName="dataset.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\textual_inversion\dataset.py" SelfReg="false"/>
+    <ROW File="image_embedding.py" Component_="autocrop.py" FileName="IMAGE_~1.PY|image_embedding.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\textual_inversion\image_embedding.py" SelfReg="false"/>
+    <ROW File="learn_schedule.py" Component_="autocrop.py" FileName="LEARN_~1.PY|learn_schedule.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\textual_inversion\learn_schedule.py" SelfReg="false"/>
+    <ROW File="preprocess.py" Component_="autocrop.py" FileName="PREPRO~1.PY|preprocess.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\textual_inversion\preprocess.py" SelfReg="false"/>
+    <ROW File="test_embedding.png" Component_="autocrop.py" FileName="TEST_E~1.PNG|test_embedding.png" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\textual_inversion\test_embedding.png" SelfReg="false"/>
+    <ROW File="textual_inversion.py" Component_="autocrop.py" FileName="TEXTUA~1.PY|textual_inversion.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\textual_inversion\textual_inversion.py" SelfReg="false"/>
+    <ROW File="ui.py_1" Component_="autocrop.py" FileName="ui.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\textual_inversion\ui.py" SelfReg="false"/>
+    <ROW File="txt2img.py" Component_="artists.py" FileName="txt2img.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\txt2img.py" SelfReg="false"/>
+    <ROW File="ui.py_2" Component_="artists.py" FileName="ui.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\ui.py" SelfReg="false"/>
+    <ROW File="ui_extensions.py" Component_="artists.py" FileName="UI_EXT~1.PY|ui_extensions.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\ui_extensions.py" SelfReg="false"/>
+    <ROW File="ui_tempdir.py" Component_="artists.py" FileName="UI_TEM~1.PY|ui_tempdir.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\ui_tempdir.py" SelfReg="false"/>
+    <ROW File="upscaler.py" Component_="artists.py" FileName="upscaler.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\modules\upscaler.py" SelfReg="false"/>
+    <ROW File="README.md" Component_="gitignore" FileName="README.md" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\README.md" SelfReg="false"/>
+    <ROW File="requirements.txt" Component_="gitignore" FileName="REQUIR~1.TXT|requirements.txt" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\requirements.txt" SelfReg="false"/>
+    <ROW File="requirements_versions.txt" Component_="gitignore" FileName="REQUIR~2.TXT|requirements_versions.txt" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\requirements_versions.txt" SelfReg="false"/>
+    <ROW File="screenshot.png" Component_="gitignore" FileName="SCREEN~1.PNG|screenshot.png" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\screenshot.png" SelfReg="false"/>
+    <ROW File="script.js" Component_="gitignore" FileName="script.js" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\script.js" SelfReg="false"/>
+    <ROW File="custom_code.py" Component_="custom_code.py" FileName="CUSTOM~1.PY|custom_code.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\scripts\custom_code.py" SelfReg="false"/>
+    <ROW File="img2imgalt.py" Component_="custom_code.py" FileName="IMG2IM~1.PY|img2imgalt.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\scripts\img2imgalt.py" SelfReg="false"/>
+    <ROW File="loopback.py" Component_="custom_code.py" FileName="loopback.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\scripts\loopback.py" SelfReg="false"/>
+    <ROW File="outpainting_mk_2.py" Component_="custom_code.py" FileName="OUTPAI~1.PY|outpainting_mk_2.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\scripts\outpainting_mk_2.py" SelfReg="false"/>
+    <ROW File="poor_mans_outpainting.py" Component_="custom_code.py" FileName="POOR_M~1.PY|poor_mans_outpainting.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\scripts\poor_mans_outpainting.py" SelfReg="false"/>
+    <ROW File="prompts_from_file.py" Component_="custom_code.py" FileName="PROMPT~1.PY|prompts_from_file.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\scripts\prompts_from_file.py" SelfReg="false"/>
+    <ROW File="prompt_matrix.py" Component_="custom_code.py" FileName="PROMPT~2.PY|prompt_matrix.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\scripts\prompt_matrix.py" SelfReg="false"/>
+    <ROW File="sd_upscale.py" Component_="custom_code.py" FileName="SD_UPS~1.PY|sd_upscale.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\scripts\sd_upscale.py" SelfReg="false"/>
+    <ROW File="xy_grid.py" Component_="custom_code.py" FileName="xy_grid.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\scripts\xy_grid.py" SelfReg="false"/>
+    <ROW File="style.css" Component_="gitignore" FileName="style.css" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\style.css" SelfReg="false"/>
+    <ROW File="extras_test.py" Component_="extras_test.py" FileName="EXTRAS~1.PY|extras_test.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\test\advanced_features\extras_test.py" SelfReg="false"/>
+    <ROW File="txt2img_test.py" Component_="extras_test.py" FileName="TXT2IM~1.PY|txt2img_test.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\test\advanced_features\txt2img_test.py" SelfReg="false"/>
+    <ROW File="__init__.py" Component_="extras_test.py" FileName="__init__.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\test\advanced_features\__init__.py" SelfReg="false"/>
+    <ROW File="img2img_test.py" Component_="img2img_test.py" FileName="IMG2IM~1.PY|img2img_test.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\test\basic_features\img2img_test.py" SelfReg="false"/>
+    <ROW File="txt2img_test.py_1" Component_="img2img_test.py" FileName="TXT2IM~1.PY|txt2img_test.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\test\basic_features\txt2img_test.py" SelfReg="false"/>
+    <ROW File="utils_test.py" Component_="img2img_test.py" FileName="UTILS_~1.PY|utils_test.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\test\basic_features\utils_test.py" SelfReg="false"/>
+    <ROW File="__init__.py_1" Component_="img2img_test.py" FileName="__init__.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\test\basic_features\__init__.py" SelfReg="false"/>
+    <ROW File="server_poll.py" Component_="server_poll.py" FileName="SERVER~1.PY|server_poll.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\test\server_poll.py" SelfReg="false"/>
+    <ROW File="empty.pt" Component_="empty.pt" FileName="empty.pt" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\test\test_files\empty.pt" SelfReg="false"/>
+    <ROW File="img2img_basic.png" Component_="empty.pt" FileName="IMG2IM~1.PNG|img2img_basic.png" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\test\test_files\img2img_basic.png" SelfReg="false"/>
+    <ROW File="mask_basic.png" Component_="empty.pt" FileName="MASK_B~1.PNG|mask_basic.png" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\test\test_files\mask_basic.png" SelfReg="false"/>
+    <ROW File="__init__.py_2" Component_="server_poll.py" FileName="__init__.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\test\__init__.py" SelfReg="false"/>
+    <ROW File="hypernetwork.txt" Component_="hypernetwork.txt" FileName="HYPERN~1.TXT|hypernetwork.txt" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\textual_inversion_templates\hypernetwork.txt" SelfReg="false"/>
+    <ROW File="none.txt" Component_="hypernetwork.txt" FileName="none.txt" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\textual_inversion_templates\none.txt" SelfReg="false"/>
+    <ROW File="style.txt" Component_="hypernetwork.txt" FileName="style.txt" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\textual_inversion_templates\style.txt" SelfReg="false"/>
+    <ROW File="style_filewords.txt" Component_="hypernetwork.txt" FileName="STYLE_~1.TXT|style_filewords.txt" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\textual_inversion_templates\style_filewords.txt" SelfReg="false"/>
+    <ROW File="subject.txt" Component_="hypernetwork.txt" FileName="subject.txt" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\textual_inversion_templates\subject.txt" SelfReg="false"/>
+    <ROW File="subject_filewords.txt" Component_="hypernetwork.txt" FileName="SUBJEC~1.TXT|subject_filewords.txt" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\textual_inversion_templates\subject_filewords.txt" SelfReg="false"/>
+    <ROW File="txt2img_Screenshot.png" Component_="gitignore" FileName="TXT2IM~1.PNG|txt2img_Screenshot.png" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\txt2img_Screenshot.png" SelfReg="false"/>
+    <ROW File="v1inference.yaml" Component_="gitignore" FileName="V1-INF~1.YAM|v1-inference.yaml" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\v1-inference.yaml" SelfReg="false"/>
+    <ROW File="webuimacosenv.sh" Component_="gitignore" FileName="WEBUI-~1.SH|webui-macos-env.sh" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\webui-macos-env.sh" SelfReg="false"/>
+    <ROW File="webuiuser.bat" Component_="gitignore" FileName="WEBUI-~1.BAT|webui-user.bat" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\webui-user.bat" SelfReg="false"/>
+    <ROW File="webuiuser.sh" Component_="gitignore" FileName="WEBUI-~2.SH|webui-user.sh" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\webui-user.sh" SelfReg="false"/>
+    <ROW File="webui.bat" Component_="gitignore" FileName="webui.bat" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\webui.bat" SelfReg="false"/>
+    <ROW File="webui.py" Component_="gitignore" FileName="webui.py" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\webui.py" SelfReg="false"/>
+    <ROW File="webui.sh" Component_="gitignore" FileName="webui.sh" Attributes="0" SourcePath="Launcher\stable-diffusion-webui\webui.sh" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.AiComponentAliasComponent">
     <ROW AliasRowId="InstallDlg" AliasRowOperation="1"/>
@@ -150,36 +365,44 @@
     <ROW Name="xmlCfg.dll" SourcePath="&lt;AI_CUSTACTS&gt;xmlCfg.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCheckBoxComponent">
-    <ROW Property="MODEL_CHECK" Value="installModel"/>
-    <ROW Property="UNDERSTAND" Value="understand"/>
     <ROW Property="CLEAN_INSTALL" Value="clean"/>
+    <ATTRIBUTE name="DeletedRows" value="AGREE_CHECKBOX"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
     <ROW Dialog_="CustomizeDlg" Control="CustomizeDlgDialogInitializer" Type="DialogInitializer" X="0" Y="0" Width="0" Height="0" Attributes="0" Order="-1" TextLocId="-" HelpLocId="-" ExtDataLocId="-"/>
+    <ROW Dialog_="ExitDialog" Control="ProductLogo" Type="Bitmap" X="17" Y="5" Width="59" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="900" MsiKey="ExitDialog#ProductLogo"/>
+    <ROW Dialog_="ExitDialog" Control="ReadmeButton" Type="ImageButton" X="77" Y="155" Width="92" Height="123" Attributes="3" Text="[ViewReadMeButton]" Order="1000" MsiKey="ExitDialog#ReadmeButton" ExtType="ImageButton"/>
+    <ROW Dialog_="ExitDialog" Control="MetroReadmeText" Type="Text" X="83" Y="278" Width="86" Height="16" Attributes="196611" Text="Readme" Order="1100" TextLocId="Metro.Control.Text.ExitDialog#Readme" MsiKey="ExitDialog#MetroReadmeText"/>
+    <ROW Dialog_="ExitDialog" Control="RunButton" Type="ImageButton" X="176" Y="155" Width="92" Height="123" Attributes="3" Text="[MetroRunApplicationButton]" Order="1200" MsiKey="ExitDialog#RunButton" ExtType="ImageButton"/>
+    <ROW Dialog_="ExitDialog" Control="RunLabel" Type="Text" X="182" Y="278" Width="86" Height="16" Attributes="196611" Text="Run" Order="1300" TextLocId="Metro.Control.Text.ExitDialog#Run" MsiKey="ExitDialog#RunLabel"/>
+    <ROW Dialog_="ExitDialog" Control="AdvInst" Type="Text" X="5" Y="388" Width="74" Height="11" Attributes="196611" Text="Advanced Installer" TextStyle="[BrandingStyle]" Order="1400" MsiKey="ExitDialog#AdvInst"/>
     <ROW Dialog_="FatalError" Control="ProductLogo" Type="Bitmap" X="17" Y="5" Width="59" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="1100" MsiKey="FatalError#ProductLogo"/>
-    <ROW Dialog_="InstallDlg" Control="Description" Type="Text" X="17" Y="91" Width="299" Height="12" Attributes="589827" Text="Where do you want the UI to be stored ?" Order="400" MsiKey="InstallDlg#Description"/>
+    <ROW Dialog_="FatalError" Control="CompanyText" Type="Text" X="83" Y="16" Width="191" Height="12" Attributes="196611" Text="[Manufacturer]" TextStyle="[ManufacturerFont]" Order="1200" TextLocId="Metro.Control.Text.Manufacturer" MsiKey="FatalError#CompanyText"/>
+    <ROW Dialog_="InstallDlg" Control="Description" Type="Text" X="17" Y="136" Width="299" Height="12" Attributes="589827" Text="Where do you want the UI to be stored ?" Order="400" MsiKey="InstallDlg#Description"/>
     <ROW Dialog_="InstallDlg" Control="Next" Type="ImageButton" X="7" Y="364" Width="78" Height="28" Attributes="0" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="500" MsiKey="InstallDlg#Next" Options="1" ExtType="ImageButton" ExtData="Install"/>
-    <ROW Dialog_="InstallDlg" Control="LicenseCheckbox" Type="ImageCheckBox" X="34" Y="371" Width="311" Height="20" Attributes="2" Property="AGREE_CHECKBOX" Text="[checkbox]" Order="600" MsiKey="InstallDlg#LicenseCheckbox" ExtType="ImageCheckBox" ExtData="I agree to the License terms and conditions." ExtDataLocId="Metro.Control.Text.WelcomeDlg.AgreeToLicense"/>
-    <ROW Dialog_="InstallDlg" Control="Browse" Type="ImageButton" X="307" Y="108" Width="21" Height="20" Attributes="3" Text="[browsebutton]" TextStyle="[MetroButtonText]" Order="700" MsiKey="InstallDlg#Browse" ExtType="ImageButton" ExtData="..." ExtDataLocId="Metro.Control.ExtData.WelcomeDlg.BrowseTxt"/>
-    <ROW Dialog_="InstallDlg" Control="YouMustAgreeCtrl" Type="Hyperlink" X="17" Y="253" Width="311" Height="12" Attributes="196611" Text="&lt;a href=&quot;&quot;&gt;IMPORTANT DETAILS&lt;/a&gt;" TextStyle="[HyperlinkFont]" Order="800" MsiKey="InstallDlg#YouMustAgreeCtrl"/>
-    <ROW Dialog_="InstallDlg" Control="ProductNameTitle" Type="Text" X="101" Y="23" Width="227" Height="38" Attributes="196611" Text="[ProductName]" TextStyle="[ProductNameForSplash]" Order="900" TextLocId="Metro.Control.Text.ProductName" MsiKey="InstallDlg#ProductNameTitle"/>
-    <ROW Dialog_="InstallDlg" Control="ProductLogo" Type="Bitmap" X="13" Y="10" Width="59" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="1000" MsiKey="InstallDlg#ProductLogo"/>
-    <ROW Dialog_="InstallDlg" Control="InstallModel" Type="CheckBox" X="17" Y="202" Width="306" Height="18" Attributes="3" Property="MODEL_CHECK" Text="Install SD Checkpoint (V1.5 + New VAE)" Order="1100"/>
-    <ROW Dialog_="InstallDlg" Control="modelChkInfo" Type="Text" X="17" Y="220" Width="312" Height="22" Attributes="65539" Property="TEXT_1_PROP" Text="Uncheck this if you already have one or more checkpoint models (you&apos;ll be able to select a model folder from the launcher)" TextStyle="SubTitle8" Order="1200"/>
-    <ROW Dialog_="InstallDlg" Control="Text_1" Type="Text" X="17" Y="129" Width="291" Height="14" Attributes="65539" Property="TEXT_1_PROP_1" Text="&#9888;&#65039; Create a subfolder if you&apos;re not using the default path" TextStyle="SubTitle8" Order="1300"/>
-    <ROW Dialog_="InstallDlg" Control="Text_2" Type="Text" X="15" Y="267" Width="292" Height="21" Attributes="65539" Property="TEXT_1_PROP_2" Text="• Once you&apos;ve clicked Install, please be patient as it can take a while, especially if you&apos;ve checked &quot;Install SD Checkpoint&quot;" TextStyle="SubTitle8_SubTitle8" Order="1400"/>
-    <ROW Dialog_="InstallDlg" Control="Text_3" Type="Text" X="17" Y="290" Width="292" Height="22" Attributes="65539" Property="TEXT_1_PROP_2_1" Text="• This will erase previous versions installed in the selected path, perform any backup necessary (models, configs etc)" TextStyle="SubTitle8_SubTitle8" Order="1500"/>
-    <ROW Dialog_="InstallDlg" Control="understand" Type="CheckBox" X="17" Y="322" Width="84" Height="18" Attributes="3" Property="UNDERSTAND" Text="I Understand" Order="1600"/>
-    <ROW Dialog_="InstallDlg" Control="InstallBTN" Type="ImageButton" X="132" Y="344" Width="78" Height="28" Attributes="1" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="1700" ExtType="ImageButton" ExtData="Install"/>
-    <ROW Dialog_="InstallDlg" Control="PathEdit_1" Type="PathEdit" X="17" Y="108" Width="291" Height="20" Attributes="3" Property="APPDIR" Text="[APPDIR]" Order="1800"/>
-    <ROW Dialog_="InstallDlg" Control="CleanCB" Type="CheckBox" X="17" Y="150" Width="306" Height="18" Attributes="3" Property="CLEAN_INSTALL" Text="Clean Install" Order="1900"/>
-    <ROW Dialog_="InstallDlg" Control="Text_4" Type="Text" X="17" Y="168" Width="312" Height="34" Attributes="65539" Property="TEXT_1_PROP_3" Text="Uncheck this if you just want to update/install the launcher. Else any existing WebUI at the selected path will be wiped." TextStyle="SubTitle8_SubTitle8" Order="2000"/>
+    <ROW Dialog_="InstallDlg" Control="Browse" Type="ImageButton" X="307" Y="153" Width="21" Height="20" Attributes="3" Text="[browsebutton]" TextStyle="[MetroButtonText]" Order="600" MsiKey="InstallDlg#Browse" ExtType="ImageButton" ExtData="..." ExtDataLocId="Metro.Control.ExtData.WelcomeDlg.BrowseTxt"/>
+    <ROW Dialog_="InstallDlg" Control="YouMustAgreeCtrl" Type="Hyperlink" X="17" Y="253" Width="311" Height="12" Attributes="65536" Text="&lt;a href=&quot;&quot;&gt;IMPORTANT DETAILS&lt;/a&gt;" TextStyle="[HyperlinkFont]" Order="700" MsiKey="InstallDlg#YouMustAgreeCtrl"/>
+    <ROW Dialog_="InstallDlg" Control="ProductNameTitle" Type="Text" X="101" Y="56" Width="227" Height="38" Attributes="196611" Text="[ProductName]" TextStyle="[ProductNameForSplash]" Order="800" TextLocId="Metro.Control.Text.ProductName" MsiKey="InstallDlg#ProductNameTitle"/>
+    <ROW Dialog_="InstallDlg" Control="ProductLogo" Type="Bitmap" X="13" Y="43" Width="59" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="900" MsiKey="InstallDlg#ProductLogo"/>
+    <ROW Dialog_="InstallDlg" Control="Text_1" Type="Text" X="17" Y="174" Width="291" Height="14" Attributes="65539" Property="TEXT_1_PROP_1" Text="Create a subfolder if you&apos;re not using the default path" TextStyle="Warning" Order="1000"/>
+    <ROW Dialog_="InstallDlg" Control="InstallBTN" Type="ImageButton" X="132" Y="344" Width="78" Height="28" Attributes="3" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="1200" ExtType="ImageButton" ExtData="Install"/>
+    <ROW Dialog_="InstallDlg" Control="PathEdit_1" Type="PathEdit" X="17" Y="153" Width="291" Height="20" Attributes="3" Property="APPDIR" Text="[APPDIR]" Order="1300"/>
+    <ROW Dialog_="InstallDlg" Control="CleanCB" Type="CheckBox" X="17" Y="195" Width="306" Height="18" Attributes="3" Property="CLEAN_INSTALL" Text="Clean Install" Order="1400"/>
+    <ROW Dialog_="InstallDlg" Control="Text_4" Type="Text" X="17" Y="213" Width="312" Height="34" Attributes="65539" Property="TEXT_1_PROP_3" Text="Uncheck this if you just want to update/install the launcher. Else any existing WebUI at the selected path will be wiped." TextStyle="SubTitle8_SubTitle8" Order="1500"/>
     <ROW Dialog_="LicenseAgreementDlg" Control="AgreementText" Type="ScrollableText" X="17" Y="122" Width="312" Height="227" Attributes="3" Property="EulaRead" Text="Advanced Installer\eula.rtf" Order="600" TextLocId="_2" MsiKey="LicenseAgreementDlg#AgreementText"/>
     <ROW Dialog_="MsiRMFilesInUse" Control="Cancel" Type="ImageButton" X="163" Y="359" Width="78" Height="28" Attributes="2" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="100" MsiKey="MsiRMFilesInUse#Cancel" Options="1" ExtType="ImageButton" ExtData="[ButtonText_Cancel]" ExtDataLocId="-"/>
     <ROW Dialog_="PatchWelcomeDlg" Control="PatchWelcomeDlgDialogInitializer" Type="DialogInitializer" X="0" Y="0" Width="0" Height="0" Attributes="0" Order="-1" TextLocId="-" HelpLocId="-" ExtDataLocId="-"/>
     <ROW Dialog_="PatchWelcomeDlg" Control="ProductNameTitle" Type="Text" X="83" Y="21" Width="245" Height="50" Attributes="196611" Text="[ProductName]" TextStyle="[ProductNameForSplash]" Order="600" TextLocId="Metro.Control.Text.ProductName" MsiKey="PatchWelcomeDlg#ProductNameTitle"/>
     <ROW Dialog_="PatchWelcomeDlg" Control="CompanyText" Type="Text" X="83" Y="16" Width="191" Height="12" Attributes="196611" Text="[Manufacturer]" TextStyle="[ManufacturerFont]" Order="700" TextLocId="Metro.Control.Text.Manufacturer" MsiKey="PatchWelcomeDlg#CompanyText"/>
     <ROW Dialog_="PatchWelcomeDlg" Control="ProductLogo" Type="Bitmap" X="17" Y="5" Width="59" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="800" MsiKey="PatchWelcomeDlg#ProductLogo"/>
+    <ROW Dialog_="PrepareDlg" Control="ProductNameTitle" Type="Text" X="100" Y="33" Width="245" Height="50" Attributes="196611" Text="[ProductName]" TextStyle="[ProductNameForSplash]" Order="800" TextLocId="Metro.Control.Text.ProductName" MsiKey="PrepareDlg#ProductNameTitle"/>
+    <ROW Dialog_="PrepareDlg" Control="ProductLogo" Type="Bitmap" X="18" Y="27" Width="59" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="900" MsiKey="PrepareDlg#ProductLogo"/>
+    <ROW Dialog_="ProgressDlg" Control="Text" Type="Text" X="17" Y="105" Width="312" Height="30" Attributes="196611" Text="Please wait while the [Wizard] [Progress2] [ProductName].  This may take several minutes." Order="800" TextLocId="Control.Text.ProgressDlg#Text" MsiKey="ProgressDlg#Text"/>
+    <ROW Dialog_="ProgressDlg" Control="ProductLogo" Type="Bitmap" X="17" Y="5" Width="59" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="900" MsiKey="ProgressDlg#ProductLogo"/>
+    <ROW Dialog_="ProgressDlg" Control="StatusLabel" Type="Text" X="17" Y="171" Width="45" Height="13" Attributes="196611" Text="Status:" TextStyle="[SubnoteFontStyle]" Order="1000" TextLocId="Control.Text.ProgressDlg#StatusLabel" MsiKey="ProgressDlg#StatusLabel"/>
+    <ROW Dialog_="ProgressDlg" Control="AdvInst" Type="Text" X="5" Y="388" Width="74" Height="11" Attributes="196611" Text="Advanced Installer" TextStyle="[BrandingStyle]" Order="1100" MsiKey="ProgressDlg#AdvInst"/>
+    <ROW Dialog_="UserExit" Control="ProductLogo" Type="Bitmap" X="17" Y="5" Width="59" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="800" MsiKey="UserExit#ProductLogo"/>
+    <ROW Dialog_="UserExit" Control="AdvInst" Type="Text" X="5" Y="388" Width="74" Height="11" Attributes="196611" Text="Advanced Installer" TextStyle="[BrandingStyle]" Order="900" MsiKey="UserExit#AdvInst"/>
     <ROW Dialog_="VerifyReadyDlg" Control="Cancel" Type="ImageButton" X="163" Y="359" Width="78" Height="28" Attributes="2" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="100" MsiKey="VerifyReadyDlg#Cancel" Options="1" ExtType="ImageButton" ExtData="[ButtonText_Cancel]" ExtDataLocId="-"/>
     <ROW Dialog_="VerifyReadyDlg" Control="Back" Type="PushButton" X="5" Y="381" Width="11" Height="11" Attributes="2" Text="Control.Text.VerifyReadyDlg#Back" Help="Back|" Order="200" TextLocId="Control.Text.VerifyReadyDlg#Back" HelpLocId="Air.Control.Help#Back" MsiKey="VerifyReadyDlg#Back" Options="1" ExtType="PushButton" ExtData="[ButtonText_Back]" ExtDataLocId="-"/>
     <ROW Dialog_="VerifyReadyDlg" Control="ReadyToInstall" Type="Text" X="17" Y="105" Width="312" Height="19" Attributes="196611" Text="Ready to Install" TextStyle="[SubTitleStyle]" Order="400" TextLocId="Control.Text.VerifyReadyDlg#Title" MsiKey="VerifyReadyDlg#ReadyToInstall"/>
@@ -192,16 +415,11 @@
     <ROW Dialog_="VerifyRemoveDlg" Control="Cancel" Type="ImageButton" X="163" Y="359" Width="78" Height="28" Attributes="2" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="100" MsiKey="VerifyRemoveDlg#Cancel" Options="1" ExtType="ImageButton" ExtData="[ButtonText_Cancel]" ExtDataLocId="-"/>
     <ROW Dialog_="VerifyRepairDlg" Control="Bitmap" Type="Bitmap" X="0" Y="0" Width="345" Height="400" Attributes="1" Text="[Background]" Order="100" MsiKey="VerifyRepairDlg#Bitmap"/>
     <ROW Dialog_="VerifyRepairDlg" Control="Cancel" Type="ImageButton" X="163" Y="359" Width="78" Height="28" Attributes="2" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="200" MsiKey="VerifyRepairDlg#Cancel" Options="1" ExtType="ImageButton" ExtData="[ButtonText_Cancel]" ExtDataLocId="-"/>
-    <ATTRIBUTE name="DeletedRows" value="FatalError#CompanyText@InstallDlg#AdvInst@InstallDlg#CompanyText@InstallDlg#FolderEdit@InstallDlg#InstallButton@InstallDlg.aip@ProgressDlg#AdvInst@UI.aip"/>
+    <ATTRIBUTE name="DeletedRows" value="ExitDialog#CompanyText@InstallDlg#CompanyText@InstallDlg#FolderEdit@InstallDlg#InstallButton@InstallDlg#LicenseCheckbox@InstallDlg.aip@PrepareDlg#CompanyText@ProgressDlg#CompanyText@UI.aip@UserExit#CompanyText"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlConditionComponent">
     <ROW Dialog_="InstallDlg" Control_="Next" Action="Enable" Condition="UNDERSTAND = &quot;understand&quot;"/>
-    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Action="Enable" Condition="UNDERSTAND = &quot;understand&quot;"/>
-    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Action="Disable" Condition="UNDERSTAND &lt;&gt; &quot;understand&quot;"/>
-    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Action="Disable" Condition="installingGit = &quot;1&quot;"/>
-    <ROW Dialog_="InstallDlg" Control_="Text_3" Action="Show" Condition="CLEAN_INSTALL = &quot;clean&quot;"/>
-    <ROW Dialog_="InstallDlg" Control_="Text_3" Action="Hide" Condition="CLEAN_INSTALL &lt;&gt; &quot;clean&quot;"/>
-    <ATTRIBUTE name="DeletedRows" value="InstallDlg#InstallButton#Disable#NOT AGREE_CHECKBOX@InstallDlg#InstallButton#Enable#AGREE_CHECKBOX@InstallDlg#InstallButton#Hide#(Text_Next &lt;&gt; Text_Install) AND (InstallDlg)@InstallDlg#Next#Show#(Text_Next &lt;&gt; Text_Install) AND (InstallDlg)@InstallDlg.aip"/>
+    <ATTRIBUTE name="DeletedRows" value="InstallDlg#InstallButton#Disable#NOT AGREE_CHECKBOX@InstallDlg#InstallButton#Enable#AGREE_CHECKBOX@InstallDlg#InstallButton#Hide#(Text_Next &lt;&gt; Text_Install) AND (InstallDlg)@InstallDlg.aip"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
     <ROW Dialog_="InstallDlg" Control_="Next" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="307"/>
@@ -246,15 +464,6 @@
     <ROW Dialog_="InstallDlg" Control_="Next" Event="SpawnDialog" Argument="OutOfDiskDlg" Condition="AI_INSTALL AND ( (OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 1) OR (OutOfDiskSpace = 1 AND PROMPTROLLBACKCOST=&quot;F&quot;) )" Ordering="310" Options="2"/>
     <ROW Dialog_="InstallDlg" Control_="YouMustAgreeCtrl" Event="[ButtonText_Next]" Argument="[AI_ButtonText_Next_Orig]" Condition="AI_INSTALL" Ordering="302" Options="2"/>
     <ROW Dialog_="InstallDlg" Control_="YouMustAgreeCtrl" Event="[Text_Next]" Argument="[AI_Text_Next_Orig]" Condition="AI_INSTALL" Ordering="303" Options="2"/>
-    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="SetTargetPath" Argument="APPDIR" Condition="AI_INSTALL" Ordering="0"/>
-    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="[InstallDlg]" Argument="{}" Condition="AI_INSTALL" Ordering="1"/>
-    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="DoAction" Argument="Gitclone" Condition="AI_INSTALL AND ( CLEAN_INSTALL = &quot;clean&quot; )" Ordering="8"/>
-    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="DoAction" Argument="AI_DATA_SETTER_3" Condition="AI_INSTALL AND ( CLEAN_INSTALL = &quot;clean&quot; )" Ordering="7"/>
-    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="DoAction" Argument="dlModel" Condition="AI_INSTALL AND ( MODEL_CHECK = &quot;installModel&quot; )" Ordering="10"/>
-    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="DoAction" Argument="AI_DATA_SETTER_4" Condition="AI_INSTALL AND ( MODEL_CHECK = &quot;installModel&quot; )" Ordering="9"/>
-    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="12"/>
-    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="SpawnDialog" Argument="OutOfRbDiskDlg" Condition="AI_INSTALL AND OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND (PROMPTROLLBACKCOST=&quot;P&quot; OR NOT PROMPTROLLBACKCOST)" Ordering="13"/>
-    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="EnableRollback" Argument="False" Condition="AI_INSTALL AND OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST=&quot;D&quot;" Ordering="14"/>
     <ROW Dialog_="InstallDlg" Control_="Back" Event="[ButtonText_Next]" Argument="[AI_ButtonText_Next_Orig]" Condition="AI_INSTALL" Ordering="0" Options="2"/>
     <ROW Dialog_="InstallDlg" Control_="Back" Event="[Text_Next]" Argument="[AI_Text_Next_Orig]" Condition="AI_INSTALL" Ordering="1" Options="2"/>
     <ROW Dialog_="LicenseAgreementDlg" Control_="Next" Event="SpawnDialog" Argument="OutOfRbDiskDlg" Condition="AI_INSTALL AND AiLicenseAgreement AND OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND (PROMPTROLLBACKCOST=&quot;P&quot; OR NOT PROMPTROLLBACKCOST)" Ordering="102" Options="2"/>
@@ -266,9 +475,16 @@
     <ROW Dialog_="LicenseAgreementDlg" Control_="LicenseAgreementDlgDialogInitializer" Event="[Text_Next]" Argument="[Text_Install]" Condition="AI_INSTALL AND AiLicenseAgreement" Ordering="104" Options="2"/>
     <ROW Dialog_="LicenseAgreementDlg" Control_="Back" Event="[ButtonText_Next]" Argument="[AI_ButtonText_Next_Orig]" Condition="AI_INSTALL AND AiLicenseAgreement" Ordering="2" Options="2"/>
     <ROW Dialog_="LicenseAgreementDlg" Control_="Back" Event="[Text_Next]" Argument="[AI_Text_Next_Orig]" Condition="AI_INSTALL AND AiLicenseAgreement" Ordering="3" Options="2"/>
-    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="SpawnDialog" Argument="OutOfDiskDlg" Condition="AI_INSTALL AND ( (OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 1) OR (OutOfDiskSpace = 1 AND PROMPTROLLBACKCOST=&quot;F&quot;) )" Ordering="11"/>
     <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="[installingGit]" Argument="1" Condition="AI_INSTALL" Ordering="3"/>
-    <ATTRIBUTE name="DeletedRows" value="InstallDlg#InstallButton#SetTargetPath#APPDIR#AI_INSTALL@InstallDlg#InstallButton#[AiEventsControl]#Next#1@InstallDlg#InstallDlgDialogInitializer#[InstallDlg]#1#AI_INSTALL@InstallDlg#Next#[AiLicenseAgreement]#{}#AI_INSTALL@InstallDlg#YouMustAgreeCtrl#SetTargetPath#APPDIR#AI_INSTALL@InstallDlg#YouMustAgreeCtrl#[InstallDlg]#{}#AI_INSTALL"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="SpawnDialog" Argument="OutOfDiskDlg" Condition="AI_INSTALL AND ( (OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 1) OR (OutOfDiskSpace = 1 AND PROMPTROLLBACKCOST=&quot;F&quot;) )" Ordering="11"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="EnableRollback" Argument="False" Condition="AI_INSTALL AND OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST=&quot;D&quot;" Ordering="14"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="SpawnDialog" Argument="OutOfRbDiskDlg" Condition="AI_INSTALL AND OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND (PROMPTROLLBACKCOST=&quot;P&quot; OR NOT PROMPTROLLBACKCOST)" Ordering="13"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="12"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="[InstallDlg]" Argument="{}" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="SetTargetPath" Argument="APPDIR" Condition="AI_INSTALL" Ordering="0"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="DoAction" Argument="AI_DATA_SETTER_3" Condition="AI_INSTALL AND ( CLEAN_INSTALL = &quot;clean&quot; )" Ordering="7"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="DoAction" Argument="Gitclone" Condition="AI_INSTALL AND ( CLEAN_INSTALL = &quot;clean&quot; )" Ordering="8"/>
+    <ATTRIBUTE name="DeletedRows" value="InstallDlg#InstallButton#SetTargetPath#APPDIR#AI_INSTALL@InstallDlg#InstallButton#[AiEventsControl]#Next#1@InstallDlg.aip"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
@@ -339,6 +555,36 @@
     <ROW Feature_="MainFeature" Component_="definitions.json"/>
     <ROW Feature_="MainFeature" Component_="AI_ExePath"/>
     <ROW Feature_="MainFeature" Component_="dependencieshere.txt"/>
+    <ROW Feature_="MainFeature" Component_="bug_report.yml"/>
+    <ROW Feature_="MainFeature" Component_="pull_request_template.md"/>
+    <ROW Feature_="MainFeature" Component_="on_pull_request.yaml"/>
+    <ROW Feature_="MainFeature" Component_="gitignore"/>
+    <ROW Feature_="MainFeature" Component_="PlaceTextualInversionembeddingshere.txt"/>
+    <ROW Feature_="MainFeature" Component_="putextensionshere.txt"/>
+    <ROW Feature_="MainFeature" Component_="ldsr_model_arch.py"/>
+    <ROW Feature_="MainFeature" Component_="ldsr_model.py"/>
+    <ROW Feature_="MainFeature" Component_="promptbracketchecker.js"/>
+    <ROW Feature_="MainFeature" Component_="preload.py"/>
+    <ROW Feature_="MainFeature" Component_="scunet_model.py"/>
+    <ROW Feature_="MainFeature" Component_="preload.py_1"/>
+    <ROW Feature_="MainFeature" Component_="swinir_model.py"/>
+    <ROW Feature_="MainFeature" Component_="aspectRatioOverlay.js"/>
+    <ROW Feature_="MainFeature" Component_="Putlocalizationfileshere.txt"/>
+    <ROW Feature_="MainFeature" Component_="Putyourdeepboorureleaseprojectfolderhere.txt"/>
+    <ROW Feature_="MainFeature" Component_="PutStableDiffusioncheckpointshere.txt"/>
+    <ROW Feature_="MainFeature" Component_="PutVAEhere.txt"/>
+    <ROW Feature_="MainFeature" Component_="model.pt"/>
+    <ROW Feature_="MainFeature" Component_="api.py"/>
+    <ROW Feature_="MainFeature" Component_="artists.py"/>
+    <ROW Feature_="MainFeature" Component_="codeformer_arch.py"/>
+    <ROW Feature_="MainFeature" Component_="hypernetwork.py"/>
+    <ROW Feature_="MainFeature" Component_="autocrop.py"/>
+    <ROW Feature_="MainFeature" Component_="custom_code.py"/>
+    <ROW Feature_="MainFeature" Component_="extras_test.py"/>
+    <ROW Feature_="MainFeature" Component_="img2img_test.py"/>
+    <ROW Feature_="MainFeature" Component_="server_poll.py"/>
+    <ROW Feature_="MainFeature" Component_="empty.pt"/>
+    <ROW Feature_="MainFeature" Component_="hypernetwork.txt"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="logoAlpha.exe" SourcePath="Advanced Installer\Looks\Exports\logoAlpha.ico" Index="0"/>
