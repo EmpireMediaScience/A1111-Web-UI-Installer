@@ -234,7 +234,7 @@ function Update-WebUI ($enabled) {
     if ($enabled) {
         logger.action "Updating Webui"
         Set-Location $webuiPath
-        git pull origin
+        gitp pull origin
         logger.info "Done"
     }
 }
@@ -247,7 +247,7 @@ function Update-Extensions ($enabled) {
             foreach ($ext in $exts) {         
                 logger.action "Updating Extension: $ext"
                 Set-Location $ext.Fullname
-                git pull origin 
+                gitp pull origin 
             }
             logger.info "Done"
             return

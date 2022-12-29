@@ -7,14 +7,18 @@ Import-Module .\logger.psm1 -Force -Global -Prefix "logger."
 
 # General Variables
 $InstallPath = (get-item $PSScriptRoot ).parent.FullName
-<# $DocsPath = [environment]::getfolderpath("mydocuments")
-$InstallPath = "$DocsPath\A1111's Web UI Autoinstaller" #>
 $webuiPath = "$InstallPath\stable-diffusion-webui"
 $launcherPath = "$InstallPath\Launcher"
 $extPath = "$webuiPath\extensions"
 $settingsPath = ".\settings.json"
 $outputsPath = "$webuiPath\outputs"
 $hashPath = "$webuiPath\.git\refs\heads\master"
+
+# Dependencies
+$dependenciesPath = "$InstallPath\Dependencies"
+$gitPath = "$dependenciesPath\Git\bin\git.exe"
+New-Alias gitp $gitPath -ErrorAction SilentlyContinue
+$pyPath = "$dependenciesPath\py310\python.exe"
 
 
 # Ui general variables

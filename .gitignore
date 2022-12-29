@@ -4,6 +4,7 @@ desktop.ini
 /Advanced Installer/*-SetupFiles
 /Advanced Installer/*-cache
 /Advanced Installer/*.back.aip
+/Dependencies/*
 *bu.aip
 config.csv
 .vscode

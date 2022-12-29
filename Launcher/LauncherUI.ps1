@@ -28,7 +28,7 @@ function Invoke-WebUI {
         $settings
     )
 
-    git config --global --add safe.directory '*'
+    gitp config --global --add safe.directory '*'
 
     # Executing updates
     foreach ($setting in $settings) {
@@ -53,8 +53,8 @@ function Invoke-WebUI {
 
     Set-Location $webuiPath
 
-    $pyPath = Search-RegForPyPath
-    $env:GIT = ""
+    <# $pyPath = Search-RegForPyPath #>
+    $env:GIT = "$gitPath"
     $env:PYTHON = "`"$pyPath`""
     $env:VENV_DIR = ""
     $env:COMMANDLINE_ARGS = "--autolaunch " + $arguments
