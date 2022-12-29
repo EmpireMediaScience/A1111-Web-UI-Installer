@@ -6,15 +6,22 @@ Set-StrictMode -Version 2
 Import-Module .\logger.psm1 -Force -Global -Prefix "logger."
 
 # General Variables
+$tempFolder = (Get-Item -Path env:\temp).Value
+$ProgressPreference = 'SilentlyContinue'
+
 $InstallPath = (get-item $PSScriptRoot ).parent.FullName
-<# $DocsPath = [environment]::getfolderpath("mydocuments")
-$InstallPath = "$DocsPath\A1111's Web UI Autoinstaller" #>
 $webuiPath = "$InstallPath\stable-diffusion-webui"
+$modelsPath = "$webuiPath\models\Stable-diffusion"
 $launcherPath = "$InstallPath\Launcher"
 $extPath = "$webuiPath\extensions"
 $settingsPath = ".\settings.json"
 $outputsPath = "$webuiPath\outputs"
 $hashPath = "$webuiPath\.git\refs\heads\master"
+
+# Dependencies
+$dependenciesPath = "$InstallPath\Dependencies"
+$gitPath = "$dependenciesPath\Git\bin\git.exe"
+$pyPath = "$dependenciesPath\py310\python.exe"
 
 
 # Ui general variables

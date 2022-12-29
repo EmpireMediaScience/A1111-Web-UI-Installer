@@ -4,8 +4,9 @@ desktop.ini
 /Advanced Installer/*-SetupFiles
 /Advanced Installer/*-cache
 /Advanced Installer/*.back.aip
+/Dependencies/*
 *bu.aip
 config.csv
 .vscode
 settings.json
-/stable-diffusion-webui
+stable-diffusion-webui

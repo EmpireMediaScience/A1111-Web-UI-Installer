@@ -12,6 +12,11 @@ if ($GPUInfo) {
     $GPUText = "$($GPUInfo.Model) $($GPUInfo.VRAM) GB"
 }
 
+Install-pyPortable
+Install-gitPortable
+Install-WebUI
+Import-BaseModel
+
 $Hash = Get-WebUICommitHash
 $HashText = "No Hash Found"
 if ($Hash) {
@@ -28,7 +33,7 @@ function Invoke-WebUI {
         $settings
     )
 
-    git config --global --add safe.directory '*'
+    & $gitPath config --global --add safe.directory '*'
 
     # Executing updates
     foreach ($setting in $settings) {
@@ -53,9 +58,9 @@ function Invoke-WebUI {
 
     Set-Location $webuiPath
 
-    $pyPath = Search-RegForPyPath
-    $env:GIT = ""
-    $env:PYTHON = "`"$pyPath`""
+    <# $pyPath = Search-RegForPyPath #>
+    $env:GIT_PYTHON_GIT_EXECUTABLE = $gitPath
+    $env:GIT = $gitPath
     $env:VENV_DIR = ""
     $env:COMMANDLINE_ARGS = "--autolaunch " + $arguments
 
@@ -76,6 +81,7 @@ Function Reset-Path($param) {
     MakeNewForm
     $ArgsField.text = $argsies
 }
+
 Function Update-UISettings($param) {
     Update-Settings $param $settings
     $argsies = Convert-SettingsToArguments $settings
@@ -328,7 +334,7 @@ function Makeform {
     $Exitbutton.Size = "50,30"
     $Exitbutton.ForeColor = "White"
     $Exitbutton.Add_Click({
-            [System.Windows.Forms.Application]::Exit()
+            $form.Close()
         })
     $Exitbutton.FlatStyle = $style
     $runbox.Controls.Add($Exitbutton)

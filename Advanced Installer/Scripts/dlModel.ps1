@@ -1,7 +1,10 @@
 Add-Type -AssemblyName PresentationFramework
 try {
-    $installPath = AI_GetMsiProperty APPDIR 
-    $modelsPath = "$installPath\stable-diffusion-webui\models\Stable-diffusion"
+    $installPath = AI_GetMsiProperty APPDIR
+    $modelsPath = "$installPath\models"
+    if (!(Test-Path $modelsPath)) {
+        New-Item -ItemType Directory $modelsPath -Force
+    }
     $WebClient = New-Object System.Net.WebClient
     $WebClient.DownloadFile("https://anga.tv/ems/model.ckpt", "$modelsPath\SD15NewVAEpruned.ckpt")
 }

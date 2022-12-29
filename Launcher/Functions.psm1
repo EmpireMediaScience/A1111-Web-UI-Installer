@@ -2,6 +2,44 @@
 Import-Module "$PSScriptRoot\logger.psm1" -Force -Global -Prefix "logger."
 
 # General Utilities
+function Install-pyPortable {
+    if (!(Test-Path $pyPath)) {
+        logger.action "Python was not found, downloading, please be patient"
+        Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.10.8/python-3.10.8-embed-amd64.zip" -OutFile "$tempFolder\python.zip"
+        Expand-Archive -Path "$tempFolder\python.zip" -DestinationPath "$dependenciesPath\py310"
+        return
+    }
+    logger.info "Python Found at $pyPath"
+}
+function Install-gitPortable {
+    if (!(Test-Path $gitPath)) {
+        logger.action "Git was not found, downloading, please be patient"
+        Invoke-WebRequest -Uri "https://anga.tv/ems/PortableGit.zip" -OutFile "$tempFolder\PortableGit.zip"
+        Expand-Archive -Path "$tempFolder\PortableGit.zip" -DestinationPath "$dependenciesPath\Git"
+        return
+    }
+    logger.info "Git Found at $gitPath"
+}
+function Install-WebUI {
+    if (!(Test-Path $webuiPath)) {
+        logger.action "Automatic1111 SD WebUI was not found, cloning git"
+        & $gitPath clone https://github.com/AUTOMATIC1111/stable-diffusion-webui $webuiPath
+        return
+    }
+    logger.info "Automatic1111 SD WebUI found at $webuiPath"
+}
+function Import-BaseModel {
+    $ckptDirSetting = $settings | Where-Object { $_.arg -eq "ckpt-dir" }
+    if (($ckptDirSetting.enabled -eq $false) -and !(Get-ChildItem $modelsPath | Where-Object { $_.extension -ne ".txt" })) {
+        $Exprompt = [system.windows.messagebox]::Show("No model was found on your installation, do you want to download the Stable Diffusion 1.5 base model ?`n`nIf you don't know what that is, you probably want to click Yes`n`nThis will take a while so be patient", 'Confirmation', 'YesNo')
+        if ($Exprompt -eq "Yes") {
+            logger.action "Downloading Base Model, this can take a while" 
+            $WebClient = New-Object System.Net.WebClient
+            $WebClient.DownloadFile("https://anga.tv/ems/model.ckpt", "$modelsPath\SD15NewVAEpruned.ckpt")
+            logger.info "Done"
+        }
+    }
+}
 function Get-Version {
     logger.action "Fetching Launcher Version"
     $result = @{
@@ -52,7 +90,7 @@ function Write-Settings($settings) {
 function New-Settings ($oldsettings) {   
     $defs = Import-Defs
     $newSettings = @()
-    foreach ($def in $defs) {
+    foreach ($def in $defs) { 
         $newSettings += @{ 
             arg     = $def.arg
             enabled = $false
@@ -168,26 +206,7 @@ function Convert-BatToGitOptions ($batFile) {
     }
     return $GitOptions
 }
-function Search-RegForPyPath {
-    $pyCore = Get-ItemProperty -path "hkcu:\Software\Python\PythonCore\3.10\InstallPath" -ErrorAction SilentlyContinue
-    if ($pyCore) {
-        $pyPath = $pyCore.ExecutablePath
-        logger.info "Python 3.10 path found :`n$pyPath"
-        return $pyPath
-    }
-    else {
-        $pyCoreLM = Get-ItemProperty -path "hklm:\Software\Python\PythonCore\3.10\InstallPath" -ErrorAction SilentlyContinue
-        if ($pyCoreLM) {
-            $pyPath = $pyCoreLM.ExecutablePath
-            logger.info "Python 3.10 path found :`n$pyPath"
-            return $pyPath
-        }
-        else {
-            logger.warn "Python 3.10 not found, you probably have the wrong version installed and the WebUI might not work"
-            return ""        
-        }
-    }
-}
+
 function Format-Config($config) {
     $config2 = @()
     foreach ($param in $config) {
@@ -234,7 +253,7 @@ function Update-WebUI ($enabled) {
     if ($enabled) {
         logger.action "Updating Webui"
         Set-Location $webuiPath
-        git pull origin
+        & $gitPath pull origin
         logger.info "Done"
     }
 }
@@ -247,7 +266,7 @@ function Update-Extensions ($enabled) {
             foreach ($ext in $exts) {         
                 logger.action "Updating Extension: $ext"
                 Set-Location $ext.Fullname
-                git pull origin 
+                & $gitPath pull origin 
             }
             logger.info "Done"
             return
