@@ -4,7 +4,7 @@ Import-Module "$PSScriptRoot\logger.psm1" -Force -Global -Prefix "logger."
 # General Utilities
 function Install-pyPortable {
     if (!(Test-Path $pyPath)) {
-        logger.info "Python was not found, downloading, please be patient"
+        logger.action "Python was not found, downloading, please be patient"
         Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.10.8/python-3.10.8-embed-amd64.zip" -OutFile "$tempFolder\python.zip"
         Expand-Archive -Path "$tempFolder\python.zip" -DestinationPath "$dependenciesPath\py310"
         return
@@ -13,10 +13,9 @@ function Install-pyPortable {
 }
 function Install-gitPortable {
     if (!(Test-Path $gitPath)) {
-        logger.info "Git was not found, downloading, please be patient"
+        logger.action "Git was not found, downloading, please be patient"
         Invoke-WebRequest -Uri "https://anga.tv/ems/PortableGit.zip" -OutFile "$tempFolder\PortableGit.zip"
         Expand-Archive -Path "$tempFolder\PortableGit.zip" -DestinationPath "$dependenciesPath\Git"
-        New-Alias gitp $gitPath -ErrorAction SilentlyContinue
         return
     }
     logger.info "Git Found at $gitPath"
@@ -187,26 +186,7 @@ function Convert-BatToGitOptions ($batFile) {
     }
     return $GitOptions
 }
-function Search-RegForPyPath {
-    $pyCore = Get-ItemProperty -path "hkcu:\Software\Python\PythonCore\3.10\InstallPath" -ErrorAction SilentlyContinue
-    if ($pyCore) {
-        $pyPath = $pyCore.ExecutablePath
-        logger.info "Python 3.10 path found :`n$pyPath"
-        return $pyPath
-    }
-    else {
-        $pyCoreLM = Get-ItemProperty -path "hklm:\Software\Python\PythonCore\3.10\InstallPath" -ErrorAction SilentlyContinue
-        if ($pyCoreLM) {
-            $pyPath = $pyCoreLM.ExecutablePath
-            logger.info "Python 3.10 path found :`n$pyPath"
-            return $pyPath
-        }
-        else {
-            logger.warn "Python 3.10 not found, you probably have the wrong version installed and the WebUI might not work"
-            return ""        
-        }
-    }
-}
+
 function Format-Config($config) {
     $config2 = @()
     foreach ($param in $config) {
@@ -253,7 +233,7 @@ function Update-WebUI ($enabled) {
     if ($enabled) {
         logger.action "Updating Webui"
         Set-Location $webuiPath
-        gitp pull origin
+        & $gitPath pull origin
         logger.info "Done"
     }
 }
@@ -266,7 +246,7 @@ function Update-Extensions ($enabled) {
             foreach ($ext in $exts) {         
                 logger.action "Updating Extension: $ext"
                 Set-Location $ext.Fullname
-                gitp pull origin 
+                & $gitPath pull origin 
             }
             logger.info "Done"
             return
