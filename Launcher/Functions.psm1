@@ -103,17 +103,29 @@ function Convert-BatToGitOptions ($batFile) {
     return $GitOptions
 }
 function Search-RegForPyPath {
-    $pyCore = Get-ItemProperty -path "hkcu:\Software\Python\PythonCore\3.10\InstallPath"
-    if ($pyCore) {
-        $path = $pyCore.ExecutablePath
-        logger.info "Python 3.10 path found :`n$path"
-        return $path
+    $RegPaths = "HKCU:\Software\Python\PythonCore\3.10\InstallPath", "HKLM:\SOFTWARE\Python\PythonCore\3.10\InstallPath" 
+
+    if (Test-Path $RegPaths[0]) {
+        $pyCore = Get-ItemProperty -path $RegPaths[0] -ErrorAction SilentlyContinue
+    }
+    elseif (Test-Path $RegPaths[0]) {
+        $pyCore = Get-ItemProperty -path $RegPaths[1] -ErrorAction SilentlyContinue
     }
     else {
-        logger.warn "Python 3.10 not found, you probably have the wrong version installed and the WebUI might not work"
-        return ""
+        $pyCore = ""
     }
     
+    if ($pyCore) {
+        $pyPath = $pyCore.ExecutablePath
+        logger.info "Python 3.10 path found :`n$pyPath"
+        return $pyPath
+    }
+    else {
+        logger.warn "Python 3.10 not found on system."
+        logger.warn "Python is either missing or the registry entry in HKCU (single user install) or HKLM (multi-user install) is corrupted."
+        logger.warn "Expected regpath is one of the following: 'HKCU:\Software\Python\PythonCore\3.10\InstallPath', 'HKLM:\SOFTWARE\Python\PythonCore\3.10\InstallPath'"
+        return ""
+    } 
 }
 function Format-Config($config) {
     $config2 = @()
