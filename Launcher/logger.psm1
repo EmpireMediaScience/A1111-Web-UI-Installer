@@ -16,5 +16,13 @@ function pop ($object) {
     space
 }
 function space {
-    Write-Host "------------------------------`n------------------------------`n------------------------------" -ForegroundColor "Cyan"
+    for ($i = 1; $i -le 60; $i++) {
+        # Print the character "X"
+        Write-Host -NoNewline ([char]126) -ForegroundColor "DarkGray"
+    }
+    Write-Host ""
+}
+function success {
+    Write-Host "[Success]" -ForegroundColor "Cyan"
+    space
 }

@@ -1,7 +1,9 @@
 . "$PSScriptRoot\shared.ps1"
 Import-Module "$PSScriptRoot\logger.psm1" -Force -Global -Prefix "logger."
 
-# General Utilities
+#-----------------------------
+#Startup fonctions
+#-----------------------------
 function Search-RegForPyPath {
     $pyCore = Get-ItemProperty -path "hkcu:\Software\Python\PythonCore\3.10\InstallPath" -ErrorAction SilentlyContinue
     if ($pyCore) {
@@ -28,26 +30,37 @@ function Install-py {
         Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.10.6/python-3.10.6-amd64.exe" -OutFile "$tempFolder\python.exe"
         logger.action "Download successful, installing"
         ."$tempFolder\python.exe" /quiet InstallAllUsers=0 PrependPath=1
-        logger.info "Done"
+        logger.success
         return
     }
 }
 function Install-git {
-    if (!(Test-Path "$env:ProgramFiles\Git")) {
+    if (!(Test-Path "$gitPath\bin\git.exe")) {
         logger.action "Git not found, downloading, please be patient"
         Invoke-WebRequest -Uri "https://github.com/git-for-windows/git/releases/download/v2.38.1.windows.1/Git-2.38.1-64-bit.exe" -OutFile "$tempFolder\git.exe"
         logger.action "Download successful, installing"
         ."$tempFolder\git.exe" /VERYSILENT /NORESTART
-        logger.info "Done"
+        logger.success
+    }
+    else {
+        logger.info "Git found at $("$env:ProgramFiles\Git")"
+    }
+    if (!(Get-Command git -ErrorAction SilentlyContinue)) {
+        logger.action "Git not found in PATH, adding it"
+        $env:Path += ";$gitPath\bin"
+        logger.success
         return
     }
-    logger.info "Git found at $("$env:ProgramFiles\Git")"
+    else {
+        logger.info "Git is in PATH"
+    }
+    
 }
 function Install-WebUI {
     if (!(Test-Path $webuiPath)) {
         logger.action "Automatic1111 SD WebUI was not found, cloning git"
         git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui $webuiPath
-        logger.info "Done"
+        logger.success
         return
     }
     logger.info "Automatic1111 SD WebUI found at $webuiPath"
@@ -60,7 +73,7 @@ function Import-BaseModel {
             logger.action "Downloading Base Model, this can take a while" 
             $WebClient = New-Object System.Net.WebClient
             $WebClient.DownloadFile("https://anga.tv/ems/model.ckpt", "$modelsPath\SD15NewVAEpruned.ckpt")
-            logger.info "Done"
+            logger.success
         }
     }
 }
@@ -106,6 +119,9 @@ function Get-WebUICommitHash {
     $hash = Get-Content $hashPath
     if ($hash) { return $hash }
 }
+#-----------------------------
+#Settings related functions
+#-----------------------------
 function Write-Settings($settings) {
     logger.action "Updating Settings File"
     $settings | ConvertTo-Json -Depth 100 | Out-File $settingsPath
@@ -204,7 +220,6 @@ function Convert-SettingsToArguments ($settings) {
     }
     return $string
 }
-
 function Convert-BatToGitOptions ($batFile) {
     $GitOptions = @( 
         @{
@@ -230,26 +245,16 @@ function Convert-BatToGitOptions ($batFile) {
     return $GitOptions
 }
 
-function Format-Config($config) {
-    $config2 = @()
-    foreach ($param in $config) {
-        $object = @{
-            arg   = $param.arg
-            value = $param.value
-        }
-        $config2 += $object
-    }
-    return $config2
-}
-
+#-----------------------------
+#UI related functions
+#-----------------------------
 function Select-Folder ([string]$InitialDirectory) {
     $app = New-Object -ComObject Shell.Application
     $folder = $app.BrowseForFolder(0, "Please select a folder", 0, "")
         
     if ($folder) { return $folder.Self.Path } else { return '' }
 }
-
-function  Select-File([string]$InitialDirectory) { 
+function Select-File([string]$InitialDirectory) { 
     $dialog = New-Object System.Windows.Forms.OpenFileDialog
     $dialog.InitialDirectory = $webuiPath
     $dialog.Title = "Please Select a File"
@@ -259,28 +264,17 @@ function  Select-File([string]$InitialDirectory) {
     return $dialog.FileName 
 }
 
-function Clear-Outputs {
-    $Exprompt = [system.windows.messagebox]::Show("All previously generated images will be deleted, are you sure ?`n`nClick 'No' to not delete any image this time`n`nUncheck 'Clear Generated Images' in the launcher to disable it", 'Warning', 'YesNo', 'Warning')
-    if ($Exprompt -eq "Yes") {
-        logger.action "Clearing all outputs in default output directories" 
-        if ($outputsPath) {
-            Get-ChildItem $outputsPath -Force -Recurse -File -Filter *.png | Remove-Item -Force
-            Get-ChildItem $outputsPath -Force -Recurse -File -Filter *.jpg | Remove-Item -Force
-        }
-        logger.info "Done"
-    }
-}
-
-#Updates
+#-----------------------------
+#General Settings functions
+#-----------------------------
 function Update-WebUI ($enabled) {
     if ($enabled) {
         logger.action "Updating Webui"
         Set-Location $webuiPath
         git pull origin
-        logger.info "Done"
+        logger.success
     }
 }
-
 function Update-Extensions ($enabled) {
     if ($enabled) {
         Set-Location $extPath
@@ -291,111 +285,20 @@ function Update-Extensions ($enabled) {
                 Set-Location $ext.Fullname
                 git pull origin 
             }
-            logger.info "Done"
+            logger.success
             return
         }
         logger.info "No extension found in the extensions folder"
     }
 }
-
-#Clean JSon function
-function Format-Json {
-    <#
-    .SYNOPSIS
-        Prettifies JSON output.
-    .DESCRIPTION
-        Reformats a JSON string so the output looks better than what ConvertTo-Json outputs.
-    .PARAMETER Json
-        Required: [string] The JSON text to prettify.
-    .PARAMETER Minify
-        Optional: Returns the json string compressed.
-    .PARAMETER Indentation
-        Optional: The number of spaces (1..1024) to use for indentation. Defaults to 4.
-    .PARAMETER AsArray
-        Optional: If set, the output will be in the form of a string array, otherwise a single string is output.
-    .EXAMPLE
-        $json | ConvertTo-Json  | Format-Json -Indentation 2
-    #>
-    [CmdletBinding(DefaultParameterSetName = 'Prettify')]
-    Param(
-        [Parameter(Mandatory = $true, Position = 0, ValueFromPipeline = $true)]
-        [string]$Json,
-
-        [Parameter(ParameterSetName = 'Minify')]
-        [switch]$Minify,
-
-        [Parameter(ParameterSetName = 'Prettify')]
-        [ValidateRange(1, 1024)]
-        [int]$Indentation = 4,
-
-        [Parameter(ParameterSetName = 'Prettify')]
-        [switch]$AsArray
-    )
-
-    if ($PSCmdlet.ParameterSetName -eq 'Minify') {
-        return ($Json | ConvertFrom-Json) | ConvertTo-Json -Depth 100 -Compress
-    }
-
-    # If the input JSON text has been created with ConvertTo-Json -Compress
-    # then we first need to reconvert it without compression
-    if ($Json -notmatch '\r?\n') {
-        $Json = ($Json | ConvertFrom-Json) | ConvertTo-Json -Depth 100
-    }
-
-    $indent = 0
-    $regexUnlessQuoted = '(?=([^"]*"[^"]*")*[^"]*$)'
-
-    $result = $Json -split '\r?\n' |
-    ForEach-Object {
-        # If the line contains a ] or } character, 
-        # we need to decrement the indentation level unless it is inside quotes.
-        if ($_ -match "[}\]]$regexUnlessQuoted") {
-            $indent = [Math]::Max($indent - $Indentation, 0)
+function Clear-Outputs {
+    $Exprompt = [system.windows.messagebox]::Show("All previously generated images will be deleted, are you sure ?`n`nClick 'No' to not delete any image this time`n`nUncheck 'Clear Generated Images' in the launcher to disable it", 'Warning', 'YesNo', 'Warning')
+    if ($Exprompt -eq "Yes") {
+        logger.action "Clearing all outputs in default output directories" 
+        if ($outputsPath) {
+            Get-ChildItem $outputsPath -Force -Recurse -File -Filter *.png | Remove-Item -Force
+            Get-ChildItem $outputsPath -Force -Recurse -File -Filter *.jpg | Remove-Item -Force
         }
-
-        # Replace all colon-space combinations by ": " unless it is inside quotes.
-        $line = (' ' * $indent) + ($_.TrimStart() -replace ":\s+$regexUnlessQuoted", ': ')
-
-        # If the line contains a [ or { character, 
-        # we need to increment the indentation level unless it is inside quotes.
-        if ($_ -match "[\{\[]$regexUnlessQuoted") {
-            $indent += $Indentation
-        }
-
-        $line
-    }
-
-    if ($AsArray) { return $result }
-    return $result -Join [Environment]::NewLine
-}
-#Converts Object to hashtable
-function Convert-PSObjectToHashtable {
-    param (
-        [Parameter(ValueFromPipeline)]
-        $InputObject
-    )
-
-    process {
-        if ($null -eq $InputObject) { return $null }
-
-        if ($InputObject -is [System.Collections.IEnumerable] -and $InputObject -isnot [string]) {
-            $collection = @(
-                foreach ($object in $InputObject) { Convert-PSObjectToHashtable $object }
-            )
-
-            Write-Output -NoEnumerate $collection
-        }
-        elseif ($InputObject -is [psobject]) {
-            $hash = @{}
-
-            foreach ($property in $InputObject.PSObject.Properties) {
-                $hash[$property.Name] = Convert-PSObjectToHashtable $property.Value
-            }
-
-            $hash
-        }
-        else {
-            $InputObject
-        }
+        logger.success
     }
 }

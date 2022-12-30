@@ -56,6 +56,10 @@ function Invoke-WebUI {
     # Parsing args from settings
     $arguments = Convert-SettingsToArguments $settings
 
+    logger.pop "WEBUI LAUNCHING VIA EMS LAUNCHER, EXIT THIS WINDOW TO STOP THE WEBUI"
+    logger.warn "If you see the line 'commit hash : XXXX' or 'Installing Torch...' bellow, any error happening afterwards is not related to the launcher, but the WebUI itself which EMS is not affiliated with, we won't be able to help you fix those, you'll have to ask them on Automatic1111's github, not ours."
+    logger.space
+    
     Set-Location $webuiPath
 
     $env:PYTHON = "`"$pyPath`""
@@ -67,9 +71,6 @@ function Invoke-WebUI {
     Start-Process "$webuiPath/webui.bat" -NoNewWindow
     Set-Location $PSScriptRoot
     $form.Close()
-    logger.pop "WEBUI LAUNCHING VIA EMS LAUNCHER, EXIT THIS WINDOW TO STOP THE WEBUI"
-    logger.warn "If you see the line 'commit hash : XXXX' or 'Installing Torch...' bellow, any error happening afterwards is not related to the launcher, but the WebUI itself which EMS is not affiliated with, we won't be able to help you fix those, you'll have to ask them on Automatic1111's github, not ours."
-    logger.space
 }
 
 Function Reset-Path($param) {
@@ -390,5 +391,7 @@ function Makeform {
 
     $Form.ShowDialog()
 }
+logger.space
 logger.action "Opening A1111 WebUI Launcher"
+logger.space
 MakeForm
