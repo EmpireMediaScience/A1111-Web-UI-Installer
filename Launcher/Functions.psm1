@@ -46,7 +46,7 @@ function Install-git {
 function Install-WebUI {
     if (!(Test-Path $webuiPath)) {
         logger.action "Automatic1111 SD WebUI was not found, cloning git"
-        & $gitPath clone https://github.com/AUTOMATIC1111/stable-diffusion-webui $webuiPath
+        git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui $webuiPath
         logger.info "Done"
         return
     }
@@ -276,7 +276,7 @@ function Update-WebUI ($enabled) {
     if ($enabled) {
         logger.action "Updating Webui"
         Set-Location $webuiPath
-        & $gitPath pull origin
+        git pull origin
         logger.info "Done"
     }
 }
@@ -289,7 +289,7 @@ function Update-Extensions ($enabled) {
             foreach ($ext in $exts) {         
                 logger.action "Updating Extension: $ext"
                 Set-Location $ext.Fullname
-                & $gitPath pull origin 
+                git pull origin 
             }
             logger.info "Done"
             return

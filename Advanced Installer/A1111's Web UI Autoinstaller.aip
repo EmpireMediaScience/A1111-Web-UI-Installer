@@ -95,7 +95,7 @@
     <ROW Action="AI_DetectSoftware" Sequence="151"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
-    <ROW BuildKey="DefaultBuild" BuildName="A1111WebuiInstaller" BuildOrder="1" BuildType="0" PackageFileName="[|ProductName] v[|ProductVersion]" Languages="en_GB" InstallationType="2" CabsLocation="1" CompressCabs="false" UseLzma="true" LzmaMethod="2" LzmaCompressionLevel="2" PackageType="1" FilesInsideExe="true" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName] [|ProductVersion]\install" ExtUI="true" Options="8" UseLargeSchema="true" MsiPackageType="x64" UACExecutionLevel="2"/>
+    <ROW BuildKey="DefaultBuild" BuildName="A1111WebuiInstaller" BuildOrder="1" BuildType="0" PackageFileName="[|ProductName] v[|ProductVersion]" Languages="en_GB" InstallationType="2" CabsLocation="1" UseLzma="true" LzmaMethod="2" LzmaCompressionLevel="2" PackageType="1" FilesInsideExe="true" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName] [|ProductVersion]\install" ExtUI="true" Options="8" UseLargeSchema="true" MsiPackageType="x64" UACExecutionLevel="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
     <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
@@ -173,17 +173,19 @@
     <ROW Dialog_="ExitDialog" Control="AdvInst" Type="Text" X="5" Y="388" Width="74" Height="11" Attributes="196611" Text="Advanced Installer" TextStyle="[BrandingStyle]" Order="1400" MsiKey="ExitDialog#AdvInst"/>
     <ROW Dialog_="FatalError" Control="ProductLogo" Type="Bitmap" X="17" Y="5" Width="59" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="1100" MsiKey="FatalError#ProductLogo"/>
     <ROW Dialog_="FatalError" Control="CompanyText" Type="Text" X="83" Y="16" Width="191" Height="12" Attributes="196611" Text="[Manufacturer]" TextStyle="[ManufacturerFont]" Order="1200" TextLocId="Metro.Control.Text.Manufacturer" MsiKey="FatalError#CompanyText"/>
-    <ROW Dialog_="InstallDlg" Control="Description" Type="Text" X="17" Y="136" Width="299" Height="12" Attributes="589827" Text="Where do you want the UI to be stored ?" Order="400" MsiKey="InstallDlg#Description"/>
-    <ROW Dialog_="InstallDlg" Control="Next" Type="ImageButton" X="7" Y="364" Width="78" Height="28" Attributes="0" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="500" MsiKey="InstallDlg#Next" Options="1" ExtType="ImageButton" ExtData="Install"/>
+    <ROW Dialog_="InstallDlg" Control="Bitmap" Type="Bitmap" X="0" Y="0" Width="345" Height="400" Attributes="1" Text="[Background]" Order="100" MsiKey="InstallDlg#Bitmap"/>
+    <ROW Dialog_="InstallDlg" Control="Next" Type="ImageButton" X="0" Y="0" Width="1" Height="1" Attributes="0" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="300" MsiKey="InstallDlg#Next" Options="1" ExtType="ImageButton" ExtData="Install"/>
+    <ROW Dialog_="InstallDlg" Control="Cancel" Type="ImageButton" X="345" Y="0" Width="0" Height="0" Attributes="2" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="400" MsiKey="InstallDlg#Cancel" Options="1" ExtType="ImageButton" ExtData="[ButtonText_Cancel]" ExtDataLocId="-"/>
+    <ROW Dialog_="InstallDlg" Control="Description" Type="Text" X="17" Y="136" Width="299" Height="12" Attributes="589827" Text="Where do you want the UI to be stored ?" Order="500" MsiKey="InstallDlg#Description"/>
     <ROW Dialog_="InstallDlg" Control="Browse" Type="ImageButton" X="307" Y="153" Width="21" Height="20" Attributes="3" Text="[browsebutton]" TextStyle="[MetroButtonText]" Order="600" MsiKey="InstallDlg#Browse" ExtType="ImageButton" ExtData="..." ExtDataLocId="Metro.Control.ExtData.WelcomeDlg.BrowseTxt"/>
     <ROW Dialog_="InstallDlg" Control="YouMustAgreeCtrl" Type="Hyperlink" X="17" Y="253" Width="311" Height="12" Attributes="65536" Text="&lt;a href=&quot;&quot;&gt;IMPORTANT DETAILS&lt;/a&gt;" TextStyle="[HyperlinkFont]" Order="700" MsiKey="InstallDlg#YouMustAgreeCtrl"/>
     <ROW Dialog_="InstallDlg" Control="ProductNameTitle" Type="Text" X="101" Y="56" Width="227" Height="38" Attributes="196611" Text="[ProductName]" TextStyle="[ProductNameForSplash]" Order="800" TextLocId="Metro.Control.Text.ProductName" MsiKey="InstallDlg#ProductNameTitle"/>
     <ROW Dialog_="InstallDlg" Control="ProductLogo" Type="Bitmap" X="13" Y="43" Width="59" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="900" MsiKey="InstallDlg#ProductLogo"/>
     <ROW Dialog_="InstallDlg" Control="Text_1" Type="Text" X="17" Y="174" Width="291" Height="14" Attributes="65539" Property="TEXT_1_PROP_1" Text="Create a subfolder if you&apos;re not using the default path" TextStyle="Warning" Order="1000"/>
-    <ROW Dialog_="InstallDlg" Control="InstallBTN" Type="ImageButton" X="132" Y="344" Width="78" Height="28" Attributes="3" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="1200" ExtType="ImageButton" ExtData="Install"/>
-    <ROW Dialog_="InstallDlg" Control="PathEdit_1" Type="PathEdit" X="17" Y="153" Width="291" Height="20" Attributes="3" Property="APPDIR" Text="[APPDIR]" Order="1300"/>
-    <ROW Dialog_="InstallDlg" Control="CleanCB" Type="CheckBox" X="17" Y="195" Width="306" Height="18" Attributes="3" Property="CLEAN_INSTALL" Text="Clean Install" Order="1400"/>
-    <ROW Dialog_="InstallDlg" Control="Text_4" Type="Text" X="17" Y="213" Width="312" Height="34" Attributes="65539" Property="TEXT_1_PROP_3" Text="Uncheck this if you just want to update/install the launcher. Else any existing WebUI at the selected path will be wiped." TextStyle="SubTitle8_SubTitle8" Order="1500"/>
+    <ROW Dialog_="InstallDlg" Control="InstallBTN" Type="ImageButton" X="132" Y="344" Width="78" Height="28" Attributes="3" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="1100" ExtType="ImageButton" ExtData="Install"/>
+    <ROW Dialog_="InstallDlg" Control="PathEdit_1" Type="PathEdit" X="17" Y="153" Width="291" Height="20" Attributes="3" Property="APPDIR" Text="[APPDIR]" Order="1200"/>
+    <ROW Dialog_="InstallDlg" Control="CleanCB" Type="CheckBox" X="17" Y="195" Width="306" Height="18" Attributes="3" Property="CLEAN_INSTALL" Text="Clean Install" Order="1300"/>
+    <ROW Dialog_="InstallDlg" Control="Text_4" Type="Text" X="17" Y="213" Width="312" Height="34" Attributes="65539" Property="TEXT_1_PROP_3" Text="Uncheck this if you just want to update/install the launcher. Else any existing WebUI at the selected path will be wiped." TextStyle="SubTitle8_SubTitle8" Order="1400"/>
     <ROW Dialog_="LicenseAgreementDlg" Control="AgreementText" Type="ScrollableText" X="17" Y="122" Width="312" Height="227" Attributes="3" Property="EulaRead" Text="Advanced Installer\eula.rtf" Order="600" TextLocId="_2" MsiKey="LicenseAgreementDlg#AgreementText"/>
     <ROW Dialog_="MsiRMFilesInUse" Control="Cancel" Type="ImageButton" X="163" Y="359" Width="78" Height="28" Attributes="2" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="100" MsiKey="MsiRMFilesInUse#Cancel" Options="1" ExtType="ImageButton" ExtData="[ButtonText_Cancel]" ExtDataLocId="-"/>
     <ROW Dialog_="PatchWelcomeDlg" Control="PatchWelcomeDlgDialogInitializer" Type="DialogInitializer" X="0" Y="0" Width="0" Height="0" Attributes="0" Order="-1" TextLocId="-" HelpLocId="-" ExtDataLocId="-"/>
@@ -210,7 +212,7 @@
     <ROW Dialog_="VerifyRemoveDlg" Control="Cancel" Type="ImageButton" X="163" Y="359" Width="78" Height="28" Attributes="2" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="100" MsiKey="VerifyRemoveDlg#Cancel" Options="1" ExtType="ImageButton" ExtData="[ButtonText_Cancel]" ExtDataLocId="-"/>
     <ROW Dialog_="VerifyRepairDlg" Control="Bitmap" Type="Bitmap" X="0" Y="0" Width="345" Height="400" Attributes="1" Text="[Background]" Order="100" MsiKey="VerifyRepairDlg#Bitmap"/>
     <ROW Dialog_="VerifyRepairDlg" Control="Cancel" Type="ImageButton" X="163" Y="359" Width="78" Height="28" Attributes="2" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="200" MsiKey="VerifyRepairDlg#Cancel" Options="1" ExtType="ImageButton" ExtData="[ButtonText_Cancel]" ExtDataLocId="-"/>
-    <ATTRIBUTE name="DeletedRows" value="ExitDialog#CompanyText@InstallDlg#CompanyText@InstallDlg#FolderEdit@InstallDlg#InstallButton@InstallDlg#LicenseCheckbox@InstallDlg.aip@PrepareDlg#CompanyText@ProgressDlg#CompanyText@UI.aip@UserExit#CompanyText"/>
+    <ATTRIBUTE name="DeletedRows" value="ExitDialog#CompanyText@InstallDlg#AdvInst@InstallDlg#CompanyText@InstallDlg#FolderEdit@InstallDlg#InstallButton@InstallDlg#LicenseCheckbox@InstallDlg.aip@PrepareDlg#CompanyText@ProgressDlg#CompanyText@UI.aip@UserExit#CompanyText"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlConditionComponent">
     <ROW Dialog_="InstallDlg" Control_="Next" Action="Enable" Condition="UNDERSTAND = &quot;understand&quot;"/>
@@ -343,7 +345,7 @@
     <ROW Action="dlModel" Type="1" Source="PowerShellScriptLauncher.dll" Target="RunPowerShellFileScript" WithoutSeq="true" Options="134217729" AdditionalSeq="AI_DATA_SETTER_4"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDialogComponent">
-    <ROW Dialog="InstallDlg" HCentering="50" VCentering="50" Width="345" Height="400" Attributes="3" Title="[ProductName] [Setup]" Control_Default="Back" Control_Cancel="Cancel" TitleLocId="Dialog.InstallDlg" MsiKey="InstallDlg"/>
+    <ROW Dialog="InstallDlg" HCentering="50" VCentering="50" Width="345" Height="400" Attributes="3" Title="[ProductName] [Setup]" Control_Default="InstallBTN" Control_Cancel="Cancel" TitleLocId="Dialog.InstallDlg" MsiKey="InstallDlg"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
     <ROW Feature_="MainFeature" Component_="APPDIR"/>

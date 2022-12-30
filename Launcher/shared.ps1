@@ -21,7 +21,7 @@ $hashPath = "$webuiPath\.git\refs\heads\master"
 
 # Dependencies
 $dependenciesPath = "$InstallPath\Dependencies"
-$gitPath = "$dependenciesPath\Git\bin\git.exe"
+$gitPath = "$env:ProgramFiles\Git"
 $pyPath = ""
 
 

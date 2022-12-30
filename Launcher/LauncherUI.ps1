@@ -33,7 +33,7 @@ function Invoke-WebUI {
         $settings
     )
 
-    & $gitPath config --global --add safe.directory '*'
+    git config --global --add safe.directory '*'
 
     # Executing updates
     foreach ($setting in $settings) {
