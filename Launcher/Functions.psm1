@@ -41,7 +41,7 @@ function Install-git {
         logger.info "Done"
         return
     }
-    logger.action "Git found at $("$env:ProgramFiles\Git")"
+    logger.info "Git found at $("$env:ProgramFiles\Git")"
 }
 function Install-WebUI {
     if (!(Test-Path $webuiPath)) {
