@@ -8,6 +8,7 @@ Import-Module .\logger.psm1 -Force -Global -Prefix "logger."
 # General Variables
 $tempFolder = (Get-Item -Path env:\temp).Value
 $ProgressPreference = 'SilentlyContinue'
+$PATH = [Environment]::GetEnvironmentVariable("PATH", "Machine")
 
 $InstallPath = (get-item $PSScriptRoot ).parent.FullName
 $webuiPath = "$InstallPath\stable-diffusion-webui"
@@ -21,7 +22,7 @@ $hashPath = "$webuiPath\.git\refs\heads\master"
 # Dependencies
 $dependenciesPath = "$InstallPath\Dependencies"
 $gitPath = "$dependenciesPath\Git\bin\git.exe"
-$pyPath = "$dependenciesPath\py310\python.exe"
+$pyPath = ""
 
 
 # Ui general variables

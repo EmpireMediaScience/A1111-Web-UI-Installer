@@ -16,5 +16,5 @@ function pop ($object) {
     space
 }
 function space {
-    Write-Host "---------------`n---------------`n---------------" -ForegroundColor "Red"
+    Write-Host "------------------------------`n------------------------------`n------------------------------" -ForegroundColor "Cyan"
 }

@@ -2,28 +2,52 @@
 Import-Module "$PSScriptRoot\logger.psm1" -Force -Global -Prefix "logger."
 
 # General Utilities
-function Install-pyPortable {
-    if (!(Test-Path $pyPath)) {
-        logger.action "Python was not found, downloading, please be patient"
-        Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.10.8/python-3.10.8-embed-amd64.zip" -OutFile "$tempFolder\python.zip"
-        Expand-Archive -Path "$tempFolder\python.zip" -DestinationPath "$dependenciesPath\py310"
-        return
+function Search-RegForPyPath {
+    $pyCore = Get-ItemProperty -path "hkcu:\Software\Python\PythonCore\3.10\InstallPath" -ErrorAction SilentlyContinue
+    if ($pyCore) {
+        $pyPath = $pyCore.ExecutablePath
+        logger.info "Python 3.10 path found : $pyPath"
+        return $pyPath
     }
-    logger.info "Python Found at $pyPath"
+    else {
+        $pyCoreLM = Get-ItemProperty -path "hklm:\Software\Python\PythonCore\3.10\InstallPath" -ErrorAction SilentlyContinue
+        if ($pyCoreLM) {
+            $pyPath = $pyCoreLM.ExecutablePath
+            logger.info "Python 3.10 path found : $pyPath"
+            return $pyPath
+        }
+        else {
+            return ""
+        }
+    }
 }
-function Install-gitPortable {
-    if (!(Test-Path $gitPath)) {
-        logger.action "Git was not found, downloading, please be patient"
-        Invoke-WebRequest -Uri "https://anga.tv/ems/PortableGit.zip" -OutFile "$tempFolder\PortableGit.zip"
-        Expand-Archive -Path "$tempFolder\PortableGit.zip" -DestinationPath "$dependenciesPath\Git"
+function Install-py {
+    $Global:pyPath = Search-RegForPyPath
+    if ($Global:pyPath -eq "") {
+        logger.action "Python 3.10 not found, downloading, please be patient"
+        Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.10.6/python-3.10.6-amd64.exe" -OutFile "$tempFolder\python.exe"
+        logger.action "Download successful, installing"
+        ."$tempFolder\python.exe" /quiet InstallAllUsers=0 PrependPath=1
+        logger.info "Done"
         return
     }
-    logger.info "Git Found at $gitPath"
+}
+function Install-git {
+    if (!(Test-Path "$env:ProgramFiles\Git")) {
+        logger.action "Git not found, downloading, please be patient"
+        Invoke-WebRequest -Uri "https://github.com/git-for-windows/git/releases/download/v2.38.1.windows.1/Git-2.38.1-64-bit.exe" -OutFile "$tempFolder\git.exe"
+        logger.action "Download successful, installing"
+        ."$tempFolder\git.exe" /VERYSILENT /NORESTART
+        logger.info "Done"
+        return
+    }
+    logger.action "Git found at $("$env:ProgramFiles\Git")"
 }
 function Install-WebUI {
     if (!(Test-Path $webuiPath)) {
         logger.action "Automatic1111 SD WebUI was not found, cloning git"
         & $gitPath clone https://github.com/AUTOMATIC1111/stable-diffusion-webui $webuiPath
+        logger.info "Done"
         return
     }
     logger.info "Automatic1111 SD WebUI found at $webuiPath"
@@ -41,20 +65,19 @@ function Import-BaseModel {
     }
 }
 function Get-Version {
-    logger.action "Fetching Launcher Version"
     $result = @{
         Long  = ""
         Short = ""
     }
     $softInfo = Get-ItemProperty -LiteralPath 'hkcu:\Software\Empire Media Science\A1111 Web UI Autoinstaller'
     if ($softInfo) {
-        logger.info "Version $($softInfo.Version) Found"
+        logger.info "Launcher Version $($softInfo.Version)"
         $short = $softInfo.Version.Split(".")
         $result.Long = $softInfo.Version
         $result.Short = $short[0] + "." + $short[1]
     }
     else {
-        logger.info "Version Not Found"
+        logger.warn "Version Not Found"
         $result.Long = "Version Not Found"
         $result.Short = "2023.01"
     }

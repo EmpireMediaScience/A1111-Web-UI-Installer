@@ -12,8 +12,8 @@ if ($GPUInfo) {
     $GPUText = "$($GPUInfo.Model) $($GPUInfo.VRAM) GB"
 }
 
-Install-pyPortable
-Install-gitPortable
+Install-py
+Install-git
 Install-WebUI
 Import-BaseModel
 
@@ -58,10 +58,10 @@ function Invoke-WebUI {
 
     Set-Location $webuiPath
 
-    <# $pyPath = Search-RegForPyPath #>
-    $env:GIT_PYTHON_GIT_EXECUTABLE = $gitPath
-    $env:GIT = $gitPath
-    $env:VENV_DIR = ""
+    $env:PYTHON = "`"$pyPath`""
+    <#     $env:GIT_PYTHON_GIT_EXECUTABLE = "$gitPath" #>
+    <#  $env:GIT = $gitPath #>
+    <# $env:VENV_DIR =  #>
     $env:COMMANDLINE_ARGS = "--autolaunch " + $arguments
 
     Start-Process "$webuiPath/webui.bat" -NoNewWindow
