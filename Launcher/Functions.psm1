@@ -26,9 +26,8 @@ function Search-RegForPyPath {
 function Install-py {
     $Global:pyPath = Search-RegForPyPath
     if ($Global:pyPath -eq "") {
-        logger.action "Python 3.10 not found, downloading, please be patient"
+        logger.action "Python 3.10 not found, downloading & installing, please be patient"
         Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.10.6/python-3.10.6-amd64.exe" -OutFile "$tempFolder\python.exe"
-        logger.action "Download successful, installing"
         ."$tempFolder\python.exe" /quiet InstallAllUsers=0 PrependPath=1
         logger.success
         return
@@ -36,9 +35,8 @@ function Install-py {
 }
 function Install-git {
     if (!(Test-Path "$gitPath\bin\git.exe")) {
-        logger.action "Git not found, downloading, please be patient"
+        logger.action "Git not found, downloading & installing, please be patient"
         Invoke-WebRequest -Uri "https://github.com/git-for-windows/git/releases/download/v2.38.1.windows.1/Git-2.38.1-64-bit.exe" -OutFile "$tempFolder\git.exe"
-        logger.action "Download successful, installing"
         ."$tempFolder\git.exe" /VERYSILENT /NORESTART
         logger.success
     }
@@ -125,6 +123,7 @@ function Get-WebUICommitHash {
 function Write-Settings($settings) {
     logger.action "Updating Settings File"
     $settings | ConvertTo-Json -Depth 100 | Out-File $settingsPath
+    logger.success
 }
 function New-Settings ($oldsettings) {   
     $defs = Import-Defs

@@ -1,28 +1,36 @@
 function action ($object) {
-    Write-Host "[ACTION]" -BackgroundColor "Green" -ForegroundColor "Black" -NoNewline; Write-Host ("", $object) -ForegroundColor "Green" 
+    $color = "DarkMagenta"
+    space $color
+    Write-Host " $([char]0x25b6) " -BackgroundColor $color -ForegroundColor "Black" -NoNewline; Write-Host (" ", $object) -ForegroundColor $color
 }
 function info ($object) {
-    Write-Host "[INFO]" -BackgroundColor "Blue" -ForegroundColor "White" -NoNewline; Write-Host ("", $object) 
+    Write-Host " $([char]0x2139) " -BackgroundColor "DarkGray" -ForegroundColor "Black" -NoNewline; Write-Host (" ", $object) -ForegroundColor "DarkGray" 
 }
 function error ($object) {
-    Write-Host "[ERROR]" -BackgroundColor "Red" -ForegroundColor "White" -NoNewline; Write-Host ("", $object) -ForegroundColor "Red" 
+    Write-Host " X " -BackgroundColor "Red" -ForegroundColor "Black" -NoNewline; Write-Host (" ", $object) -ForegroundColor "Red" 
 }
 function warn ($object) {
-    Write-Host "[WARNING]" -BackgroundColor "Yellow" -ForegroundColor "Black" -NoNewline; Write-Host ("", $object) -ForegroundColor "Yellow" 
+    Write-Host " ! " -BackgroundColor "Yellow" -ForegroundColor "Black" -NoNewline; Write-Host (" ", $object) -ForegroundColor "Yellow" 
 }
 function pop ($object) {
-    space
-    Write-Host "[INFO]" -BackgroundColor "Cyan" -ForegroundColor "Black" -NoNewline; Write-Host ("", $object) -ForegroundColor "Cyan" 
-    space
+    $color = "Cyan"
+    space $color
+    Write-Host (" ", $object, " ") -BackgroundColor $color -ForegroundColor "Black"
+    space $color
 }
-function space {
-    for ($i = 1; $i -le 60; $i++) {
+function web ($object) {
+    $color = "Blue"
+    Write-Host (" $([char]0x2601) ") -BackgroundColor $color -ForegroundColor "Black" -NoNewline; Write-Host (" ", $object) -ForegroundColor $color
+}
+function space ($color) {
+    for ($i = 1; $i -le 80; $i++) {
         # Print the character "X"
-        Write-Host -NoNewline ([char]126) -ForegroundColor "DarkGray"
+        Write-Host -NoNewline ([char]0x2501) -ForegroundColor $color
     }
     Write-Host ""
 }
 function success {
-    Write-Host "[Success]" -ForegroundColor "Cyan"
-    space
+    $color = "Green"
+    Write-Host " $([char]0x2714) " -BackgroundColor $color -ForegroundColor "Black" -NoNewline; Write-Host (" ", "SUCCESS") -ForegroundColor $color
+    space $color
 }

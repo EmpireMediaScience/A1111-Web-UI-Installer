@@ -57,8 +57,9 @@ function Invoke-WebUI {
     $arguments = Convert-SettingsToArguments $settings
 
     logger.pop "WEBUI LAUNCHING VIA EMS LAUNCHER, EXIT THIS WINDOW TO STOP THE WEBUI"
-    logger.warn "If you see the line 'commit hash : XXXX' or 'Installing Torch...' bellow, any error happening afterwards is not related to the launcher, but the WebUI itself which EMS is not affiliated with, we won't be able to help you fix those, you'll have to ask them on Automatic1111's github, not ours."
-    logger.space
+    logger.warn "Any error happening after 'commit hash : XXXX' or 'Installing Torch...' bellow is not related to the launcher please report them on Automatic1111's github instead :"
+    logger.web "https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/new/choose"
+    logger.space "Yellow"
     
     Set-Location $webuiPath
 
@@ -391,7 +392,7 @@ function Makeform {
 
     $Form.ShowDialog()
 }
-logger.space
-logger.action "Opening A1111 WebUI Launcher"
-logger.space
+
+logger.pop "Opening A1111 WebUI Launcher"
+
 MakeForm
