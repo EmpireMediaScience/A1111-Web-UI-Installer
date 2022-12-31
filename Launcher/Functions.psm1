@@ -1,7 +1,6 @@
 . "$PSScriptRoot\shared.ps1"
 Import-Module "$PSScriptRoot\logger.psm1" -Force -Global -Prefix "logger."
 
-#-----------------------------
 #Startup fonctions
 #-----------------------------
 function Search-RegForPyPath {
@@ -26,7 +25,7 @@ function Search-RegForPyPath {
 function Install-py {
     $Global:pyPath = Search-RegForPyPath
     if ($Global:pyPath -eq "") {
-        logger.action "Python 3.10 not found, downloading & installing, please be patient"
+        logger.web -Type "download" -Object "Python 3.10 not found, downloading & installing, please be patient"
         Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.10.6/python-3.10.6-amd64.exe" -OutFile "$tempFolder\python.exe"
         ."$tempFolder\python.exe" /quiet InstallAllUsers=0 PrependPath=1
         logger.success
@@ -35,7 +34,7 @@ function Install-py {
 }
 function Install-git {
     if (!(Test-Path "$gitPath\bin\git.exe")) {
-        logger.action "Git not found, downloading & installing, please be patient"
+        logger.web -Type "download" -Object "Git not found, downloading & installing, please be patient"
         Invoke-WebRequest -Uri "https://github.com/git-for-windows/git/releases/download/v2.38.1.windows.1/Git-2.38.1-64-bit.exe" -OutFile "$tempFolder\git.exe"
         ."$tempFolder\git.exe" /VERYSILENT /NORESTART
         logger.success
@@ -56,7 +55,7 @@ function Install-git {
 }
 function Install-WebUI {
     if (!(Test-Path $webuiPath)) {
-        logger.action "Automatic1111 SD WebUI was not found, cloning git"
+        logger.web -Type "download" -Object "Automatic1111 SD WebUI was not found, cloning git"
         git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui $webuiPath
         logger.success
         return
@@ -117,7 +116,7 @@ function Get-WebUICommitHash {
     $hash = Get-Content $hashPath
     if ($hash) { return $hash }
 }
-#-----------------------------
+
 #Settings related functions
 #-----------------------------
 function Write-Settings($settings) {
@@ -244,7 +243,7 @@ function Convert-BatToGitOptions ($batFile) {
     return $GitOptions
 }
 
-#-----------------------------
+
 #UI related functions
 #-----------------------------
 function Select-Folder ([string]$InitialDirectory) {
@@ -263,12 +262,12 @@ function Select-File([string]$InitialDirectory) {
     return $dialog.FileName 
 }
 
-#-----------------------------
+
 #General Settings functions
 #-----------------------------
 function Update-WebUI ($enabled) {
     if ($enabled) {
-        logger.action "Updating Webui"
+        logger.web -Type "download" -Object "Updating Webui"
         Set-Location $webuiPath
         git pull origin
         logger.success

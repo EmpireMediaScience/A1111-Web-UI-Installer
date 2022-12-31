@@ -58,7 +58,7 @@ function Invoke-WebUI {
 
     logger.pop "WEBUI LAUNCHING VIA EMS LAUNCHER, EXIT THIS WINDOW TO STOP THE WEBUI"
     logger.warn "Any error happening after 'commit hash : XXXX' or 'Installing Torch...' bellow is not related to the launcher please report them on Automatic1111's github instead :"
-    logger.web "https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/new/choose"
+    logger.web -type "web" "https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/new/choose"
     logger.space "Yellow"
     
     Set-Location $webuiPath
