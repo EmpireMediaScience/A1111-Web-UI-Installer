@@ -69,3 +69,4 @@ When double clicking ***A1111 WebUI (Pin to Taskbar)*** You should be greeted wi
 - Ablity to copy the WebUI Commit Hash (practical for opening GitHub issues)
 - Direct link to the Issues section of the Installer/Launcher Github
 - Direct link to the Issues section of the WebUI
+- (Experienced users) You can add "skip" at the end of the "A1111 WebUI (Pin to Taskbar)" shortcut target to go straight to the Stable Diffusion WebUI with your existing settings
