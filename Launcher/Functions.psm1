@@ -267,7 +267,7 @@ function Select-File([string]$InitialDirectory) {
 #-----------------------------
 function Update-WebUI ($enabled) {
     if ($enabled) {
-        logger.web -Type "download" -Object "Updating Webui"
+        logger.web -Type "update" -Object "Updating Webui"
         Set-Location $webuiPath
         git pull origin
         logger.success
@@ -279,14 +279,14 @@ function Update-Extensions ($enabled) {
         $exts = Get-ChildItem $extPath -Directory
         if ($exts) {
             foreach ($ext in $exts) {         
-                logger.action "Updating Extension: $ext"
+                logger.web -Type "update" -Object "Updating Extension: $ext"
                 Set-Location $ext.Fullname
                 git pull origin 
             }
             logger.success
             return
         }
-        logger.info "No extension found in the extensions folder"
+        logger.warn "No extension found in the extensions folder"
     }
 }
 function Clear-Outputs {

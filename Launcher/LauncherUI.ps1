@@ -5,6 +5,12 @@ Import-Module .\Functions.psm1 -Force
 # Ui general variables
 $settings = Restore-Settings
 $Version = Get-Version
+if ($args.Length -gt 0) {
+    logger.info "Launching with args : $args"
+}
+else {
+    logger.info "Launching without args"
+}
 
 $GPUInfo = Get-GPUInfo
 $GPUText = "No Compatible GPU Found"
@@ -22,6 +28,8 @@ $HashText = "No Hash Found"
 if ($Hash) {
     $HashText = "$($Hash.Substring(0, 7))..."
 }
+
+
 Function MakeNewForm {
     logger.info "Refreshing UI`n"
     $form.Close()
@@ -30,7 +38,8 @@ Function MakeNewForm {
 }
 function Invoke-WebUI {
     Param(
-        $settings
+        $settings,
+        [switch]$skip
     )
 
     git config --global --add safe.directory '*'
@@ -68,12 +77,18 @@ function Invoke-WebUI {
     <#  $env:GIT = $gitPath #>
     <# $env:VENV_DIR =  #>
     $env:COMMANDLINE_ARGS = "--autolaunch " + $arguments
-
     Start-Process "$webuiPath/webui.bat" -NoNewWindow
     Set-Location $PSScriptRoot
-    $form.Close()
+    if (!($skip)) {
+        $form.close 
+    }
 }
 
+if ($args -contains "skip") {
+    logger.pop "Skipping Launcher UI"
+    Invoke-WebUI $settings -skip
+    return
+}
 Function Reset-Path($param) {
     $setting = $settings | Where-Object { $_.arg -eq $param.Name }
     $setting.enabled = $false
@@ -257,8 +272,7 @@ function Makeform {
                 $ArgContainer.Controls.Add($forceBTN) 
             }
             $ArgContainer.Controls.Add($paramDesc)
-            $UIparam
-            
+            $UIparam        
         }
     }
 
