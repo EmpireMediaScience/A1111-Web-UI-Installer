@@ -59,7 +59,7 @@ When double clicking ***A1111 WebUI (Pin to Taskbar)*** You should be greeted wi
 - [x] **Xformers** : Greatly speeds up RTX 3000 / 4000 cards, can sometimes work with previous gens cards as well !
 - **`Checkpoint Folder`** : If you don't have a specific checkpoint folder, do not click this, else select it there 💡*click the path to reset*
 - **`Default VAE`** : This will allow you to select a default separate for all models VAE file 💡*click the path to reset*
-- **Additional Arguments** : If you know what you're doing, you can add additional launch arguments for the UI here, as you would have done in webui-user.bat. 
+- **Additional Arguments** : If you know what you're doing, you can add additional launch arguments for the UI here, as you would have done in webui-user.bat. You can also click on the text to see all the arguments available. 
   >⚠️ ***Click SAVE to confirm the additional arguments, else they won't be saved***
 
 ## **`Misc`**
