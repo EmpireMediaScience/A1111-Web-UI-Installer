@@ -29,7 +29,6 @@ if ($Hash) {
     $HashText = "$($Hash.Substring(0, 7))..."
 }
 
-
 Function MakeNewForm {
     logger.info "Refreshing UI`n"
     $form.Close()
@@ -38,8 +37,7 @@ Function MakeNewForm {
 }
 function Invoke-WebUI {
     Param(
-        $settings,
-        [switch]$skip
+        $settings
     )
 
     git config --global --add safe.directory '*'
@@ -77,16 +75,15 @@ function Invoke-WebUI {
     <#  $env:GIT = $gitPath #>
     <# $env:VENV_DIR =  #>
     $env:COMMANDLINE_ARGS = "--autolaunch " + $arguments
+
     Start-Process "$webuiPath/webui.bat" -NoNewWindow
     Set-Location $PSScriptRoot
-    if (!($skip)) {
-        $form.close 
-    }
 }
+
 
 if ($args -contains "skip") {
     logger.pop "Skipping Launcher UI"
-    Invoke-WebUI $settings -skip
+    Invoke-WebUI $settings
     return
 }
 Function Reset-Path($param) {
@@ -339,7 +336,10 @@ function Makeform {
     $Runbutton.Text = "LAUNCH WEBUI"
     $Runbutton.Size = "50,40"
     $Runbutton.ForeColor = $accentColor
-    $Runbutton.Add_Click({ Invoke-WebUI $settings })
+    $Runbutton.Add_Click({ 
+            Invoke-WebUI $settings
+            $form.Close()
+        })
     $Runbutton.FlatStyle = $style
     $runbox.Controls.Add($Runbutton)
 
