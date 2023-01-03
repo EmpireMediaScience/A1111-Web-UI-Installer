@@ -208,6 +208,7 @@ function Makeform {
     }
     $form.Controls.Add($GeneralContainer)
 
+    #WebUI Args
     $ArgContainer = New-Object System.Windows.Forms.Panel
     $ArgContainer.Dock = "Bottom"
     $ArgContainer.AutoSize = $true
@@ -273,11 +274,14 @@ function Makeform {
         }
     }
 
-    $addDesc = New-Object System.Windows.Forms.Label
-    $addDesc.Text = "Additional Launch Options"
+    $addDesc = New-Object System.Windows.Forms.LinkLabel
+    $addDesc.LinkColor = $accentColor
+    $addDesc.LinkBehavior = [System.Windows.Forms.LinkBehavior]::NeverUnderline;
+    $addDesc.Text = "Additional Launch Options (Click Here to See The List)"
     $addDesc.TextAlign = "MiddleCenter" 
     $addDesc.Dock = "Bottom"
     $addDesc.Size = "200, 20"
+    $addDesc.Add_Click({ Start-Process "https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Command-Line-Arguments-and-Settings" })
     $ArgContainer.Controls.Add($addDesc)
 
     $adds = $settings | Where-Object { $_.arg -eq "add" }
