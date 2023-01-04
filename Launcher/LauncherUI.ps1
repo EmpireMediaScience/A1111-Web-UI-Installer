@@ -71,9 +71,10 @@ function Invoke-WebUI {
     Set-Location $webuiPath
 
     $env:PYTHON = "`"$pyPath`""
-    <#     $env:GIT_PYTHON_GIT_EXECUTABLE = "$gitPath" #>
-    <#  $env:GIT = $gitPath #>
-    <# $env:VENV_DIR =  #>
+    <#
+    $env:GIT_PYTHON_GIT_EXECUTABLE = "$gitPath"
+    $env:GIT = $gitPath 
+    #>
     $env:COMMANDLINE_ARGS = "--autolaunch " + $arguments
 
     Start-Process "$webuiPath/webui.bat" -NoNewWindow
@@ -151,7 +152,6 @@ function Makeform {
         if ($def.type -eq "git") {
             $gitContainer = New-Object System.Windows.Forms.Panel
             $gitContainer.Dock = "Bottom"
-            <#             $gitContainer.AutoSize = $true #>
             $gitContainer.Size = "150,50"
             $gitContainer.Padding = "0,5,0,5"
 
@@ -195,7 +195,6 @@ function Makeform {
             $paramDesc.Tag = $def.arg + "desc"
             $paramDesc.ForeColor = $secondaryColor
             $paramDesc.Dock = "Bottom"
-            <# $paramDesc.Size = "200, 30" #>
             
             $gitContainer.Controls.Add($UIparam)
             $gitContainer.Controls.Add($forceBTN) 
