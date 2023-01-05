@@ -1,3 +1,6 @@
+# **`⚠️⚠️⚠️⚠️⚠️⚠️ Automatic1111 github repo has disappeared, so this installer/launcher will not work for now, we're attempting to fix this, once this message clears you should be good to go⚠️⚠️⚠️⚠️⚠️⚠️`**
+
+
 A1111 WebUI Easy Installer and Launcher
 ========================
 
