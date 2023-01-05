@@ -22,6 +22,6 @@ jobs:
           days-before-stale: 4
           days-before-close: 1
           exempt-all-assignees: True
-          stale-issue-message: "As there has been no activity in this issue for 4 days, this issue is now marked as stale. It will be closed in 1 days if it remains stale."
+          stale-issue-message: "As there has been no activity in this issue for 4 days, this issue is now marked as stale. It will be closed in 24H if it remains stale."
           stale-issue-label: "stale"
           close-issue-message: "Closed stale issue."
