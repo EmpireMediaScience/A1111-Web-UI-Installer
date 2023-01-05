@@ -1,6 +1,11 @@
-# **⚠️⚠️⚠️⚠️⚠️⚠️ Automatic1111 github repo has disappeared, so this installer/launcher will not work for now, we're attempting to fix this, once this message clears you should be good to go⚠️⚠️⚠️⚠️⚠️⚠️**
-# [For those still wanting to install, or wanting to update, here's a temporary fix once everything is installed](https://github.com/EmpireMediaScience/A1111-Web-UI-Installer/issues/30#issuecomment-1372184849)
+# **⚠️ 1- Automatic1111 github repo has disappeared, so this installer/launcher will not work for now, we're attempting to fix this, once this message clears you should be good to go⚠️**
+# ⚠️ 2 - [For those still wanting to install, or wanting to update, here's a temporary fix to do once everything is installed](https://github.com/EmpireMediaScience/A1111-Web-UI-Installer/issues/30#issuecomment-1372184849)
 
+-
+-
+-
+-
+-
 A1111 WebUI Easy Installer and Launcher
 ========================
 
