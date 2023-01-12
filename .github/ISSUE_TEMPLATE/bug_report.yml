@@ -9,7 +9,14 @@ body:
       label: Have you read the readme, especially the Warning part ?
       description: Read the readme as either your questions are already answered there, or maybe you shouldn't answer them here to begin with.
       options:
-        - label: I have read the readme, especially the Warning Part, and this problem occured before I pressed "Launch WebUI"
+        - label: I have read the readme, especially the Warning Part, and this problem occured before I see the "commit hash:" line in the console
+          required: true
+  - type: checkboxes
+    attributes:
+      label: Are you up to date ?
+      description: Please update the launcher, every update fixes some problems and maybe your bug is already fixed in a newer release
+      options:
+        - label: I have the latest version of the launcher
           required: true
   - type: checkboxes
     attributes:
