@@ -29,7 +29,16 @@ function Install-py {
         Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.10.6/python-3.10.6-amd64.exe" -OutFile "$tempFolder\python.exe"
         ."$tempFolder\python.exe" /quiet InstallAllUsers=0 PrependPath=1
         logger.success
+        $Global:pyPath = Search-RegForPyPath
+    }
+    if (!(Get-Command python -ErrorAction SilentlyContinue)) {
+        logger.action "Python not found in PATH, adding it"
+        $env:Path += ";$Global:pyPath\bin"
+        logger.success
         return
+    }
+    else {
+        logger.info "Python is in PATH"
     }
 }
 function Install-git {
