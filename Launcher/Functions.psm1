@@ -7,7 +7,7 @@ function Search-RegForPyPath {
     $pyCore = Get-ItemProperty -path "hkcu:\Software\Python\PythonCore\3.10\InstallPath" -ErrorAction SilentlyContinue
     if ($pyCore) {
         $pyPath = $pyCore.ExecutablePath
-        logger.info "Python 3.10 path found : $pyPath"
+        logger.info "Python 3.10 found : $pyPath"
         return $pyPath
     }
     else {
@@ -42,25 +42,32 @@ function Install-py {
     }
 }
 function Install-git {
-    if (!(Test-Path "$gitPath\bin\git.exe")) {
-        logger.web -Type "download" -Object "Git not found, downloading & installing, please be patient"
-        Invoke-WebRequest -Uri "https://github.com/git-for-windows/git/releases/download/v2.38.1.windows.1/Git-2.38.1-64-bit.exe" -OutFile "$tempFolder\git.exe"
-        ."$tempFolder\git.exe" /VERYSILENT /NORESTART
-        logger.success
-    }
-    else {
-        logger.info "Git found at $("$env:ProgramFiles\Git")"
-    }
-    if (!(Get-Command git -ErrorAction SilentlyContinue)) {
-        logger.action "Git not found in PATH, adding it"
-        $env:Path += ";$gitPath\bin"
-        logger.success
+    $gitInPath = Get-Command git -ErrorAction SilentlyContinue
+    if ($gitInPath) {
+        $Global:gitPath = $gitInPath.Path
+        logger.info "Git found and already in PATH at $($gitInPath.Path)"
         return
     }
     else {
-        logger.info "Git is in PATH"
+        if (!(Test-Path "$gitPath\bin\git.exe")) {
+            logger.web -Type "download" -Object "Git not found, downloading & installing, please be patient"
+            Invoke-WebRequest -Uri "https://github.com/git-for-windows/git/releases/download/v2.38.1.windows.1/Git-2.38.1-64-bit.exe" -OutFile "$tempFolder\git.exe"
+            ."$tempFolder\git.exe" /VERYSILENT /NORESTART
+            logger.success
+        }
+        else {
+            logger.info "Git found $("$env:ProgramFiles\Git")"
+        }
+        if (!(Get-Command git -ErrorAction SilentlyContinue)) {
+            logger.action "Git not found in PATH, adding it"
+            $env:Path += ";$gitPath\bin"
+            logger.success
+            return
+        }
+        else {
+            logger.info "Git is in PATH"
+        }
     }
-    
 }
 function Install-WebUI {
     if (!(Test-Path $webuiPath)) {
