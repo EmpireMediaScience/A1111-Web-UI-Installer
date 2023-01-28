@@ -52,8 +52,10 @@ When double clicking ***A1111 WebUI (Pin to Taskbar)*** You should be greeted wi
  > The **<kbd>Force</kbd>** buttons will execute the relevant function as soon as you click instead of waiting for launch
 - [x] **Auto-Update WebUI** : This will update (git pull) the WebUI everytime you launch it
 - [x] **Auto-Update Extensions** : Same thing but with the extensions
-- [x] **Clear Generated Images** : This will clear all previously generated images from the outputs folder at launch, to give you a blank slate for this session. 
+- [x] **Clear Generated Images** : This will clear all previously generated images from the outputs folder at launch.
    > ⚠️ The images are permanently deleted ! A pop up will ask you for confirmation at launch if enabled, and you'll also be able to skip the deletion without disabling it.
+
+   >**Note**: If you have a custom output folder, only the folder specified in the  "***Output directory for images; if empty, defaults to three directories below***" field in the WebUI settings will  be cleared.
 ## **`Launch Options`**
 - [x] **Low VRAM** : Allows cards with low VRAM to be able to generate images, this will increase render time, but will make things smooth
 - [x] **Xformers** : Greatly speeds up RTX 3000 / 4000 cards, can sometimes work with previous gens cards as well !

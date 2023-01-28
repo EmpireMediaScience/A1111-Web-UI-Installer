@@ -306,12 +306,18 @@ function Update-Extensions ($enabled) {
     }
 }
 function Clear-Outputs {
-    $Exprompt = [system.windows.messagebox]::Show("All previously generated images will be deleted, are you sure ?`n`nClick 'No' to not delete any image this time`n`nUncheck 'Clear Generated Images' in the launcher to disable it", 'Warning', 'YesNo', 'Warning')
+    $Exprompt = [system.windows.messagebox]::Show("All previously generated images will be deleted, are you sure ?`n`nClick 'No' to not delete any image this time`n`nUncheck 'Clear Generated Images' in the launcher to disable this function", 'Warning', 'YesNo', 'Warning')
     if ($Exprompt -eq "Yes") {
-        logger.action "Clearing all outputs in default output directories" 
-        if ($outputsPath) {
-            Get-ChildItem $outputsPath -Force -Recurse -File -Filter *.png | Remove-Item -Force
-            Get-ChildItem $outputsPath -Force -Recurse -File -Filter *.jpg | Remove-Item -Force
+        logger.action "Clearing all outputs in output directories"
+        if ($webuiConfig -ne "" -and $webUIConfig.outdir_samples -ne "") {
+            logger.info "Custom output directory found at $($webUIConfig.outdir_samples)"
+            Get-ChildItem $webUIConfig.outdir_samples -Force -Recurse -File | Where-Object { $_.Extension -eq ".png" -or $_.Extension -eq ".jpg" } | Remove-Item -Force
+        }
+        else {
+            if ($outputsPath) {
+                logger.info "Clearing default output directory"
+                Get-ChildItem $outputsPath -Force -Recurse -File | Where-Object { $_.Extension -eq ".png" -or $_.Extension -eq ".jpg" } | Remove-Item -Force
+            }
         }
         logger.success
     }

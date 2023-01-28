@@ -18,6 +18,7 @@ $extPath = "$webuiPath\extensions"
 $settingsPath = ".\settings.json"
 $outputsPath = "$webuiPath\outputs"
 $hashPath = "$webuiPath\.git\refs\heads\master"
+$configFile = "$webuiPath\config.json"
 
 # Dependencies
 $dependenciesPath = "$InstallPath\Dependencies"

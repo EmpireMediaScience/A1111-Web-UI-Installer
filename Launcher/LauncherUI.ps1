@@ -5,11 +5,18 @@ Import-Module .\Functions.psm1 -Force
 # Ui general variables
 $settings = Restore-Settings
 $Version = Get-Version
+
+$webuiConfig = ""
+if (Test-Path $configFile) {
+    logger.info "Found a custom WebUI Config"
+    $webUIConfig = Get-Content -Path $configFile | ConvertFrom-Json
+}
+
 if ($args.Length -gt 0) {
-    logger.info "Launching with args : $args"
+    logger.info "Launcher launch options : $args"
 }
 else {
-    logger.info "Launching without args"
+    logger.info "No Launcher launch options"
 }
 
 $GPUInfo = Get-GPUInfo
