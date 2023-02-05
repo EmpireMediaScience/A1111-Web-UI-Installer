@@ -44,8 +44,8 @@ function Install-py {
 function Install-git {
     $gitInPath = Get-Command git -ErrorAction SilentlyContinue
     if ($gitInPath) {
-        $Global:gitPath = $gitInPath.Path
-        logger.info "Git found and already in PATH at $($gitInPath.Path)"
+        $Global:gitPath = $gitInPath.Source
+        logger.info "Git found and already in PATH at $($gitInPath.Source)"
         return
     }
     else {
