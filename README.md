@@ -32,8 +32,8 @@ If you want to improve the installer, git clone or Fork & Pull Request (this pro
 7.  You can drag & drop it on your taskbar if you wish, this is the launcher for the WebUI
 8.  Launch the shortcut to open the **[Custom Launcher](#the-launcher)**
 9.  It should install all the dependencies and ask you if you want to download the base SD model to generate images
-    >⚠️Click "No" only if you already have one or more models somewhere, and don't forget to select the folder where they're stored in the launcher
-10. Once you've selected what you wanted in the launcher, click **`LAUNCH WEBUI`**, this will quit the launcher and proceed in the terminal window, logging what it's doing 
+    >⚠️Click "No" only if you already have one or more models somewhere, and if so don't forget to select their parent folders in the launcher
+10. Once you've set the launcher according to your preferences, click **`LAUNCH WEBUI`**, this will quit the launcher and proceed in the terminal window, logging what it's doing 
       >⚠️**Be patient** this will take a while at first, when it's ready, it will open the webUI in your browser
 
       >⚠️**Read the WARN message**
@@ -49,11 +49,14 @@ When double clicking ***A1111 WebUI (Pin to Taskbar)*** You should be greeted wi
 ## Features
 
 ## **`General Settings`**
- > The **<kbd>Force</kbd>** buttons will execute the relevant function as soon as you click instead of waiting for launch
+- **The red <kbd>↺</kbd> button**: This will wipe the *stable-diffusion-webui* folder and reclone it from github
+   > ⚠️ The folder is permanently deleted so make some back ups if needed ! A pop up will ask you for confirmation
 - [x] **Auto-Update WebUI** : This will update (git pull) the WebUI everytime you launch it
 - [x] **Auto-Update Extensions** : Same thing but with the extensions
 - [x] **Clear Generated Images** : This will clear all previously generated images from the outputs folder at launch.
-   > ⚠️ The images are permanently deleted ! A pop up will ask you for confirmation at launch if enabled, and you'll also be able to skip the deletion without disabling it.
+   > ⚠️ The images are permanently deleted ! A pop up will ask you for confirmation
+
+ > The **<kbd>Force</kbd>** buttons next to the above functions will execute the relevant function as soon as you click instead of waiting for launch
 
    >**Note**: If you have a custom output folder, only the folder specified in the  "***Output directory for images; if empty, defaults to three directories below***" field in the WebUI settings will  be cleared.
 ## **`Launch Options`**
