@@ -1,10 +1,20 @@
-function action ($object) {
+function action {
+    param (
+        $object,
+        [switch]$success
+    )
     $color = "DarkMagenta"
-    space $color
-    Write-Host " $([char]0x2192) " -BackgroundColor $color -ForegroundColor "Black" -NoNewline; Write-Host (" ", $object) -ForegroundColor $color
+    Write-Host " $([char]0x2192) " -BackgroundColor $color -ForegroundColor "Black" -NoNewline;
+    if ($success) {
+        Write-Host (" ", "$object ") -ForegroundColor $color -NoNewline
+    }
+    else {
+        Write-Host (" ", "$object ") -ForegroundColor $color
+    }
 }
-function info ($object) {
-    Write-Host " i " -BackgroundColor "DarkGray" -ForegroundColor "Black" -NoNewline; Write-Host (" ", $object) -ForegroundColor "DarkGray" 
+function info ($object, $path) {
+    $color = "DarkGray"
+    Write-Host " i " -BackgroundColor $color -ForegroundColor "Black" -NoNewline; Write-Host (" ", $object) -ForegroundColor $color -NoNewline; Write-Host (" ", $path) -ForegroundColor "White" 
 }
 function error ($object) {
     Write-Host " X " -BackgroundColor "Red" -ForegroundColor "Black" -NoNewline; Write-Host (" ", $object) -ForegroundColor "Red" 
@@ -33,14 +43,24 @@ function web ($type, $object) {
     }
     Write-Host (" $icon ") -BackgroundColor $color -ForegroundColor "Black" -NoNewline; Write-Host (" ", $object) -ForegroundColor $color
 }
+function dlprogress ($object) {
+    $color = "DarkMagenta"
+    Write-Host " $([char]0x2193) " -BackgroundColor $color -ForegroundColor "Black" -NoNewline; Write-Host (" ", "$object`r") -ForegroundColor $color -NoNewline
+}
 function space ($color) {
     for ($i = 1; $i -le 80; $i++) {
         Write-Host -NoNewline ([char]0x2501) -ForegroundColor $color
     }
     Write-Host ""
 }
-function success {
+function success($object) {
     $color = "Green"
-    Write-Host " $([char]0x2713) " -BackgroundColor $color -ForegroundColor "Black" -NoNewline; Write-Host (" ", "SUCCESS") -ForegroundColor $color
-    space $color
+    if ($object) {
+        Write-Host " $([char]0x2713) " -BackgroundColor $color -ForegroundColor "Black" -NoNewline
+        Write-Host (" ", $object) -ForegroundColor $color
+    }
+    else {
+        Write-Host " $([char]0x2713) " -BackgroundColor $color -ForegroundColor "Black"
+    }
+    
 }

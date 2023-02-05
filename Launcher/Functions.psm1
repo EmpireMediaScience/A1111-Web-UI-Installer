@@ -4,23 +4,17 @@ Import-Module "$PSScriptRoot\logger.psm1" -Force -Global -Prefix "logger."
 #Startup fonctions
 #-----------------------------
 function Search-RegForPyPath {
-    $pyCore = Get-ItemProperty -path "hkcu:\Software\Python\PythonCore\3.10\InstallPath" -ErrorAction SilentlyContinue
-    if ($pyCore) {
-        $pyPath = $pyCore.ExecutablePath
-        logger.info "Python 3.10 found : $pyPath"
-        return $pyPath
-    }
-    else {
-        $pyCoreLM = Get-ItemProperty -path "hklm:\Software\Python\PythonCore\3.10\InstallPath" -ErrorAction SilentlyContinue
-        if ($pyCoreLM) {
-            $pyPath = $pyCoreLM.ExecutablePath
-            logger.info "Python 3.10 path found : $pyPath"
+    $regPaths = @("hkcu:\Software\Python\PythonCore\3.10\InstallPath", "hklm:\Software\Python\PythonCore\3.10\InstallPath")
+
+    foreach ($path in $regPaths) {
+        $pyCore = Get-ItemProperty -Path $path -ErrorAction SilentlyContinue
+        if ($pyCore) {
+            $pyPath = Split-Path $pyCore.ExecutablePath -Parent
+            logger.info "Python 3.10 found in registry:" "$pyPath"
             return $pyPath
         }
-        else {
-            return ""
-        }
     }
+    return ""
 }
 function Install-py {
     $Global:pyPath = Search-RegForPyPath
@@ -28,24 +22,21 @@ function Install-py {
         logger.web -Type "download" -Object "Python 3.10 not found, downloading & installing, please be patient"
         Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.10.6/python-3.10.6-amd64.exe" -OutFile "$tempFolder\python.exe"
         ."$tempFolder\python.exe" /quiet InstallAllUsers=0 PrependPath=1
-        logger.success
+        logger.success "Done"
         $Global:pyPath = Search-RegForPyPath
     }
-    if (!(Get-Command python -ErrorAction SilentlyContinue)) {
-        logger.action "Python not found in PATH, adding it"
-        $env:Path += ";$Global:pyPath\bin"
-        logger.success
-        return
-    }
-    else {
-        logger.info "Python is in PATH"
-    }
+    logger.info "Clearing PATH of any mention of Python"
+    $env:Path = [System.String]::Join(";", $($env:Path.split(';') | Where-Object { $_ -notmatch "python" }))
+    logger.action "Adding python 3.10 to path" -success
+    $env:Path += ";$Global:pyPath"
+    logger.success
+    return
 }
 function Install-git {
     $gitInPath = Get-Command git -ErrorAction SilentlyContinue
     if ($gitInPath) {
         $Global:gitPath = $gitInPath.Source
-        logger.info "Git found and already in PATH at $($gitInPath.Source)"
+        logger.info "Git found and already in PATH:" "$($gitInPath.Source)"
         return
     }
     else {
@@ -56,10 +47,10 @@ function Install-git {
             logger.success
         }
         else {
-            logger.info "Git found $("$env:ProgramFiles\Git")"
+            logger.info "Git found" "$("$env:ProgramFiles\Git")"
         }
         if (!(Get-Command git -ErrorAction SilentlyContinue)) {
-            logger.action "Git not found in PATH, adding it"
+            logger.action "Git not found in PATH, adding it" -success
             $env:Path += ";$gitPath\bin"
             logger.success
             return
@@ -71,23 +62,59 @@ function Install-git {
 }
 function Install-WebUI {
     if (!(Test-Path $webuiPath)) {
-        logger.web -Type "download" -Object "Automatic1111 SD WebUI was not found, cloning git"
+        logger.web -Type "download" -Object "Cloning Automatic1111 SD WebUI git"
         git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui $webuiPath
-        logger.success
+        logger.success "Done"
         return
     }
-    logger.info "Automatic1111 SD WebUI found at $webuiPath"
+    logger.info "Automatic1111 SD WebUI found:" "$webuiPath"
+}
+function Reset-WebUI {
+    $Exprompt = [system.windows.messagebox]::Show("This will entirely wipe the WebUI folder and reclone it from github, make sure you have all your important data & models backed up.`n`n Are you sure you want to reset the WebUI folder ?", 'Careful There', 'YesNo', 'Warning')
+    if ($Exprompt -eq "Yes") {
+        logger.action "Removing the Webui Folder" -success
+        Remove-Item $webuiPath -Recurse -Force
+        logger.success
+        Install-WebUI 
+    }
 }
 function Import-BaseModel {
     $ckptDirSetting = $settings | Where-Object { $_.arg -eq "ckpt-dir" }
     if (($ckptDirSetting.enabled -eq $false) -and !(Get-ChildItem $modelsPath | Where-Object { $_.extension -ne ".txt" })) {
         $Exprompt = [system.windows.messagebox]::Show("No model was found on your installation, do you want to download the Stable Diffusion 1.5 base model ?`n`nIf you don't know what that is, you probably want to click Yes`n`nThis will take a while so be patient", 'Confirmation', 'YesNo')
         if ($Exprompt -eq "Yes") {
-            logger.action "Downloading Base Model, this can take a while" 
-            $WebClient = New-Object System.Net.WebClient
-            $WebClient.DownloadFile("https://anga.tv/ems/model.ckpt", "$modelsPath\SD15NewVAEpruned.ckpt")
+            $url = "https://anga.tv/ems/model.ckpt"
+            $destination = "$modelsPath\SD15NewVAEpruned.ckpt"
+            $request = [System.Net.HttpWebRequest]::Create($url)
+            $response = $request.GetResponse()
+            $fileSize = [int]$response.ContentLength
+            Start-Job -ScriptBlock {
+                param($url, $destination)
+                $WebClient = New-Object System.Net.WebClient
+                $WebClient.DownloadFile($url, $destination)
+                Write-Host "Download complete"
+            } -ArgumentList $url, $destination | Out-Null
+
+            while (!(Test-Path $destination)) {
+                logger.info "Waiting for file to be created..."
+                Start-Sleep -Seconds 1
+            }
+            $timePassed = 0.1
+            while ((Get-Item $destination).Length -lt $fileSize) {              
+                $downloadSize = (Get-Item $destination).Length
+                $ratio = [Math]::Ceiling($downloadSize / $fileSize * 100)
+                $dlRate = $ratio / $timePassed
+                $remainingPercent = (100 - $ratio)
+                $remainingTime = [Math]::Floor($remainingPercent / $dlRate)
+                logger.dlprogress "Downloading model: $ratio % | ~ $remainingTime s remaining  "
+                Start-Sleep -Seconds 1
+                $timePassed += 1
+            }
             logger.success
         }
+    }
+    else {
+        logger.info "One or more checkpoint models were found"
     }
 }
 function Get-Version {
@@ -136,7 +163,7 @@ function Get-WebUICommitHash {
 #Settings related functions
 #-----------------------------
 function Write-Settings($settings) {
-    logger.action "Updating Settings File"
+    logger.action "Updating Settings File" -success
     $settings | ConvertTo-Json -Depth 100 | Out-File $settingsPath
     logger.success
 }
@@ -286,7 +313,7 @@ function Update-WebUI ($enabled) {
         logger.web -Type "update" -Object "Updating Webui"
         Set-Location $webuiPath
         git pull origin
-        logger.success
+        logger.success "Done"
     }
 }
 function Update-Extensions ($enabled) {
@@ -299,10 +326,10 @@ function Update-Extensions ($enabled) {
                 Set-Location $ext.Fullname
                 git pull origin 
             }
-            logger.success
+            logger.success "Done"
             return
         }
-        logger.warn "No extension found in the extensions folder"
+        logger.info "There is no extension in the extensions folder"
     }
 }
 function Clear-Outputs {
@@ -319,6 +346,6 @@ function Clear-Outputs {
                 Get-ChildItem $outputsPath -Force -Recurse -File | Where-Object { $_.Extension -eq ".png" -or $_.Extension -eq ".jpg" } | Remove-Item -Force
             }
         }
-        logger.success
+        logger.success "Done"
     }
 }

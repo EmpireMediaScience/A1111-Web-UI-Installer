@@ -2,9 +2,12 @@ Set-Location $PSScriptRoot
 Import-Module .\Functions.psm1 -Force
 . "$PSScriptRoot\shared.ps1"
 
+logger.pop "Loading A111 WebUI Launcher"
+
 # Ui general variables
 $settings = Restore-Settings
 $Version = Get-Version
+
 
 $webuiConfig = ""
 if (Test-Path $configFile) {
@@ -24,7 +27,8 @@ $GPUText = "No Compatible GPU Found"
 if ($GPUInfo) {
     $GPUText = "$($GPUInfo.Model) $($GPUInfo.VRAM) GB"
 }
-
+logger.space "White"
+logger.action "Checking requirements :"
 Install-py
 Install-git
 Install-WebUI
@@ -77,7 +81,7 @@ function Invoke-WebUI {
     
     Set-Location $webuiPath
 
-    $env:PYTHON = "`"$pyPath`""
+    $env:PYTHON = "`"$pyPath\python.exe`""
     <#
     $env:GIT_PYTHON_GIT_EXECUTABLE = "$gitPath"
     $env:GIT = $gitPath 
@@ -153,6 +157,17 @@ function Makeform {
     $GeneralDesc.Dock = "Bottom"
 
     $GeneralContainer.Controls.Add($GeneralDesc)
+    $cleanBTN = New-Object System.Windows.Forms.Button
+    $cleanBTN.Text = "$([char]0x21BA)"
+    $cleanBTN.BackColor = "Black"
+    $cleanBTN.ForeColor = "Red"
+    $cleanBTN.Add_Click({
+            Reset-WebUI
+        })
+    $cleanBTN.Size = "20, 20"
+    $cleanBTN.Dock = "Right"
+    $cleanBTN.Margin = "0,20,0,0"
+    $GeneralContainer.Controls.Add($cleanBTN) 
 
     $UIparams = foreach ($def in $defs) {
         $setting = $settings | Where-Object { $_.arg -eq $def.arg }
@@ -204,7 +219,7 @@ function Makeform {
             $paramDesc.Dock = "Bottom"
             
             $gitContainer.Controls.Add($UIparam)
-            $gitContainer.Controls.Add($forceBTN) 
+            $gitContainer.Controls.Add($forceBTN)
             $gitContainer.Controls.Add($paramDesc)
 
             $GeneralContainer.Controls.Add($gitContainer)
@@ -417,6 +432,6 @@ function Makeform {
     $Form.ShowDialog()
 }
 
-logger.pop "Opening A1111 WebUI Launcher"
+logger.pop "Loading Complete, opening launcher"
 
 MakeForm
