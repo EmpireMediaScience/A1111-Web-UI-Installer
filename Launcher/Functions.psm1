@@ -9,8 +9,16 @@ function Search-RegForPyPath {
     foreach ($path in $regPaths) {
         $pyCore = Get-ItemProperty -Path $path -ErrorAction SilentlyContinue
         if ($pyCore) {
-            $pyPath = Split-Path $pyCore.ExecutablePath -Parent
-            logger.info "Python 3.10 found in registry:" "$pyPath"
+            $pyPath = $pyCore.'(default)'
+            $pyVersion = (Get-Command -Name "$pyPath\python.exe").Version
+            logger.info "Python $pyVersion found in registry:" "$pyPath"
+            if ($pyVersion -notlike "3.10.6150.1013") {
+                $Exprompt = [system.windows.messagebox]::Show("You've installed Python 3.10 ($pyVersion) previously, but it is not the right version. This could lead to errors.`n`nTo fix this, uninstall all the versions of Python 3.10 from your system and restart the launcher`n`nDo you want to continue anyway ?", "Python $pyVersion not recommended", 'YesNo')
+                logger.warn "This is not the recommended version of Python and will probably cause errors"
+                if ($Exprompt -eq "No") {
+                    exit
+                }
+            }
             return $pyPath
         }
     }
@@ -81,7 +89,7 @@ function Reset-WebUI {
 function Import-BaseModel {
     $ckptDirSetting = $settings | Where-Object { $_.arg -eq "ckpt-dir" }
     if (($ckptDirSetting.enabled -eq $false) -and !(Get-ChildItem $modelsPath | Where-Object { $_.extension -ne ".txt" })) {
-        $Exprompt = [system.windows.messagebox]::Show("No model was found on your installation, do you want to download the Stable Diffusion 1.5 base model ?`n`nIf you don't know what that is, you probably want to click Yes`n`nThis will take a while so be patient", 'Confirmation', 'YesNo')
+        $Exprompt = [system.windows.messagebox]::Show("No model was found on your installation, do you want to download the Stable Diffusion 1.5 base model ?`n`nIf you don't know what that is, you probably want to click Yes`n`nThis will take a while so be patient", 'Install SD 1.5 Model ?', 'YesNo')
         if ($Exprompt -eq "Yes") {
             $url = "https://anga.tv/ems/model.ckpt"
             $destination = "$modelsPath\SD15NewVAEpruned.ckpt"
