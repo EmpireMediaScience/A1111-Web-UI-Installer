@@ -12,7 +12,7 @@
     "type": "git"
   },
   {
-    "name": "Clear Generated Images",
+    "name": "Clear All Generations",
     "arg": "git-ClearOutputs",
     "Description": "Clear all generated images at launch",
     "type": "git"

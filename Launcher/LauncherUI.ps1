@@ -86,7 +86,11 @@ function Invoke-WebUI {
     $env:GIT_PYTHON_GIT_EXECUTABLE = "$gitPath"
     $env:GIT = $gitPath 
     #>
-    $env:COMMANDLINE_ARGS = "--autolaunch " + $arguments
+    $autolaunch = "--autolaunch "
+    if ($Global:args -contains "no-autolaunch") {
+        $autolaunch = ""
+    }
+    $env:COMMANDLINE_ARGS = $autolaunch + $arguments
 
     Start-Process "$webuiPath/webui.bat" -NoNewWindow
     Set-Location $PSScriptRoot
@@ -122,13 +126,13 @@ function Makeform {
     $form.StartPosition = 'CenterScreen'
     $form.BackColor = $backgroundColor
     $form.ForeColor = $accentColor
-    $form.Font = "Segoe UI"
+    $Form.Font = New-Object System.Drawing.Font("Segoe UI Emoji", 9, [System.Drawing.FontStyle]::Regular)
     $form.AllowTransparency = $true
     $form.FormBorderStyle = "FixedSingle"
     $form.ControlBox = $false
     $form.AutoSize = $true
     $form.Padding = 20
-    $form.Size = "350,500"
+    $form.Size = "350, 500"
 
     $versionLabel = New-Object System.Windows.Forms.Label
     $versionLabel.Text = "Launcher V$($Version.Long)"
@@ -138,8 +142,8 @@ function Makeform {
     $title = New-Object System.Windows.Forms.Label
     $title.Text = "AUTOMATIC1111 WEBUI"
     $title.Font = New-Object System.Drawing.Font("Segoe UI", 12, [System.Drawing.FontStyle]::Regular)
-    $title.Size = "50,40"
-    $title.Padding = "0,0,0,10"
+    $title.Size = "50, 40"
+    $title.Padding = "0, 0, 0, 10"
     $title.Dock = "Top"
     $title.TextAlign = "middlecenter"
     $form.Controls.Add($title)
@@ -149,24 +153,38 @@ function Makeform {
     $GeneralContainer.Dock = "Bottom"
     $GeneralContainer.BackColor = $buttonColor
     $GeneralContainer.AutoSize = $true
-    $GeneralContainer.Padding = "10,5,10,0"
+    $GeneralContainer.Padding = "10, 5, 10, 0"
 
     $GeneralDesc = New-Object System.Windows.Forms.Label
-    $GeneralDesc.Text = "General Settings"
-    $GeneralDesc.TextAlign = "MiddleCenter" 
+    $GeneralDesc.Text = "WebUI Maintenance"
+    <#     $GeneralDesc.TextAlign = "LeftCenter"  #>
     $GeneralDesc.Dock = "Bottom"
 
     $GeneralContainer.Controls.Add($GeneralDesc)
+
+    $browseBTN = New-Object System.Windows.Forms.Button
+    $browseBTN.Text = "Browse"
+    $browseBTN.Font = New-Object System.Drawing.Font("Segoe UI", 7, [System.Drawing.FontStyle]::Regular)
+    $browseBTN.BackColor = "Black"
+    $browseBTN.Add_Click({
+            Start-Process explorer $webuiPath
+        })
+    $browseBTN.Size = "45, 20"
+    $browseBTN.Dock = "Right"
+    $browseBTN.Margin = "0, 20, 0, 0"
+    $GeneralContainer.Controls.Add($browseBTN) 
+
     $cleanBTN = New-Object System.Windows.Forms.Button
-    $cleanBTN.Text = "$([char]0x21BA)"
+    $cleanBTN.Font = New-Object System.Drawing.Font("Segoe UI", 7, [System.Drawing.FontStyle]::Regular)
+    $cleanBTN.Text = "Reset"
     $cleanBTN.BackColor = "Black"
     $cleanBTN.ForeColor = "Red"
     $cleanBTN.Add_Click({
             Reset-WebUI
         })
-    $cleanBTN.Size = "20, 20"
+    $cleanBTN.Size = "40, 20"
     $cleanBTN.Dock = "Right"
-    $cleanBTN.Margin = "0,20,0,0"
+    $cleanBTN.Margin = "0, 20, 0, 0"
     $GeneralContainer.Controls.Add($cleanBTN) 
 
     $UIparams = foreach ($def in $defs) {
@@ -174,8 +192,8 @@ function Makeform {
         if ($def.type -eq "git") {
             $gitContainer = New-Object System.Windows.Forms.Panel
             $gitContainer.Dock = "Bottom"
-            $gitContainer.Size = "150,50"
-            $gitContainer.Padding = "0,5,0,5"
+            $gitContainer.Size = "150, 50"
+            $gitContainer.Padding = "0, 5, 0, 5"
 
             $UIparam = New-Object System.Windows.Forms.Checkbox
             $UIparam.Checked = $setting.enabled
@@ -233,7 +251,7 @@ function Makeform {
     $ArgContainer = New-Object System.Windows.Forms.Panel
     $ArgContainer.Dock = "Bottom"
     $ArgContainer.AutoSize = $true
-    $ArgContainer.Padding = "10,10,10,5"
+    $ArgContainer.Padding = "10, 10, 10, 5"
 
     $ArgDesc = New-Object System.Windows.Forms.Label
     $ArgDesc.Text = "Launch Options"
@@ -298,7 +316,7 @@ function Makeform {
     $addDesc = New-Object System.Windows.Forms.LinkLabel
     $addDesc.LinkColor = $accentColor
     $addDesc.LinkBehavior = [System.Windows.Forms.LinkBehavior]::NeverUnderline;
-    $addDesc.Text = "Additional Launch Options (Click Here to See The List)"
+    $addDesc.Text = "Additional Launch Options (?)"
     $addDesc.TextAlign = "MiddleCenter" 
     $addDesc.Dock = "Bottom"
     $addDesc.Size = "200, 20"
@@ -310,7 +328,7 @@ function Makeform {
     $additional = New-Object System.Windows.Forms.RichTextBox
     $additional.Name = "add"
     $additional.Dock = "Bottom"
-    $additional.Size = "100,50"
+    $additional.Size = "100, 50"
     $additional.Text = $adds.value
     $additional.ShortcutsEnabled = $true
     $additional.ScrollBars = "Vertical"
@@ -339,7 +357,7 @@ function Makeform {
 
     $ArgsField = New-Object System.Windows.Forms.TextBox
     $ArgsField.Multiline = $true
-    $ArgsField.Size = "1000,60"
+    $ArgsField.Size = "1000, 60"
     $ArgsField.ScrollBars = "Vertical"
     $ArgsField.Dock = "Bottom"
     $ArgsField.ReadOnly = $true
@@ -353,13 +371,13 @@ function Makeform {
 
     $runbox = New-Object System.Windows.Forms.Panel
     $runbox.Dock = "Bottom"
-    $runbox.Padding = "0,15,0,0"
+    $runbox.Padding = "0, 15, 0, 0"
     
     #Run
     $Runbutton = New-Object System.Windows.Forms.Button
     $Runbutton.Dock = "Top"
     $Runbutton.Text = "LAUNCH WEBUI"
-    $Runbutton.Size = "50,40"
+    $Runbutton.Size = "50, 40"
     $Runbutton.ForeColor = $accentColor
     $Runbutton.Add_Click({ 
             Invoke-WebUI $settings
@@ -372,7 +390,7 @@ function Makeform {
     $Exitbutton = New-Object System.Windows.Forms.Button
     $Exitbutton.Dock = "Bottom"
     $Exitbutton.Text = "EXIT"
-    $Exitbutton.Size = "50,30"
+    $Exitbutton.Size = "50, 30"
     $Exitbutton.ForeColor = "White"
     $Exitbutton.Add_Click({
             $form.Close()
@@ -386,7 +404,7 @@ function Makeform {
 
     $HWContainer = New-Object System.Windows.Forms.Panel
     $HWContainer.Dock = "Bottom"
-    $HWContainer.Size = "1000,80"
+    $HWContainer.Size = "1000, 80"
 
     $GPULabel = New-Object System.Windows.Forms.Label
     $GPULabel.Text = $GPUText
@@ -413,7 +431,7 @@ function Makeform {
     $helpLabel.LinkBehavior = [System.Windows.Forms.LinkBehavior]::NeverUnderline;
     $helpLabel.Add_Click({ Start-Process "https://github.com/EmpireMediaScience/A1111-Web-UI-Installer/issues" })
     $helpLabel.Dock = "Bottom"
-    $helpLabel.Size = "1000,15"
+    $helpLabel.Size = "1000, 15"
     $helpLabel.TextAlign = "MiddleCenter"
     $HWContainer.Controls.Add($helpLabel)
 
@@ -423,7 +441,7 @@ function Makeform {
     $LhelpLabel.LinkBehavior = [System.Windows.Forms.LinkBehavior]::NeverUnderline;
     $LhelpLabel.Add_Click({ Start-Process "https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/new/choose" })
     $LhelpLabel.Dock = "Bottom"
-    $LhelpLabel.Size = "1000,15"
+    $LhelpLabel.Size = "1000, 15"
     $LhelpLabel.TextAlign = "MiddleCenter"
     $HWContainer.Controls.Add($LhelpLabel)
 

@@ -48,8 +48,9 @@ When double clicking ***A1111 WebUI (Pin to Taskbar)*** You should be greeted wi
 
 ## Features
 
-## **`General Settings`**
-- **The red <kbd>↺</kbd> button**: This will wipe the *stable-diffusion-webui* folder and reclone it from github
+## **`WebUI Maintenance Settings`**
+- **<kbd>Browse</kbd>**: This will browse to the WebUI folder
+- **<kbd>Reset</kbd>**: This will wipe the *stable-diffusion-webui* folder and reclone it from github
    > ⚠️ The folder is permanently deleted so make some back ups if needed ! A pop up will ask you for confirmation
 - [x] **Auto-Update WebUI** : This will update (git pull) the WebUI everytime you launch it
 - [x] **Auto-Update Extensions** : Same thing but with the extensions

@@ -24,10 +24,10 @@
     <ROW Property="MSIFASTINSTALL" MultiBuildValue="DefaultBuild:3"/>
     <ROW Property="Manufacturer" Value="Empire Media Science"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="2057:{3927B33B-3494-4C4C-8F34-52927AA06942} " Type="16"/>
+    <ROW Property="ProductCode" Value="2057:{D1FDE7EA-EB57-44F3-8B37-5467330958F1} " Type="16"/>
     <ROW Property="ProductLanguage" Value="2057"/>
     <ROW Property="ProductName" Value="A1111 Web UI Autoinstaller"/>
-    <ROW Property="ProductVersion" Value="1.6.1"/>
+    <ROW Property="ProductVersion" Value="1.7.0"/>
     <ROW Property="REBOOT" MultiBuildValue="DefaultBuild:ReallySuppress"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{ED3F2830-A9E0-46B4-9D7E-C242564349CB}"/>
@@ -50,14 +50,16 @@
     <ROW Directory="InstallDlg" Directory_Parent="TARGETDIR" DefaultDir="INSTAL~1|InstallDlg:dsfd" IsPseudoRoot="1"/>
     <ROW Directory="Launcher_Dir" Directory_Parent="APPDIR" DefaultDir="Launcher"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
+    <ROW Directory="fonts_Dir" Directory_Parent="Launcher_Dir" DefaultDir="fonts"/>
     <ROW Directory="regid.199509.com.example_Dir" Directory_Parent="CommonAppDataFolder" DefaultDir="REGID1~1.EXA|regid.1995-09.com.example"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{9A6F4222-BDEC-480F-91CB-FD9389F5CA3A}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{27B9D3A9-1B82-47F7-B10C-4F1563009D89}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_DisableModify" ComponentId="{F2050EAB-4FE0-4037-BD04-5CC3D395CCD6}" Directory_="APPDIR" Attributes="260" KeyPath="NoModify" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{B811E420-F0BA-4852-9CFC-442518C5004C}" Directory_="APPDIR" Attributes="260" KeyPath="AI_ExePath"/>
     <ROW Component="APPDIR" ComponentId="{8CF866A2-A911-49F3-990F-8C58E2C86E81}" Directory_="APPDIR" Attributes="0"/>
     <ROW Component="InstallDlg" ComponentId="{43D6052F-DBBE-4963-A5D7-1DA28EDA7216}" Directory_="InstallDlg" Attributes="0"/>
+    <ROW Component="NotoEmojiRegular.ttf" ComponentId="{2B2D9D58-2632-4421-8729-39EE5702CFAF}" Directory_="fonts_Dir" Attributes="0" Type="0"/>
     <ROW Component="ProductInformation" ComponentId="{89B7657B-A9AC-47E0-934E-DFD5C27F709B}" Directory_="APPDIR" Attributes="260" KeyPath="Version"/>
     <ROW Component="definitions.json" ComponentId="{6A0F435C-A63A-448F-9ED7-320D31F7F1E2}" Directory_="Launcher_Dir" Attributes="0" KeyPath="definitions.json" Type="0"/>
     <ROW Component="regid.199509.com.example" ComponentId="{CED1F5AE-CD32-43C2-B701-4C359940B9A3}" Directory_="regid.199509.com.example_Dir" Attributes="0"/>
@@ -72,6 +74,7 @@
     <ROW File="LauncherUI.ps1" Component_="definitions.json" FileName="LAUNCH~1.PS1|LauncherUI.ps1" Attributes="0" SourcePath="Launcher\LauncherUI.ps1" SelfReg="false"/>
     <ROW File="logger.psm1" Component_="definitions.json" FileName="LOGGER~1.PSM|logger.psm1" Attributes="0" SourcePath="Launcher\logger.psm1" SelfReg="false"/>
     <ROW File="shared.ps1" Component_="definitions.json" FileName="shared.ps1" Attributes="0" SourcePath="Launcher\shared.ps1" SelfReg="false"/>
+    <ROW File="NotoEmojiRegular.ttf" Component_="NotoEmojiRegular.ttf" FileName="NOTOEM~1.TTF|NotoEmoji-Regular.ttf" Attributes="0" SourcePath="Launcher\fonts\NotoEmoji-Regular.ttf" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.AiComponentAliasComponent">
     <ROW AliasRowId="InstallDlg" AliasRowOperation="1"/>
@@ -356,6 +359,7 @@
     <ROW Feature_="MainFeature" Component_="InstallDlg"/>
     <ROW Feature_="MainFeature" Component_="definitions.json"/>
     <ROW Feature_="MainFeature" Component_="AI_ExePath"/>
+    <ROW Feature_="MainFeature" Component_="NotoEmojiRegular.ttf"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="logoAlpha.exe" SourcePath="Advanced Installer\Looks\Exports\logoAlpha.ico" Index="0"/>
