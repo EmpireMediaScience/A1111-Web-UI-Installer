@@ -75,4 +75,7 @@ When double clicking ***A1111 WebUI (Pin to Taskbar)*** You should be greeted wi
 - Ablity to copy the WebUI Commit Hash (practical for opening GitHub issues)
 - Direct link to the Issues section of the Installer/Launcher Github
 - Direct link to the Issues section of the WebUI
-- (Experienced users) You can add "skip" at the end of the "A1111 WebUI (Pin to Taskbar)" shortcut target to go straight to the Stable Diffusion WebUI with your existing settings
+### **`Launcher launch options`**
+> You can add launch options to the launcher itself by adding them at the end of the "A1111 WebUI (Pin to Taskbar)" shortcut target
+- **`skip`** : This goes straight to the Stable Diffusion WebUI with your existing settings without displaying the Launcher UI
+- **`no-autolaunch`** : This will launch the WebUI server without opening it when you click **`LAUNCH WEBUI`**, so you can just browser to `http://127.0.0.1:7860/` on your preferred browser
