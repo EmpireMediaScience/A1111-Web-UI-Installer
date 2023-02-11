@@ -9,6 +9,7 @@
     <ROW Property="AI_PRODUCTNAME_ARP" Value="[|ProductName]"/>
     <ROW Property="AI_UNINSTALLER" Value="msiexec.exe"/>
     <ROW Property="ALLUSERS" Value="1" MultiBuildValue="DefaultBuild:3"/>
+    <ROW Property="APPDIREXISTS" Value="0"/>
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
     <ROW Property="ARPHELPLINK" Value="https://discord.gg/5KRHgNpz"/>
     <ROW Property="ARPNOMODIFY" MultiBuildValue="DefaultBuild:1"/>
@@ -17,17 +18,17 @@
     <ROW Property="ARPSYSTEMCOMPONENT" Value="1"/>
     <ROW Property="ARPURLINFOABOUT" Value="https://discord.gg/5KRHgNpz"/>
     <ROW Property="AiPreferFastOem" MultiBuildValue="DefaultBuild:1"/>
-    <ROW Property="AppLogoIcon" Value="applogoicon.bmp" MultiBuildValue="DefaultBuild:logo2.jpg" Type="1" MsiKey="AppLogoIcon"/>
-    <ROW Property="CLEAN_INSTALL" Value="clean" Type="4"/>
+    <ROW Property="AppLogoIcon" Value="applogoicon.bmp" MultiBuildValue="DefaultBuild:Icon.jpg" Type="1" MsiKey="AppLogoIcon"/>
+    <ROW Property="Background" Value="background" MultiBuildValue="DefaultBuild:Background.jpg" Type="1" MsiKey="Background"/>
     <ROW Property="GitCloneSuccess" Value="0"/>
     <ROW Property="InstallDlg" Comments="yes"/>
     <ROW Property="MSIFASTINSTALL" MultiBuildValue="DefaultBuild:3"/>
     <ROW Property="Manufacturer" Value="Empire Media Science"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="2057:{D1FDE7EA-EB57-44F3-8B37-5467330958F1} " Type="16"/>
+    <ROW Property="ProductCode" Value="2057:{9BFC625F-C278-44C5-B6A3-BEA4614C117F} " Type="16"/>
     <ROW Property="ProductLanguage" Value="2057"/>
     <ROW Property="ProductName" Value="A1111 Web UI Autoinstaller"/>
-    <ROW Property="ProductVersion" Value="1.7.0"/>
+    <ROW Property="ProductVersion" Value="2.0.0"/>
     <ROW Property="REBOOT" MultiBuildValue="DefaultBuild:ReallySuppress"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{ED3F2830-A9E0-46B4-9D7E-C242564349CB}"/>
@@ -50,16 +51,14 @@
     <ROW Directory="InstallDlg" Directory_Parent="TARGETDIR" DefaultDir="INSTAL~1|InstallDlg:dsfd" IsPseudoRoot="1"/>
     <ROW Directory="Launcher_Dir" Directory_Parent="APPDIR" DefaultDir="Launcher"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
-    <ROW Directory="fonts_Dir" Directory_Parent="Launcher_Dir" DefaultDir="fonts"/>
     <ROW Directory="regid.199509.com.example_Dir" Directory_Parent="CommonAppDataFolder" DefaultDir="REGID1~1.EXA|regid.1995-09.com.example"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{27B9D3A9-1B82-47F7-B10C-4F1563009D89}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{86C1EA5F-3545-471A-8FD7-BC9563C71B6D}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_DisableModify" ComponentId="{F2050EAB-4FE0-4037-BD04-5CC3D395CCD6}" Directory_="APPDIR" Attributes="260" KeyPath="NoModify" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{B811E420-F0BA-4852-9CFC-442518C5004C}" Directory_="APPDIR" Attributes="260" KeyPath="AI_ExePath"/>
     <ROW Component="APPDIR" ComponentId="{8CF866A2-A911-49F3-990F-8C58E2C86E81}" Directory_="APPDIR" Attributes="0"/>
     <ROW Component="InstallDlg" ComponentId="{43D6052F-DBBE-4963-A5D7-1DA28EDA7216}" Directory_="InstallDlg" Attributes="0"/>
-    <ROW Component="NotoEmojiRegular.ttf" ComponentId="{2B2D9D58-2632-4421-8729-39EE5702CFAF}" Directory_="fonts_Dir" Attributes="0" Type="0"/>
     <ROW Component="ProductInformation" ComponentId="{89B7657B-A9AC-47E0-934E-DFD5C27F709B}" Directory_="APPDIR" Attributes="260" KeyPath="Version"/>
     <ROW Component="definitions.json" ComponentId="{6A0F435C-A63A-448F-9ED7-320D31F7F1E2}" Directory_="Launcher_Dir" Attributes="0" KeyPath="definitions.json" Type="0"/>
     <ROW Component="regid.199509.com.example" ComponentId="{CED1F5AE-CD32-43C2-B701-4C359940B9A3}" Directory_="regid.199509.com.example_Dir" Attributes="0"/>
@@ -74,7 +73,6 @@
     <ROW File="LauncherUI.ps1" Component_="definitions.json" FileName="LAUNCH~1.PS1|LauncherUI.ps1" Attributes="0" SourcePath="Launcher\LauncherUI.ps1" SelfReg="false"/>
     <ROW File="logger.psm1" Component_="definitions.json" FileName="LOGGER~1.PSM|logger.psm1" Attributes="0" SourcePath="Launcher\logger.psm1" SelfReg="false"/>
     <ROW File="shared.ps1" Component_="definitions.json" FileName="shared.ps1" Attributes="0" SourcePath="Launcher\shared.ps1" SelfReg="false"/>
-    <ROW File="NotoEmojiRegular.ttf" Component_="NotoEmojiRegular.ttf" FileName="NOTOEM~1.TTF|NotoEmoji-Regular.ttf" Attributes="0" SourcePath="Launcher\fonts\NotoEmoji-Regular.ttf" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.AiComponentAliasComponent">
     <ROW AliasRowId="InstallDlg" AliasRowOperation="1"/>
@@ -148,61 +146,58 @@
     <ROW Property="AI_SETUPEXEPATH" Signature_="AI_EXE_PATH_CU" Builds="DefaultBuild"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
+    <ROW Name="Background.jpg" SourcePath="Advanced Installer\Looks\Exports\Background.jpg"/>
     <ROW Name="ExternalUICleaner.dll" SourcePath="&lt;AI_CUSTACTS&gt;ExternalUICleaner.dll"/>
+    <ROW Name="Icon.jpg" SourcePath="Advanced Installer\Looks\Exports\Icon.jpg"/>
     <ROW Name="PowerShellScriptLauncher.dll" SourcePath="&lt;AI_CUSTACTS&gt;PowerShellScriptLauncher.dll"/>
     <ROW Name="Prereq.dll" SourcePath="&lt;AI_CUSTACTS&gt;Prereq.dll"/>
     <ROW Name="ResourceCleaner.dll" SourcePath="&lt;AI_CUSTACTS&gt;ResourceCleaner.dll"/>
     <ROW Name="ShortcutFlags.dll" SourcePath="&lt;AI_CUSTACTS&gt;ShortcutFlags.dll"/>
     <ROW Name="SoftwareDetector.dll" SourcePath="&lt;AI_CUSTACTS&gt;SoftwareDetector.dll"/>
+    <ROW Name="Splash.jpg" SourcePath="Advanced Installer\Looks\Exports\Splash.jpg"/>
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
-    <ROW Name="dlModel.ps1" SourcePath="Advanced Installer\Scripts\dlModel.ps1"/>
-    <ROW Name="gitclone.ps1" SourcePath="Advanced Installer\Scripts\gitclone.ps1"/>
-    <ROW Name="logo2.jpg" SourcePath="Advanced Installer\Looks\Exports\logo2.jpg"/>
+    <ROW Name="loading.gif" SourcePath="Advanced Installer\Looks\Exports\loading.gif"/>
     <ROW Name="lzmaextractor.dll" SourcePath="&lt;AI_CUSTACTS&gt;lzmaextractor.dll"/>
     <ROW Name="viewer.exe" SourcePath="&lt;AI_CUSTACTS&gt;viewer.exe"/>
     <ROW Name="xmlCfg.dll" SourcePath="&lt;AI_CUSTACTS&gt;xmlCfg.dll"/>
+    <ATTRIBUTE name="DeletedRows" value="PrepareDlgProgress.gif"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCheckBoxComponent">
-    <ROW Property="CLEAN_INSTALL" Value="clean"/>
     <ATTRIBUTE name="DeletedRows" value="AGREE_CHECKBOX"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
     <ROW Dialog_="CustomizeDlg" Control="CustomizeDlgDialogInitializer" Type="DialogInitializer" X="0" Y="0" Width="0" Height="0" Attributes="0" Order="-1" TextLocId="-" HelpLocId="-" ExtDataLocId="-"/>
-    <ROW Dialog_="ExitDialog" Control="ProductLogo" Type="Bitmap" X="17" Y="5" Width="59" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="900" MsiKey="ExitDialog#ProductLogo"/>
-    <ROW Dialog_="ExitDialog" Control="ReadmeButton" Type="ImageButton" X="77" Y="155" Width="92" Height="123" Attributes="3" Text="[ViewReadMeButton]" Order="1000" MsiKey="ExitDialog#ReadmeButton" ExtType="ImageButton"/>
-    <ROW Dialog_="ExitDialog" Control="MetroReadmeText" Type="Text" X="83" Y="278" Width="86" Height="16" Attributes="196611" Text="Readme" Order="1100" TextLocId="Metro.Control.Text.ExitDialog#Readme" MsiKey="ExitDialog#MetroReadmeText"/>
-    <ROW Dialog_="ExitDialog" Control="RunButton" Type="ImageButton" X="176" Y="155" Width="92" Height="123" Attributes="3" Text="[MetroRunApplicationButton]" Order="1200" MsiKey="ExitDialog#RunButton" ExtType="ImageButton"/>
-    <ROW Dialog_="ExitDialog" Control="RunLabel" Type="Text" X="182" Y="278" Width="86" Height="16" Attributes="196611" Text="Run" Order="1300" TextLocId="Metro.Control.Text.ExitDialog#Run" MsiKey="ExitDialog#RunLabel"/>
-    <ROW Dialog_="ExitDialog" Control="AdvInst" Type="Text" X="5" Y="388" Width="74" Height="11" Attributes="196611" Text="Advanced Installer" TextStyle="[BrandingStyle]" Order="1400" MsiKey="ExitDialog#AdvInst"/>
-    <ROW Dialog_="FatalError" Control="ProductLogo" Type="Bitmap" X="17" Y="5" Width="59" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="1100" MsiKey="FatalError#ProductLogo"/>
-    <ROW Dialog_="FatalError" Control="CompanyText" Type="Text" X="83" Y="16" Width="191" Height="12" Attributes="196611" Text="[Manufacturer]" TextStyle="[ManufacturerFont]" Order="1200" TextLocId="Metro.Control.Text.Manufacturer" MsiKey="FatalError#CompanyText"/>
+    <ROW Dialog_="ExitDialog" Control="AdvInst" Type="Text" X="5" Y="388" Width="74" Height="11" Attributes="196611" Text="Advanced Installer" TextStyle="[BrandingStyle]" Order="500" MsiKey="ExitDialog#AdvInst"/>
+    <ROW Dialog_="ExitDialog" Control="Splash" Type="Bitmap" X="0" Y="0" Width="345" Height="400" Attributes="1" Text="Splash.jpg" Order="600"/>
+    <ROW Dialog_="ExitDialog" Control="Finish" Type="ImageButton" X="128" Y="218" Width="78" Height="28" Attributes="3" Text="[metroinstallbutton]" TextStyle="[SubTitleStyle]" Order="700" MsiKey="ExitDialog#Finish" Options="1" ExtType="ImageButton" ExtData="FINISH"/>
     <ROW Dialog_="InstallDlg" Control="Bitmap" Type="Bitmap" X="0" Y="0" Width="345" Height="400" Attributes="1" Text="[Background]" Order="100" MsiKey="InstallDlg#Bitmap"/>
     <ROW Dialog_="InstallDlg" Control="Next" Type="ImageButton" X="0" Y="0" Width="1" Height="1" Attributes="0" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="300" MsiKey="InstallDlg#Next" Options="1" ExtType="ImageButton" ExtData="Install"/>
     <ROW Dialog_="InstallDlg" Control="Cancel" Type="ImageButton" X="345" Y="0" Width="0" Height="0" Attributes="2" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="400" MsiKey="InstallDlg#Cancel" Options="1" ExtType="ImageButton" ExtData="[ButtonText_Cancel]" ExtDataLocId="-"/>
-    <ROW Dialog_="InstallDlg" Control="Description" Type="Text" X="17" Y="136" Width="299" Height="12" Attributes="589827" Text="Where do you want the UI to be stored ?" Order="500" MsiKey="InstallDlg#Description"/>
-    <ROW Dialog_="InstallDlg" Control="Browse" Type="ImageButton" X="307" Y="153" Width="21" Height="20" Attributes="3" Text="[browsebutton]" TextStyle="[MetroButtonText]" Order="600" MsiKey="InstallDlg#Browse" ExtType="ImageButton" ExtData="..." ExtDataLocId="Metro.Control.ExtData.WelcomeDlg.BrowseTxt"/>
-    <ROW Dialog_="InstallDlg" Control="YouMustAgreeCtrl" Type="Hyperlink" X="17" Y="253" Width="311" Height="12" Attributes="65536" Text="&lt;a href=&quot;&quot;&gt;IMPORTANT DETAILS&lt;/a&gt;" TextStyle="[HyperlinkFont]" Order="700" MsiKey="InstallDlg#YouMustAgreeCtrl"/>
-    <ROW Dialog_="InstallDlg" Control="ProductNameTitle" Type="Text" X="101" Y="56" Width="227" Height="38" Attributes="196611" Text="[ProductName]" TextStyle="[ProductNameForSplash]" Order="800" TextLocId="Metro.Control.Text.ProductName" MsiKey="InstallDlg#ProductNameTitle"/>
-    <ROW Dialog_="InstallDlg" Control="ProductLogo" Type="Bitmap" X="13" Y="43" Width="59" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="900" MsiKey="InstallDlg#ProductLogo"/>
-    <ROW Dialog_="InstallDlg" Control="Text_1" Type="Text" X="17" Y="174" Width="291" Height="14" Attributes="65539" Property="TEXT_1_PROP_1" Text="Create a subfolder if you&apos;re not using the default path" TextStyle="Warning" Order="1000"/>
-    <ROW Dialog_="InstallDlg" Control="InstallBTN" Type="ImageButton" X="132" Y="344" Width="78" Height="28" Attributes="3" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="1100" ExtType="ImageButton" ExtData="Install"/>
-    <ROW Dialog_="InstallDlg" Control="PathEdit_1" Type="PathEdit" X="17" Y="153" Width="291" Height="20" Attributes="3" Property="APPDIR" Text="[APPDIR]" Order="1200"/>
-    <ROW Dialog_="InstallDlg" Control="CleanCB" Type="CheckBox" X="17" Y="195" Width="306" Height="18" Attributes="3" Property="CLEAN_INSTALL" Text="Clean Install" Order="1300"/>
-    <ROW Dialog_="InstallDlg" Control="Text_4" Type="Text" X="17" Y="213" Width="312" Height="34" Attributes="65539" Property="TEXT_1_PROP_3" Text="Uncheck this if you just want to update/install the launcher. Else any existing WebUI at the selected path will be wiped." TextStyle="SubTitle8_SubTitle8" Order="1400"/>
+    <ROW Dialog_="InstallDlg" Control="Description" Type="Text" X="17" Y="103" Width="299" Height="12" Attributes="589827" Text="Choose an Install Path (Default Recommended)" TextStyle="MetroLink" Order="500" MsiKey="InstallDlg#Description"/>
+    <ROW Dialog_="InstallDlg" Control="Browse" Type="ImageButton" X="307" Y="120" Width="21" Height="20" Attributes="3" Text="[browsebutton]" TextStyle="[MetroButtonText]" Order="600" MsiKey="InstallDlg#Browse" ExtType="ImageButton" ExtData="..." ExtDataLocId="Metro.Control.ExtData.WelcomeDlg.BrowseTxt"/>
+    <ROW Dialog_="InstallDlg" Control="YouMustAgreeCtrl" Type="Hyperlink" X="17" Y="381" Width="311" Height="12" Attributes="65536" Text="&lt;a href=&quot;&quot;&gt;IMPORTANT DETAILS&lt;/a&gt;" TextStyle="[HyperlinkFont]" Order="700" MsiKey="InstallDlg#YouMustAgreeCtrl"/>
+    <ROW Dialog_="InstallDlg" Control="Text_1" Type="Text" X="17" Y="141" Width="291" Height="14" Attributes="65539" Property="TEXT_1_PROP_1" Text="Create a subfolder if you&apos;re not using the default path" TextStyle="Warning" Order="800"/>
+    <ROW Dialog_="InstallDlg" Control="InstallBTN" Type="ImageButton" X="133" Y="220" Width="78" Height="28" Attributes="3" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="900" ExtType="ImageButton" ExtData="INSTALL"/>
+    <ROW Dialog_="InstallDlg" Control="PathEdit_1" Type="PathEdit" X="17" Y="120" Width="291" Height="20" Attributes="3" Property="APPDIR" Text="[APPDIR]" Order="1000"/>
+    <ROW Dialog_="InstallDlg" Control="UpdateWarning" Type="Text" X="17" Y="168" Width="311" Height="59" Attributes="65538" Property="TEXT_1_PROP_1_1" Text="The Install Path already contains a Stable Diffusion WebUI folder. If you&apos;re encountering problems, try saving your important data and press &quot;Reset&quot; in the Launcher UI" TextStyle="MetroLink" Order="1100"/>
     <ROW Dialog_="LicenseAgreementDlg" Control="AgreementText" Type="ScrollableText" X="17" Y="122" Width="312" Height="227" Attributes="3" Property="EulaRead" Text="Advanced Installer\eula.rtf" Order="600" TextLocId="_2" MsiKey="LicenseAgreementDlg#AgreementText"/>
     <ROW Dialog_="MsiRMFilesInUse" Control="Cancel" Type="ImageButton" X="163" Y="359" Width="78" Height="28" Attributes="2" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="100" MsiKey="MsiRMFilesInUse#Cancel" Options="1" ExtType="ImageButton" ExtData="[ButtonText_Cancel]" ExtDataLocId="-"/>
     <ROW Dialog_="PatchWelcomeDlg" Control="PatchWelcomeDlgDialogInitializer" Type="DialogInitializer" X="0" Y="0" Width="0" Height="0" Attributes="0" Order="-1" TextLocId="-" HelpLocId="-" ExtDataLocId="-"/>
     <ROW Dialog_="PatchWelcomeDlg" Control="ProductNameTitle" Type="Text" X="83" Y="21" Width="245" Height="50" Attributes="196611" Text="[ProductName]" TextStyle="[ProductNameForSplash]" Order="600" TextLocId="Metro.Control.Text.ProductName" MsiKey="PatchWelcomeDlg#ProductNameTitle"/>
     <ROW Dialog_="PatchWelcomeDlg" Control="CompanyText" Type="Text" X="83" Y="16" Width="191" Height="12" Attributes="196611" Text="[Manufacturer]" TextStyle="[ManufacturerFont]" Order="700" TextLocId="Metro.Control.Text.Manufacturer" MsiKey="PatchWelcomeDlg#CompanyText"/>
     <ROW Dialog_="PatchWelcomeDlg" Control="ProductLogo" Type="Bitmap" X="17" Y="5" Width="59" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="800" MsiKey="PatchWelcomeDlg#ProductLogo"/>
-    <ROW Dialog_="PrepareDlg" Control="ProductNameTitle" Type="Text" X="100" Y="33" Width="245" Height="50" Attributes="196611" Text="[ProductName]" TextStyle="[ProductNameForSplash]" Order="800" TextLocId="Metro.Control.Text.ProductName" MsiKey="PrepareDlg#ProductNameTitle"/>
-    <ROW Dialog_="PrepareDlg" Control="ProductLogo" Type="Bitmap" X="18" Y="27" Width="59" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="900" MsiKey="PrepareDlg#ProductLogo"/>
+    <ROW Dialog_="PrepareDlg" Control="Cancel" Type="PushButton" X="115" Y="368" Width="50" Height="17" Attributes="2" Text="[ButtonText_Cancel]" Order="100" TextLocId="-" MsiKey="PrepareDlg#Cancel" Options="1"/>
+    <ROW Dialog_="PrepareDlg" Control="Next" Type="PushButton" X="273" Y="374" Width="50" Height="17" Attributes="0" Text="[ButtonText_Next]" Order="200" TextLocId="-" MsiKey="PrepareDlg#Next" Options="1"/>
+    <ROW Dialog_="PrepareDlg" Control="Back" Type="PushButton" X="207" Y="368" Width="48" Height="17" Attributes="0" Text="[ButtonText_Back]" Order="300" TextLocId="-" MsiKey="PrepareDlg#Back" Options="1"/>
+    <ROW Dialog_="PrepareDlg" Control="ActionText" Type="Text" X="30" Y="168" Width="305" Height="20" Attributes="196611" Order="400" MsiKey="PrepareDlg#ActionText"/>
+    <ROW Dialog_="PrepareDlg" Control="Description" Type="Text" X="0" Y="340" Width="154" Height="11" Attributes="196610" Text="Please wait while the setup initializes." TextStyle="Title" Order="500" TextLocId="Air.Control.Text.PrepareDlg#Description" MsiKey="PrepareDlg#Description"/>
+    <ROW Dialog_="PrepareDlg" Control="Splash" Type="Bitmap" X="0" Y="0" Width="345" Height="400" Attributes="1" Text="Splash.jpg" Order="600"/>
+    <ROW Dialog_="PrepareDlg" Control="LoadingGif" Type="Bitmap" X="148" Y="191" Width="48" Height="48" Attributes="1" Text="loading.gif" Order="700"/>
     <ROW Dialog_="ProgressDlg" Control="Text" Type="Text" X="17" Y="105" Width="312" Height="30" Attributes="196611" Text="Please wait while the [Wizard] [Progress2] [ProductName].  This may take several minutes." Order="800" TextLocId="Control.Text.ProgressDlg#Text" MsiKey="ProgressDlg#Text"/>
     <ROW Dialog_="ProgressDlg" Control="ProductLogo" Type="Bitmap" X="17" Y="5" Width="59" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="900" MsiKey="ProgressDlg#ProductLogo"/>
     <ROW Dialog_="ProgressDlg" Control="StatusLabel" Type="Text" X="17" Y="171" Width="45" Height="13" Attributes="196611" Text="Status:" TextStyle="[SubnoteFontStyle]" Order="1000" TextLocId="Control.Text.ProgressDlg#StatusLabel" MsiKey="ProgressDlg#StatusLabel"/>
     <ROW Dialog_="ProgressDlg" Control="AdvInst" Type="Text" X="5" Y="388" Width="74" Height="11" Attributes="196611" Text="Advanced Installer" TextStyle="[BrandingStyle]" Order="1100" MsiKey="ProgressDlg#AdvInst"/>
-    <ROW Dialog_="UserExit" Control="ProductLogo" Type="Bitmap" X="17" Y="5" Width="59" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="800" MsiKey="UserExit#ProductLogo"/>
-    <ROW Dialog_="UserExit" Control="AdvInst" Type="Text" X="5" Y="388" Width="74" Height="11" Attributes="196611" Text="Advanced Installer" TextStyle="[BrandingStyle]" Order="900" MsiKey="UserExit#AdvInst"/>
+    <ROW Dialog_="UserExit" Control="AdvInst" Type="Text" X="5" Y="388" Width="74" Height="11" Attributes="196611" Text="Advanced Installer" TextStyle="[BrandingStyle]" Order="700" MsiKey="UserExit#AdvInst"/>
     <ROW Dialog_="VerifyReadyDlg" Control="Cancel" Type="ImageButton" X="163" Y="359" Width="78" Height="28" Attributes="2" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="100" MsiKey="VerifyReadyDlg#Cancel" Options="1" ExtType="ImageButton" ExtData="[ButtonText_Cancel]" ExtDataLocId="-"/>
     <ROW Dialog_="VerifyReadyDlg" Control="Back" Type="PushButton" X="5" Y="381" Width="11" Height="11" Attributes="2" Text="Control.Text.VerifyReadyDlg#Back" Help="Back|" Order="200" TextLocId="Control.Text.VerifyReadyDlg#Back" HelpLocId="Air.Control.Help#Back" MsiKey="VerifyReadyDlg#Back" Options="1" ExtType="PushButton" ExtData="[ButtonText_Back]" ExtDataLocId="-"/>
     <ROW Dialog_="VerifyReadyDlg" Control="ReadyToInstall" Type="Text" X="17" Y="105" Width="312" Height="19" Attributes="196611" Text="Ready to Install" TextStyle="[SubTitleStyle]" Order="400" TextLocId="Control.Text.VerifyReadyDlg#Title" MsiKey="VerifyReadyDlg#ReadyToInstall"/>
@@ -215,11 +210,13 @@
     <ROW Dialog_="VerifyRemoveDlg" Control="Cancel" Type="ImageButton" X="163" Y="359" Width="78" Height="28" Attributes="2" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="100" MsiKey="VerifyRemoveDlg#Cancel" Options="1" ExtType="ImageButton" ExtData="[ButtonText_Cancel]" ExtDataLocId="-"/>
     <ROW Dialog_="VerifyRepairDlg" Control="Bitmap" Type="Bitmap" X="0" Y="0" Width="345" Height="400" Attributes="1" Text="[Background]" Order="100" MsiKey="VerifyRepairDlg#Bitmap"/>
     <ROW Dialog_="VerifyRepairDlg" Control="Cancel" Type="ImageButton" X="163" Y="359" Width="78" Height="28" Attributes="2" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="200" MsiKey="VerifyRepairDlg#Cancel" Options="1" ExtType="ImageButton" ExtData="[ButtonText_Cancel]" ExtDataLocId="-"/>
-    <ATTRIBUTE name="DeletedRows" value="ExitDialog#CompanyText@InstallDlg#AdvInst@InstallDlg#CompanyText@InstallDlg#FolderEdit@InstallDlg#InstallButton@InstallDlg#LicenseCheckbox@InstallDlg.aip@PrepareDlg#CompanyText@ProgressDlg#CompanyText@UI.aip@UserExit#CompanyText"/>
+    <ATTRIBUTE name="DeletedRows" value="ExitDialog#Bitmap@ExitDialog#CompanyText@ExitDialog#Description@ExitDialog#MetroReadmeText@ExitDialog#ProductLogo@ExitDialog#ProductNameTitle@ExitDialog#ReadmeButton@ExitDialog#RunButton@ExitDialog#RunLabel@FatalError#CompanyText@FatalError#ProductLogo@FatalError#ProductNameTitle@InstallDlg#AdvInst@InstallDlg#CompanyText@InstallDlg#FolderEdit@InstallDlg#InstallButton@InstallDlg#LicenseCheckbox@InstallDlg#ProductLogo@InstallDlg#ProductNameTitle@InstallDlg.aip@MsiRMFilesInUse#CompanyText@MsiRMFilesInUse#ProductLogo@MsiRMFilesInUse#ProductNameTitle@OutOfDiskDlg#CompanyText@OutOfDiskDlg#ProductLogo@OutOfDiskDlg#ProductNameTitle@PrepareDlg#Bitmap@PrepareDlg#CompanyText@PrepareDlg#ProductLogo@PrepareDlg#ProductNameTitle@PrepareDlg#ProgressAnimation@ProgressDlg#CompanyText@UI.aip@UserExit#CompanyText@UserExit#ProductLogo@UserExit#ProductNameTitle"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlConditionComponent">
     <ROW Dialog_="InstallDlg" Control_="Next" Action="Enable" Condition="UNDERSTAND = &quot;understand&quot;"/>
-    <ATTRIBUTE name="DeletedRows" value="InstallDlg#InstallButton#Disable#NOT AGREE_CHECKBOX@InstallDlg#InstallButton#Enable#AGREE_CHECKBOX@InstallDlg#InstallButton#Hide#(Text_Next &lt;&gt; Text_Install) AND (InstallDlg)@InstallDlg.aip"/>
+    <ROW Dialog_="InstallDlg" Control_="UpdateWarning" Action="Show" Condition="APPDIREXISTS = &quot;1&quot;"/>
+    <ROW Dialog_="InstallDlg" Control_="UpdateWarning" Action="Hide" Condition="APPDIREXISTS = &quot;0&quot;"/>
+    <ATTRIBUTE name="DeletedRows" value="ExitDialog#MetroReadmeText#Hide#((NOT AI_INSTALL) AND (NOT AI_PATCH)) OR ((CTRLS &lt;&gt; 1) AND (CTRLS &lt;&gt; 3)) OR NOT AIEXTERNALUI@ExitDialog#ProductNameTitle#Hide#NOT AIEXTERNALUI@ExitDialog#ReadmeButton#Hide#((NOT AI_INSTALL) AND (NOT AI_PATCH)) OR ((CTRLS &lt;&gt; 1) AND (CTRLS &lt;&gt; 3)) OR NOT AIEXTERNALUI@ExitDialog#RunButton#Hide#((NOT AI_INSTALL) AND (NOT AI_PATCH)) OR ((CTRLS &lt;&gt; 2) AND (CTRLS &lt;&gt; 3)) OR NOT AIEXTERNALUI@ExitDialog#RunLabel#Hide#((NOT AI_INSTALL) AND (NOT AI_PATCH)) OR ((CTRLS &lt;&gt; 2) AND (CTRLS &lt;&gt; 3)) OR NOT AIEXTERNALUI@FatalError#ProductNameTitle#Hide#NOT AIEXTERNALUI@InstallDlg#InstallButton#Disable#NOT AGREE_CHECKBOX@InstallDlg#InstallButton#Enable#AGREE_CHECKBOX@InstallDlg#InstallButton#Hide#(Text_Next &lt;&gt; Text_Install) AND (InstallDlg)@InstallDlg.aip@OutOfDiskDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@PrepareDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@UserExit#ProductNameTitle#Hide#NOT AIEXTERNALUI"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
     <ROW Dialog_="InstallDlg" Control_="Next" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="307"/>
@@ -278,9 +275,10 @@
     <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="12"/>
     <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="[InstallDlg]" Argument="{}" Condition="AI_INSTALL" Ordering="1"/>
     <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="SetTargetPath" Argument="APPDIR" Condition="AI_INSTALL" Ordering="0"/>
-    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="DoAction" Argument="AI_DATA_SETTER_3" Condition="AI_INSTALL AND ( CLEAN_INSTALL = &quot;clean&quot; )" Ordering="7"/>
-    <ROW Dialog_="InstallDlg" Control_="InstallBTN" Event="DoAction" Argument="Gitclone" Condition="AI_INSTALL AND ( CLEAN_INSTALL = &quot;clean&quot; )" Ordering="8"/>
-    <ATTRIBUTE name="DeletedRows" value="InstallDlg#InstallButton#SetTargetPath#APPDIR#AI_INSTALL@InstallDlg#InstallButton#[AiEventsControl]#Next#1@InstallDlg.aip"/>
+    <ROW Dialog_="BrowseDlg" Control_="OK" Event="NewDialog" Argument="InstallDlg" Condition="1" Ordering="201"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallDlgDialogInitializer" Event="DoAction" Argument="DoesAppdirExist" Condition="AI_INSTALL" Ordering="99"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallDlgDialogInitializer" Event="DoAction" Argument="AI_DATA_SETTER_5" Condition="AI_INSTALL" Ordering="98"/>
+    <ATTRIBUTE name="DeletedRows" value="ExitDialog#ReadmeButton#[AiEventsControl]#ViewReadmeCheckBox#1@ExitDialog#RunButton#[AiEventsControl]#LaunchProdCheckBox#1@InstallDlg#InstallButton#SetTargetPath#APPDIR#AI_INSTALL@InstallDlg#InstallButton#[AiEventsControl]#Next#1@InstallDlg.aip"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
@@ -302,8 +300,7 @@
     <ROW Action="AI_DATA_SETTER" Type="51" Source="CustomActionData" Target="[AI_SETUPEXEPATH]"/>
     <ROW Action="AI_DATA_SETTER_1" Type="51" Source="CustomActionData" Target="[~]"/>
     <ROW Action="AI_DATA_SETTER_2" Type="51" Source="CustomActionData" Target="[~]"/>
-    <ROW Action="AI_DATA_SETTER_3" Type="51" Source="CustomActionData" Target="AEYAbABhAGcAcwACADcAAQBTAGMAcgBpAHAAdABTAHIAYwBCAGkAbgBhAHIAeQBSAG8AdwBJAGQAAgBnAGkAdABjAGwAbwBuAGUALgBwAHMAMQ=="/>
-    <ROW Action="AI_DATA_SETTER_4" Type="51" Source="CustomActionData" Target="AEYAbABhAGcAcwACADcAAQBTAGMAcgBpAHAAdABTAHIAYwBCAGkAbgBhAHIAeQBSAG8AdwBJAGQAAgBkAGwATQBvAGQAZQBsAC4AcABzADE="/>
+    <ROW Action="AI_DATA_SETTER_5" Type="51" Source="CustomActionData" Target="AEQAaQBnAGkAdABhAGwAbAB5AFMAaQBnAG4AUwBjAHIAaQBwAHQAAgABAEYAbABhAGcAcwACADAAAQBQAGEAcgBhAG0AcwACAAEAUwBjAHIAaQBwAHQAAgAjAFIAZQBxAHUAaQByAGUAcwAgAC0AdgBlAHIAcwBpAG8AbgAgADMADQAKAFAAYQByAGEAbQAoACkADQAKAA0ACgAjACAATABlAHQAJwBzACAAcwBlAGUAIAB3AGgAaQBjAGgAIABQAG8AdwBlAHIAcwBoAGUAbABsACAAdwBlACcAcgBlACAAdQBzAGkAbgBnAC4AIABGAGUAZQBsACAAZgByAGUAZQAgAHQAbwAgAHIAZQBtAG8AdgBlACAAdABoAGkAcwAgAGYAdQBuAGMAdABpAG8AbgANAAoAJABpAG4AcwB0AGEAbABsAFAAYQB0AGgAIAA9ACAAQQBJAF8ARwBlAHQATQBzAGkAUAByAG8AcABlAHIAdAB5ACAAQQBQAFAARABJAFIADQAKAA0ACgBpAGYAIAAoAFQAZQBzAHQALQBQAGEAdABoACAAIgAkAGkAbgBzAHQAYQBsAGwAUABhAHQAaAAvAHMAdABhAGIAbABlAC0AZABpAGYAZgB1AHMAaQBvAG4ALQB3AGUAYgB1AGkAIgApACAAWwBcAHsAXQANAAoAIAAgACAAIABBAEkAXwBTAGUAdABNAHMAaQBQAHIAbwBwAGUAcgB0AHkAIABBAFAAUABEAEkAUgBFAFgASQBTAFQAUwAgACIAMQAiAA0ACgBbAFwAfQBdAA0ACgBlAGwAcwBlACAAWwBcAHsAXQANAAoAIAAgACAAIABBAEkAXwBTAGUAdABNAHMAaQBQAHIAbwBwAGUAcgB0AHkAIABBAFAAUABEAEkAUgBFAFgASQBTAFQAUwAgACIAMAAiACAADQAKAFsAXAB9AF0ADQAKAA0ACgANAAo="/>
     <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
     <ROW Action="AI_DeleteCadLzma" Type="51" Source="AI_DeleteLzma" Target="[AI_SETUPEXEPATH]"/>
     <ROW Action="AI_DeleteLzma" Type="1025" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
@@ -340,15 +337,15 @@
     <ROW Action="AI_XmlRemove" Type="11265" Source="xmlCfg.dll" Target="OnXmlRemove" WithoutSeq="true"/>
     <ROW Action="AI_XmlRollback" Type="11521" Source="xmlCfg.dll" Target="OnXmlRollback" WithoutSeq="true"/>
     <ROW Action="AI_XmlUninstall" Type="1" Source="xmlCfg.dll" Target="OnXmlUninstall" AdditionalSeq="AI_DATA_SETTER_2"/>
-    <ROW Action="Gitclone" Type="1" Source="PowerShellScriptLauncher.dll" Target="RunPowerShellFileScript" WithoutSeq="true" Options="134217729" AdditionalSeq="AI_DATA_SETTER_3"/>
+    <ROW Action="DoesAppdirExist" Type="1" Source="PowerShellScriptLauncher.dll" Target="RunPowerShellScript" WithoutSeq="true" Options="1" AdditionalSeq="AI_DATA_SETTER_5"/>
     <ROW Action="LaunchFile" Type="194" Source="viewer.exe" Target="/EnforcedRunAsAdmin /DontWait &quot;[APPDIR]&quot;" Options="1"/>
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[PersonalFolder]\[ProductName]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
-    <ROW Action="dlModel" Type="1" Source="PowerShellScriptLauncher.dll" Target="RunPowerShellFileScript" WithoutSeq="true" Options="134217729" AdditionalSeq="AI_DATA_SETTER_4"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDialogComponent">
-    <ROW Dialog="InstallDlg" HCentering="50" VCentering="50" Width="345" Height="400" Attributes="3" Title="[ProductName] [Setup]" Control_Default="InstallBTN" Control_Cancel="Cancel" TitleLocId="Dialog.InstallDlg" MsiKey="InstallDlg"/>
+    <ROW Dialog="InstallDlg" HCentering="50" VCentering="50" Width="345" Height="270" Attributes="3" Title="[ProductName] [Setup]" Control_Default="InstallBTN" Control_Cancel="Cancel" TitleLocId="Dialog.InstallDlg" MsiKey="InstallDlg"/>
+    <ROW Dialog="PrepareDlg" HCentering="50" VCentering="50" Width="345" Height="400" Attributes="0" Title="[ProductName] [Setup]" Control_Default="Cancel" Control_Cancel="Cancel" TitleLocId="Dialog.PrepareDlg" MsiKey="PrepareDlg"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
     <ROW Feature_="MainFeature" Component_="APPDIR"/>
@@ -359,7 +356,6 @@
     <ROW Feature_="MainFeature" Component_="InstallDlg"/>
     <ROW Feature_="MainFeature" Component_="definitions.json"/>
     <ROW Feature_="MainFeature" Component_="AI_ExePath"/>
-    <ROW Feature_="MainFeature" Component_="NotoEmojiRegular.ttf"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="logoAlpha.exe" SourcePath="Advanced Installer\Looks\Exports\logoAlpha.ico" Index="0"/>
@@ -461,13 +457,14 @@
     <ROW FileKey="__1" Component_="definitions.json" DirProperty="Launcher_Dir" InstallMode="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="A1111sWebUI" Directory_="APPDIR" Name="A1111W~1|A1111 WebUI (Pin to Taskbar)" Component_="definitions.json" Target="[WindowsVolume]\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" Arguments="-ExecutionPolicy Bypass -File &quot;[Launcher_Dir]LauncherUI.ps1&quot;" Hotkey="0" Icon_="logoAlpha.exe" IconIndex="0" ShowCmd="1" WkDir="Launcher_Dir" CustomFlags="1"/>
+    <ROW Shortcut="A1111sWebUI" Directory_="APPDIR" Name="A1111W~2|A1111 WebUI Easy Launcher" Component_="definitions.json" Target="[WindowsVolume]\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" Arguments="-ExecutionPolicy Bypass -File &quot;[Launcher_Dir]LauncherUI.ps1&quot;" Hotkey="0" Icon_="logoAlpha.exe" IconIndex="0" ShowCmd="1" WkDir="Launcher_Dir" CustomFlags="1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiTextStyleComponent">
     <ROW TextStyle="BrandingStyle" FaceName="Segoe UI" Size="8" Color="2171376" MultiBuildColor="DefaultBuild:2565927" StyleBits="0" MsiKey="BrandingStyle"/>
     <ROW TextStyle="InputCtrlFont" FaceName="Segoe UI" Size="8" Color="16777215" MultiBuildColor="DefaultBuild:14079702" StyleBits="0" MsiKey="InputCtrlFont"/>
+    <ROW TextStyle="MetroLink" FaceName="Segoe UI" Size="9" Color="16176031" StyleBits="0" MsiKey="MetroLink"/>
     <ROW TextStyle="SubTitle8_SubTitle8" FaceName="Verdana" Size="8" Color="14079702" StyleBits="0"/>
-    <ROW TextStyle="Warning" FaceName="Segoe UI" Size="10" Color="255" StyleBits="1"/>
+    <ROW TextStyle="Warning" FaceName="Segoe UI" Size="9" Color="255" StyleBits="1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="surface"/>
