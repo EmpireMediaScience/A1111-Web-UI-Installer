@@ -1,21 +1,21 @@
 [
   {
     "name": "Auto-Update WebUI",
-    "arg": "git-UI",
+    "arg": "WebUI-Update",
     "Description": "Updates the WebUI at launch",
-    "type": "git"
+    "type": "maint"
   },
   {
     "name": "Auto-Update Extensions",
-    "arg": "git-Ext",
+    "arg": "Ext-Update",
     "Description": "Updates the Extensions at launch",
-    "type": "git"
+    "type": "maint"
   },
   {
     "name": "Clear All Generations",
-    "arg": "git-ClearOutputs",
+    "arg": "Gens-Clear",
     "Description": "Clear all generated images at launch",
-    "type": "git"
+    "type": "maint"
   },
   {
     "name": "Low VRAM (medvram)",

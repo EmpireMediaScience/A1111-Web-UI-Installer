@@ -96,6 +96,12 @@ function Invoke-WebUI {
     Set-Location $PSScriptRoot
 }
 
+function Open-LauncherSettings {
+    logger.action "Opening Settings"
+    $Settingsform = New-MainForm -Title "SETTINGS" -TopBar -Validate "SAVE" -Cancel
+    $Settingsform.Show()
+}
+
 
 if ($args -contains "skip") {
     logger.pop "Skipping Launcher UI"
@@ -122,17 +128,12 @@ function Makeform {
     $defs = Import-Defs
     $argsies = Convert-SettingsToArguments $settings
 
-    $form = New-Object System.Windows.Forms.Form
-    $form.StartPosition = 'CenterScreen'
-    $form.BackColor = $backgroundColor
-    $form.ForeColor = $accentColor
-    $Form.Font = New-Object System.Drawing.Font("Segoe UI Emoji", 9, [System.Drawing.FontStyle]::Regular)
-    $form.AllowTransparency = $true
-    $form.FormBorderStyle = "FixedSingle"
-    $form.ControlBox = $false
-    $form.AutoSize = $true
-    $form.Padding = 20
-    $form.Size = "350, 500"
+    $MainForm = New-MainForm -Header -HeaderImage "..\Media\Launcher\Title.png" -TopBar -Settings -Validate "LAUNCH WEBUI"
+
+    $settingsBTN = $MainForm.Controls["topBar"].Controls["settingsBTN"]
+    $settingsBTN.add_click({ Open-LauncherSettings })
+
+    <# $form = New-Object System.Windows.Forms.Form
 
     $versionLabel = New-Object System.Windows.Forms.Label
     $versionLabel.Text = "Launcher V$($Version.Long)"
@@ -146,10 +147,11 @@ function Makeform {
     $title.Padding = "0, 0, 0, 10"
     $title.Dock = "Top"
     $title.TextAlign = "middlecenter"
-    $form.Controls.Add($title)
+    $form.Controls.Add($title) #>
     
     #Git & General Options
-    $GeneralContainer = New-Object System.Windows.Forms.Panel
+
+    <# $GeneralContainer = New-Object System.Windows.Forms.Panel
     $GeneralContainer.Dock = "Bottom"
     $GeneralContainer.BackColor = $buttonColor
     $GeneralContainer.AutoSize = $true
@@ -157,7 +159,6 @@ function Makeform {
 
     $GeneralDesc = New-Object System.Windows.Forms.Label
     $GeneralDesc.Text = "WebUI Maintenance"
-    <#     $GeneralDesc.TextAlign = "LeftCenter"  #>
     $GeneralDesc.Dock = "Bottom"
 
     $GeneralContainer.Controls.Add($GeneralDesc)
@@ -245,10 +246,11 @@ function Makeform {
             $UIparam
         }
     }
-    $form.Controls.Add($GeneralContainer)
+    $form.Controls.Add($GeneralContainer) #>
 
     #WebUI Args
-    $ArgContainer = New-Object System.Windows.Forms.Panel
+    
+    <#     $ArgContainer = New-Object System.Windows.Forms.Panel
     $ArgContainer.Dock = "Bottom"
     $ArgContainer.AutoSize = $true
     $ArgContainer.Padding = "10, 10, 10, 5"
@@ -365,11 +367,11 @@ function Makeform {
     $ArgsField.BackColor = $buttonColor
     $ArgsField.ForeColor = $accentColor
     $ArgsField.Text = $argsies
-    $Form.Controls.Add($ArgsField)
+    $Form.Controls.Add($ArgsField) #>
 
     #Run & Exit
 
-    $runbox = New-Object System.Windows.Forms.Panel
+    <#  $runbox = New-Object System.Windows.Forms.Panel
     $runbox.Dock = "Bottom"
     $runbox.Padding = "0, 15, 0, 0"
     
@@ -398,11 +400,11 @@ function Makeform {
     $Exitbutton.FlatStyle = $style
     $runbox.Controls.Add($Exitbutton)
 
-    $form.Controls.Add($runbox)
+    $form.Controls.Add($runbox) #>
 
     # Hardware Info
 
-    $HWContainer = New-Object System.Windows.Forms.Panel
+    <#     $HWContainer = New-Object System.Windows.Forms.Panel
     $HWContainer.Dock = "Bottom"
     $HWContainer.Size = "1000, 80"
 
@@ -445,9 +447,10 @@ function Makeform {
     $LhelpLabel.TextAlign = "MiddleCenter"
     $HWContainer.Controls.Add($LhelpLabel)
 
-    $Form.Controls.Add($HWContainer)
+    $Form.Controls.Add($HWContainer) #>
 
-    $Form.ShowDialog()
+    $MainForm.ShowDialog()
+    $MainForm.Dispose()
 }
 
 logger.pop "Loading Complete, opening launcher"

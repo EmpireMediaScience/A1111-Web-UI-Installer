@@ -4,6 +4,7 @@ Add-Type -AssemblyName PresentationFramework
 Add-Type -AssemblyName Microsoft.VisualBasic
 Set-StrictMode -Version 2
 Import-Module .\logger.psm1 -Force -Global -Prefix "logger."
+. ".\EmpireUI\EmpireUI.ps1"
 
 # General Variables
 $tempFolder = (Get-Item -Path env:\temp).Value

@@ -1,5 +1,4 @@
 . "$PSScriptRoot\shared.ps1"
-Import-Module "$PSScriptRoot\logger.psm1" -Force -Global -Prefix "logger."
 
 #Startup fonctions
 #-----------------------------
@@ -343,14 +342,13 @@ function Update-Extensions ($enabled) {
 function Clear-Outputs {
     $Exprompt = [system.windows.messagebox]::Show("All previously generated images will be deleted, are you sure ?`n`nClick 'No' to not delete any image this time`n`nUncheck 'Clear Generated Images' in the launcher to disable this function", 'Warning', 'YesNo', 'Warning')
     if ($Exprompt -eq "Yes") {
-        logger.action "Clearing all outputs in output directories"
         if ($webuiConfig -ne "" -and $webUIConfig.outdir_samples -ne "") {
-            logger.info "Custom output directory found at $($webUIConfig.outdir_samples)"
+            logger.action "Clearing all outputs in custom output directories ($($webUIConfig.outdir_samples))"
             Get-ChildItem $webUIConfig.outdir_samples -Force -Recurse -File | Where-Object { $_.Extension -eq ".png" -or $_.Extension -eq ".jpg" } | Remove-Item -Force
         }
         else {
             if ($outputsPath) {
-                logger.info "Clearing default output directory"
+                logger.action "Clearing all outputs in default output directories"
                 Get-ChildItem $outputsPath -Force -Recurse -File | Where-Object { $_.Extension -eq ".png" -or $_.Extension -eq ".jpg" } | Remove-Item -Force
             }
         }

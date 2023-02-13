@@ -4,7 +4,6 @@
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
     <ROW Property="AI_CURRENT_YEAR" Value="2023" ValueLocId="-"/>
     <ROW Property="AI_EXTERNALUIUNINSTALLERNAME" MultiBuildValue="DefaultBuild:aiui"/>
-    <ROW Property="AI_FINDEXE_TITLE" Value="Select the installation package for [|ProductName]" ValueLocId="AI.Property.FindExeTitle"/>
     <ROW Property="AI_PREDEF_LCONDS_PROPS" Value="AI_DETECTED_INTERNET_CONNECTION"/>
     <ROW Property="AI_PRODUCTNAME_ARP" Value="[|ProductName]"/>
     <ROW Property="AI_UNINSTALLER" Value="msiexec.exe"/>
@@ -13,13 +12,13 @@
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
     <ROW Property="ARPHELPLINK" Value="https://discord.gg/5KRHgNpz"/>
     <ROW Property="ARPNOMODIFY" MultiBuildValue="DefaultBuild:1"/>
-    <ROW Property="ARPNOREPAIR" Value="1" MultiBuildValue="DefaultBuild:1"/>
-    <ROW Property="ARPPRODUCTICON" Value="logoAlpha.exe" Type="8"/>
+    <ROW Property="ARPNOREPAIR" Value="1"/>
+    <ROW Property="ARPPRODUCTICON" Value="logoAlpha_1.exe" Type="8"/>
     <ROW Property="ARPSYSTEMCOMPONENT" Value="1"/>
     <ROW Property="ARPURLINFOABOUT" Value="https://discord.gg/5KRHgNpz"/>
     <ROW Property="AiPreferFastOem" MultiBuildValue="DefaultBuild:1"/>
-    <ROW Property="AppLogoIcon" Value="applogoicon.bmp" MultiBuildValue="DefaultBuild:Icon.jpg" Type="1" MsiKey="AppLogoIcon"/>
-    <ROW Property="Background" Value="background" MultiBuildValue="DefaultBuild:Background.jpg" Type="1" MsiKey="Background"/>
+    <ROW Property="AppLogoIcon" Value="applogoicon.bmp" MultiBuildValue="DefaultBuild:Icon.jpg_1" Type="1" MsiKey="AppLogoIcon"/>
+    <ROW Property="Background" Value="background" MultiBuildValue="DefaultBuild:Background.jpg_1" Type="1" MsiKey="Background"/>
     <ROW Property="GitCloneSuccess" Value="0"/>
     <ROW Property="InstallDlg" Comments="yes"/>
     <ROW Property="MSIFASTINSTALL" MultiBuildValue="DefaultBuild:3"/>
@@ -30,7 +29,7 @@
     <ROW Property="ProductName" Value="A1111 Web UI Autoinstaller"/>
     <ROW Property="ProductVersion" Value="2.0.0"/>
     <ROW Property="REBOOT" MultiBuildValue="DefaultBuild:ReallySuppress"/>
-    <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
+    <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{ED3F2830-A9E0-46B4-9D7E-C242564349CB}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -56,7 +55,6 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="AI_CustomARPName" ComponentId="{86C1EA5F-3545-471A-8FD7-BC9563C71B6D}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_DisableModify" ComponentId="{F2050EAB-4FE0-4037-BD04-5CC3D395CCD6}" Directory_="APPDIR" Attributes="260" KeyPath="NoModify" Options="1"/>
-    <ROW Component="AI_ExePath" ComponentId="{B811E420-F0BA-4852-9CFC-442518C5004C}" Directory_="APPDIR" Attributes="260" KeyPath="AI_ExePath"/>
     <ROW Component="APPDIR" ComponentId="{8CF866A2-A911-49F3-990F-8C58E2C86E81}" Directory_="APPDIR" Attributes="0"/>
     <ROW Component="InstallDlg" ComponentId="{43D6052F-DBBE-4963-A5D7-1DA28EDA7216}" Directory_="InstallDlg" Attributes="0"/>
     <ROW Component="ProductInformation" ComponentId="{89B7657B-A9AC-47E0-934E-DFD5C27F709B}" Directory_="APPDIR" Attributes="260" KeyPath="Version"/>
@@ -73,6 +71,7 @@
     <ROW File="LauncherUI.ps1" Component_="definitions.json" FileName="LAUNCH~1.PS1|LauncherUI.ps1" Attributes="0" SourcePath="Launcher\LauncherUI.ps1" SelfReg="false"/>
     <ROW File="logger.psm1" Component_="definitions.json" FileName="LOGGER~1.PSM|logger.psm1" Attributes="0" SourcePath="Launcher\logger.psm1" SelfReg="false"/>
     <ROW File="shared.ps1" Component_="definitions.json" FileName="shared.ps1" Attributes="0" SourcePath="Launcher\shared.ps1" SelfReg="false"/>
+    <ROW File="EmpireUI.ps1" Component_="definitions.json" FileName="EmpireUI.ps1" Attributes="0" SourcePath="Launcher\EmpireUI.ps1" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.AiComponentAliasComponent">
     <ROW AliasRowId="InstallDlg" AliasRowOperation="1"/>
@@ -96,7 +95,7 @@
     <ROW Action="AI_DetectSoftware" Sequence="151"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
-    <ROW BuildKey="DefaultBuild" BuildName="A1111WebuiInstaller" BuildOrder="1" BuildType="0" PackageFileName="[|ProductName] v[|ProductVersion]" Languages="en_GB" InstallationType="2" CabsLocation="1" UseLzma="true" LzmaMethod="2" LzmaCompressionLevel="2" PackageType="1" FilesInsideExe="true" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName] [|ProductVersion]\install" ExtUI="true" Options="8" UseLargeSchema="true" MsiPackageType="x64" UACExecutionLevel="2"/>
+    <ROW BuildKey="DefaultBuild" BuildName="A1111WebuiInstaller" BuildOrder="1" BuildType="0" PackageFileName="[|ProductName] v[|ProductVersion]" Languages="en_GB" InstallationType="4" CabsLocation="1" ExtUI="true" UseLargeSchema="true" MsiPackageType="x64" UACExecutionLevel="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
     <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
@@ -130,10 +129,6 @@
     <ROW Action="AI_AiRemoveFilesImmediate" Description="Generating actions to remove files." DescriptionLocId="ActionText.Description.AI_AiRemoveFilesImmediate" Template="Preparing file: [1]" TemplateLocId="ActionText.Template.AI_AiRemoveFilesImmediate"/>
     <ROW Action="AI_AiRemoveFilesRollback" Description="Restoring removed files" DescriptionLocId="ActionText.Description.AI_AiRemoveFilesRollback" Template="Restoring file: [1]" TemplateLocId="ActionText.Template.AI_AiRemoveFilesRollback"/>
     <ROW Action="AI_AiRemoveFilesRollback_Impersonate" Description="Restoring removed files" DescriptionLocId="ActionText.Description.AI_AiRemoveFilesRollback" Template="Restoring file: [1]" TemplateLocId="ActionText.Template.AI_AiRemoveFilesRollback"/>
-    <ROW Action="AI_DeleteLzma" Description="Deleting files extracted from archive" DescriptionLocId="ActionText.Description.AI_DeleteLzma" TemplateLocId="-"/>
-    <ROW Action="AI_DeleteRLzma" Description="Deleting files extracted from archive" DescriptionLocId="ActionText.Description.AI_DeleteLzma" TemplateLocId="-"/>
-    <ROW Action="AI_ExtractFiles" Description="Extracting files from archive" DescriptionLocId="ActionText.Description.AI_ExtractLzma" TemplateLocId="-"/>
-    <ROW Action="AI_ExtractLzma" Description="Extracting files from archive" DescriptionLocId="ActionText.Description.AI_ExtractLzma" TemplateLocId="-"/>
     <ROW Action="AI_XmlCommit" Description="Committing XML file configurations." DescriptionLocId="ActionText.Description.AI_XmlCommit" Template="Committing XML file configurations." TemplateLocId="ActionText.Template.AI_XmlCommit"/>
     <ROW Action="AI_XmlConfig" Description="Executing XML file configurations" DescriptionLocId="ActionText.Description.AI_XmlConfig" Template="Configuring XML file: &quot;[1]&quot;" TemplateLocId="ActionText.Template.AI_XmlConfig"/>
     <ROW Action="AI_XmlInstall" Description="Generating actions to configure XML files" DescriptionLocId="ActionText.Description.AI_XmlInstall"/>
@@ -141,23 +136,17 @@
     <ROW Action="AI_XmlRollback" Description="Rolling back XML file configurations." DescriptionLocId="ActionText.Description.AI_XmlRollback" Template="Rolling back XML file configurations." TemplateLocId="ActionText.Template.AI_XmlRollback"/>
     <ROW Action="AI_XmlUninstall" Description="Generating actions to configure XML files" DescriptionLocId="ActionText.Description.AI_XmlUninstall"/>
   </COMPONENT>
-  <COMPONENT cid="caphyon.advinst.msicomp.MsiAppSearchComponent">
-    <ROW Property="AI_SETUPEXEPATH" Signature_="AI_EXE_PATH_LM" Builds="DefaultBuild"/>
-    <ROW Property="AI_SETUPEXEPATH" Signature_="AI_EXE_PATH_CU" Builds="DefaultBuild"/>
-  </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
-    <ROW Name="Background.jpg" SourcePath="Advanced Installer\Looks\Exports\Background.jpg"/>
+    <ROW Name="Background.jpg_1" SourcePath="Media\Installer\Background.jpg"/>
     <ROW Name="ExternalUICleaner.dll" SourcePath="&lt;AI_CUSTACTS&gt;ExternalUICleaner.dll"/>
-    <ROW Name="Icon.jpg" SourcePath="Advanced Installer\Looks\Exports\Icon.jpg"/>
+    <ROW Name="Icon.jpg_1" SourcePath="Media\Installer\Icon.jpg"/>
     <ROW Name="PowerShellScriptLauncher.dll" SourcePath="&lt;AI_CUSTACTS&gt;PowerShellScriptLauncher.dll"/>
-    <ROW Name="Prereq.dll" SourcePath="&lt;AI_CUSTACTS&gt;Prereq.dll"/>
     <ROW Name="ResourceCleaner.dll" SourcePath="&lt;AI_CUSTACTS&gt;ResourceCleaner.dll"/>
     <ROW Name="ShortcutFlags.dll" SourcePath="&lt;AI_CUSTACTS&gt;ShortcutFlags.dll"/>
     <ROW Name="SoftwareDetector.dll" SourcePath="&lt;AI_CUSTACTS&gt;SoftwareDetector.dll"/>
-    <ROW Name="Splash.jpg" SourcePath="Advanced Installer\Looks\Exports\Splash.jpg"/>
+    <ROW Name="Splash.jpg_1" SourcePath="Media\Installer\Splash.jpg"/>
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
-    <ROW Name="loading.gif" SourcePath="Advanced Installer\Looks\Exports\loading.gif"/>
-    <ROW Name="lzmaextractor.dll" SourcePath="&lt;AI_CUSTACTS&gt;lzmaextractor.dll"/>
+    <ROW Name="loading.gif_1" SourcePath="Media\Installer\loading.gif"/>
     <ROW Name="viewer.exe" SourcePath="&lt;AI_CUSTACTS&gt;viewer.exe"/>
     <ROW Name="xmlCfg.dll" SourcePath="&lt;AI_CUSTACTS&gt;xmlCfg.dll"/>
     <ATTRIBUTE name="DeletedRows" value="PrepareDlgProgress.gif"/>
@@ -168,7 +157,7 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
     <ROW Dialog_="CustomizeDlg" Control="CustomizeDlgDialogInitializer" Type="DialogInitializer" X="0" Y="0" Width="0" Height="0" Attributes="0" Order="-1" TextLocId="-" HelpLocId="-" ExtDataLocId="-"/>
     <ROW Dialog_="ExitDialog" Control="AdvInst" Type="Text" X="5" Y="388" Width="74" Height="11" Attributes="196611" Text="Advanced Installer" TextStyle="[BrandingStyle]" Order="500" MsiKey="ExitDialog#AdvInst"/>
-    <ROW Dialog_="ExitDialog" Control="Splash" Type="Bitmap" X="0" Y="0" Width="345" Height="400" Attributes="1" Text="Splash.jpg" Order="600"/>
+    <ROW Dialog_="ExitDialog" Control="Splash" Type="Bitmap" X="0" Y="0" Width="345" Height="400" Attributes="1" Text="Splash.jpg_1" Order="600"/>
     <ROW Dialog_="ExitDialog" Control="Finish" Type="ImageButton" X="128" Y="218" Width="78" Height="28" Attributes="3" Text="[metroinstallbutton]" TextStyle="[SubTitleStyle]" Order="700" MsiKey="ExitDialog#Finish" Options="1" ExtType="ImageButton" ExtData="FINISH"/>
     <ROW Dialog_="InstallDlg" Control="Bitmap" Type="Bitmap" X="0" Y="0" Width="345" Height="400" Attributes="1" Text="[Background]" Order="100" MsiKey="InstallDlg#Bitmap"/>
     <ROW Dialog_="InstallDlg" Control="Next" Type="ImageButton" X="0" Y="0" Width="1" Height="1" Attributes="0" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="300" MsiKey="InstallDlg#Next" Options="1" ExtType="ImageButton" ExtData="Install"/>
@@ -191,8 +180,8 @@
     <ROW Dialog_="PrepareDlg" Control="Back" Type="PushButton" X="207" Y="368" Width="48" Height="17" Attributes="0" Text="[ButtonText_Back]" Order="300" TextLocId="-" MsiKey="PrepareDlg#Back" Options="1"/>
     <ROW Dialog_="PrepareDlg" Control="ActionText" Type="Text" X="30" Y="168" Width="305" Height="20" Attributes="196611" Order="400" MsiKey="PrepareDlg#ActionText"/>
     <ROW Dialog_="PrepareDlg" Control="Description" Type="Text" X="0" Y="340" Width="154" Height="11" Attributes="196610" Text="Please wait while the setup initializes." TextStyle="Title" Order="500" TextLocId="Air.Control.Text.PrepareDlg#Description" MsiKey="PrepareDlg#Description"/>
-    <ROW Dialog_="PrepareDlg" Control="Splash" Type="Bitmap" X="0" Y="0" Width="345" Height="400" Attributes="1" Text="Splash.jpg" Order="600"/>
-    <ROW Dialog_="PrepareDlg" Control="LoadingGif" Type="Bitmap" X="148" Y="191" Width="48" Height="48" Attributes="1" Text="loading.gif" Order="700"/>
+    <ROW Dialog_="PrepareDlg" Control="Splash" Type="Bitmap" X="0" Y="0" Width="345" Height="400" Attributes="1" Text="Splash.jpg_1" Order="600"/>
+    <ROW Dialog_="PrepareDlg" Control="LoadingGif" Type="Bitmap" X="148" Y="191" Width="48" Height="48" Attributes="1" Text="loading.gif_1" Order="700"/>
     <ROW Dialog_="ProgressDlg" Control="Text" Type="Text" X="17" Y="105" Width="312" Height="30" Attributes="196611" Text="Please wait while the [Wizard] [Progress2] [ProductName].  This may take several minutes." Order="800" TextLocId="Control.Text.ProgressDlg#Text" MsiKey="ProgressDlg#Text"/>
     <ROW Dialog_="ProgressDlg" Control="ProductLogo" Type="Bitmap" X="17" Y="5" Width="59" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="900" MsiKey="ProgressDlg#ProductLogo"/>
     <ROW Dialog_="ProgressDlg" Control="StatusLabel" Type="Text" X="17" Y="171" Width="45" Height="13" Attributes="196611" Text="Status:" TextStyle="[SubnoteFontStyle]" Order="1000" TextLocId="Control.Text.ProgressDlg#StatusLabel" MsiKey="ProgressDlg#StatusLabel"/>
@@ -297,23 +286,14 @@
     <ROW Action="AI_AiRemoveFilesRollback_Impersonate" Type="9473" Source="ResourceCleaner.dll" Target="OnAiUndoRemoveFilesImpersonate" WithoutSeq="true"/>
     <ROW Action="AI_ApplyShortcutFlags" Type="3073" Source="ShortcutFlags.dll" Target="UpdateShortcutFlags" WithoutSeq="true"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH_ORIGINAL" Target="[AI_SETUPEXEPATH]"/>
-    <ROW Action="AI_DATA_SETTER" Type="51" Source="CustomActionData" Target="[AI_SETUPEXEPATH]"/>
     <ROW Action="AI_DATA_SETTER_1" Type="51" Source="CustomActionData" Target="[~]"/>
     <ROW Action="AI_DATA_SETTER_2" Type="51" Source="CustomActionData" Target="[~]"/>
     <ROW Action="AI_DATA_SETTER_5" Type="51" Source="CustomActionData" Target="AEQAaQBnAGkAdABhAGwAbAB5AFMAaQBnAG4AUwBjAHIAaQBwAHQAAgABAEYAbABhAGcAcwACADAAAQBQAGEAcgBhAG0AcwACAAEAUwBjAHIAaQBwAHQAAgAjAFIAZQBxAHUAaQByAGUAcwAgAC0AdgBlAHIAcwBpAG8AbgAgADMADQAKAFAAYQByAGEAbQAoACkADQAKAA0ACgAjACAATABlAHQAJwBzACAAcwBlAGUAIAB3AGgAaQBjAGgAIABQAG8AdwBlAHIAcwBoAGUAbABsACAAdwBlACcAcgBlACAAdQBzAGkAbgBnAC4AIABGAGUAZQBsACAAZgByAGUAZQAgAHQAbwAgAHIAZQBtAG8AdgBlACAAdABoAGkAcwAgAGYAdQBuAGMAdABpAG8AbgANAAoAJABpAG4AcwB0AGEAbABsAFAAYQB0AGgAIAA9ACAAQQBJAF8ARwBlAHQATQBzAGkAUAByAG8AcABlAHIAdAB5ACAAQQBQAFAARABJAFIADQAKAA0ACgBpAGYAIAAoAFQAZQBzAHQALQBQAGEAdABoACAAIgAkAGkAbgBzAHQAYQBsAGwAUABhAHQAaAAvAHMAdABhAGIAbABlAC0AZABpAGYAZgB1AHMAaQBvAG4ALQB3AGUAYgB1AGkAIgApACAAWwBcAHsAXQANAAoAIAAgACAAIABBAEkAXwBTAGUAdABNAHMAaQBQAHIAbwBwAGUAcgB0AHkAIABBAFAAUABEAEkAUgBFAFgASQBTAFQAUwAgACIAMQAiAA0ACgBbAFwAfQBdAA0ACgBlAGwAcwBlACAAWwBcAHsAXQANAAoAIAAgACAAIABBAEkAXwBTAGUAdABNAHMAaQBQAHIAbwBwAGUAcgB0AHkAIABBAFAAUABEAEkAUgBFAFgASQBTAFQAUwAgACIAMAAiACAADQAKAFsAXAB9AF0ADQAKAA0ACgANAAo="/>
     <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
-    <ROW Action="AI_DeleteCadLzma" Type="51" Source="AI_DeleteLzma" Target="[AI_SETUPEXEPATH]"/>
-    <ROW Action="AI_DeleteLzma" Type="1025" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
-    <ROW Action="AI_DeleteRCadLzma" Type="51" Source="AI_DeleteRLzma" Target="[AI_SETUPEXEPATH]"/>
-    <ROW Action="AI_DeleteRLzma" Type="1281" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
     <ROW Action="AI_DetectSoftware" Type="257" Source="SoftwareDetector.dll" Target="OnDetectSoftware"/>
     <ROW Action="AI_DoRemoveExternalUIStub" Type="3585" Source="ExternalUICleaner.dll" Target="DoRemoveExternalUIStub" WithoutSeq="true"/>
     <ROW Action="AI_DpiContentScale" Type="1" Source="aicustact.dll" Target="DpiContentScale"/>
     <ROW Action="AI_EnableDebugLog" Type="321" Source="aicustact.dll" Target="EnableDebugLog"/>
-    <ROW Action="AI_ExtractCadLzma" Type="51" Source="AI_ExtractLzma" Target="[AI_SETUPEXEPATH]"/>
-    <ROW Action="AI_ExtractFiles" Type="1" Source="Prereq.dll" Target="ExtractSourceFiles" AdditionalSeq="AI_DATA_SETTER"/>
-    <ROW Action="AI_ExtractLzma" Type="1025" Source="lzmaextractor.dll" Target="ExtractLZMAFiles"/>
-    <ROW Action="AI_FindExeLzma" Type="1" Source="lzmaextractor.dll" Target="FindEXE"/>
     <ROW Action="AI_GetArpIconPath" Type="1" Source="aicustact.dll" Target="GetArpIconPath"/>
     <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
     <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
@@ -325,6 +305,7 @@
     <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
     <ROW Action="AI_RemoveExternalUIStub" Type="1" Source="ExternalUICleaner.dll" Target="RemoveExternalUIStub"/>
     <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
+    <ROW Action="AI_RestartElevated" Type="1" Source="aicustact.dll" Target="RestartElevated"/>
     <ROW Action="AI_RunFinishActions" Type="1" Source="aicustact.dll" Target="RunFinishActions" WithoutSeq="true"/>
     <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
     <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
@@ -355,10 +336,9 @@
     <ROW Feature_="MainFeature" Component_="regid.199509.com.example"/>
     <ROW Feature_="MainFeature" Component_="InstallDlg"/>
     <ROW Feature_="MainFeature" Component_="definitions.json"/>
-    <ROW Feature_="MainFeature" Component_="AI_ExePath"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
-    <ROW Name="logoAlpha.exe" SourcePath="Advanced Installer\Looks\Exports\logoAlpha.ico" Index="0"/>
+    <ROW Name="logoAlpha_1.exe" SourcePath="Media\Installer\logoAlpha.ico" Index="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
@@ -367,7 +347,7 @@
     <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1397"/>
     <ROW Action="AI_ResolveKnownFolders" Sequence="52"/>
     <ROW Action="AI_EnableDebugLog" Sequence="51"/>
-    <ROW Action="AI_DetectSoftware" Sequence="102"/>
+    <ROW Action="AI_DetectSoftware" Sequence="101"/>
     <ROW Action="AI_GetArpIconPath" Sequence="1401"/>
     <ROW Action="AI_RemoveExternalUIStub" Condition="(REMOVE=&quot;ALL&quot;) AND ((VersionNT &gt; 500) OR((VersionNT = 500) AND (ServicePackLevel &gt;= 4)))" Sequence="1501"/>
     <ROW Action="AI_XmlInstall" Condition="(REMOVE &lt;&gt; &quot;ALL&quot;)" Sequence="5102"/>
@@ -378,46 +358,28 @@
     <ROW Action="AI_PrepareShortcutFlags" Condition="(VersionNT &gt; 501) AND ((NOT Installed) OR (Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;)))" Sequence="4501"/>
     <ROW Action="AI_PinShortcuts" Condition="(VersionNT &gt; 600) AND ((NOT Installed) OR (Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;)))" Sequence="6499"/>
     <ROW Action="AI_UnpinShortcuts" Condition="(VersionNT &gt; 600) AND (REMOVE = &quot;ALL&quot;)" Sequence="3199"/>
-    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99" Builds="DefaultBuild"/>
-    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="101" Builds="DefaultBuild"/>
-    <ROW Action="AI_DeleteCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="199" Builds="DefaultBuild"/>
-    <ROW Action="AI_DeleteRCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="198" Builds="DefaultBuild"/>
-    <ROW Action="AI_ExtractCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="197" Builds="DefaultBuild"/>
-    <ROW Action="AI_FindExeLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="196" Builds="DefaultBuild"/>
-    <ROW Action="AI_ExtractLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="1549" Builds="DefaultBuild"/>
-    <ROW Action="AI_DeleteRLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="1548" Builds="DefaultBuild"/>
-    <ROW Action="AI_DeleteLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="6599" Builds="DefaultBuild"/>
-    <ROW Action="AI_ExtractFiles" Sequence="1399" Builds="DefaultBuild"/>
-    <ROW Action="AI_DATA_SETTER" Sequence="1398"/>
     <ROW Action="AI_AiRemoveFilesImmediate" Sequence="3499"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="InstallDlg" Condition="AI_INSTALL" Sequence="1230" SeqType="3" MsiKey="WelcomeDlg"/>
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="748"/>
-    <ROW Action="AI_ResolveKnownFolders" Sequence="53"/>
-    <ROW Action="AI_DpiContentScale" Sequence="52"/>
-    <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="54"/>
+    <ROW Action="AI_DpiContentScale" Sequence="53"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="52"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99"/>
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="102"/>
     <ROW Action="AI_DetectSoftware" Sequence="101"/>
     <ROW Action="MaintenanceTypeDlg" Condition="AI_MAINT" Sequence="1250" SeqType="3" MsiKey="MaintenanceTypeDlg"/>
+    <ROW Action="AI_RestartElevated" Sequence="51" Builds="DefaultBuild"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
     <ROW Condition="((VersionNT &lt;&gt; 501) AND (VersionNT &lt;&gt; 502))" Description="[ProductName] cannot be installed on [WindowsTypeNT5XDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT5X" IsPredefined="true" Builds="DefaultBuild"/>
     <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] can not be installed on [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="DefaultBuild"/>
     <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] can not be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="DefaultBuild"/>
     <ROW Condition="AI_DETECTED_INTERNET_CONNECTION" Description="[ProductName] requires an active Internet connection for installation. Please check your network configuration and proxy settings." DescriptionLocId="AI.LaunchCondition.Internet" IsPredefined="true" Builds="DefaultBuild"/>
-    <ROW Condition="SETUPEXEDIR OR (REMOVE=&quot;ALL&quot;)" Description="This package can only be run from a bootstrapper." DescriptionLocId="AI.LaunchCondition.RequireBootstrapper" IsPredefined="true" Builds="DefaultBuild"/>
     <ROW Condition="VersionNT" Description="[ProductName] can not be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
   </COMPONENT>
-  <COMPONENT cid="caphyon.advinst.msicomp.MsiRegLocatorComponent">
-    <ROW Signature_="AI_EXE_PATH_CU" Root="1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Type="2"/>
-    <ROW Signature_="AI_EXE_PATH_LM" Root="2" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Type="2"/>
-  </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
-    <ROW Registry="AI_ExePath" Root="-1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Value="[AI_SETUPEXEPATH]" Component_="AI_ExePath"/>
-    <ROW Registry="AdvancedInstaller" Root="-1" Key="Software\Caphyon\Advanced Installer" Name="\"/>
-    <ROW Registry="Caphyon" Root="-1" Key="Software\Caphyon" Name="\"/>
     <ROW Registry="Comments" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Comments" Value="[ARPCOMMENTS]" Component_="AI_CustomARPName"/>
     <ROW Registry="Contact" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Contact" Value="[ARPCONTACT]" Component_="AI_CustomARPName"/>
     <ROW Registry="CurrentVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion" Name="\"/>
@@ -428,17 +390,14 @@
     <ROW Registry="HelpLink" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpLink" Value="[ARPHELPLINK]" Component_="AI_CustomARPName"/>
     <ROW Registry="HelpTelephone" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpTelephone" Value="[ARPHELPTELEPHONE]" Component_="AI_CustomARPName"/>
     <ROW Registry="InstallLocation" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="InstallLocation" Value="[APPDIR]" Component_="AI_CustomARPName"/>
-    <ROW Registry="LZMA" Root="-1" Key="Software\Caphyon\Advanced Installer\LZMA" Name="\"/>
     <ROW Registry="Manufacturer" Root="-1" Key="Software\[Manufacturer]" Name="\"/>
     <ROW Registry="Microsoft" Root="-1" Key="Software\Microsoft" Name="\"/>
     <ROW Registry="ModifyPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="ModifyPath" Value="[AI_UNINSTALLER] /i [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
     <ROW Registry="NoModify" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoModify" Value="#1" Component_="AI_DisableModify" VirtualValue="#"/>
     <ROW Registry="NoRepair" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoRepair" Value="#1" Component_="AI_CustomARPName" VirtualValue="#"/>
     <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
-    <ROW Registry="ProductCode" Root="-1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]" Name="\"/>
     <ROW Registry="ProductName" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="\"/>
     <ROW Registry="ProductNameProductVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="\"/>
-    <ROW Registry="ProductVersion" Root="-1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="\"/>
     <ROW Registry="Publisher" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Publisher" Value="[Manufacturer]" Component_="AI_CustomARPName"/>
     <ROW Registry="Readme" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Readme" Value="[ARPREADME]" Component_="AI_CustomARPName"/>
     <ROW Registry="Software" Root="-1" Key="Software" Name="\"/>
@@ -457,7 +416,7 @@
     <ROW FileKey="__1" Component_="definitions.json" DirProperty="Launcher_Dir" InstallMode="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="A1111sWebUI" Directory_="APPDIR" Name="A1111W~2|A1111 WebUI Easy Launcher" Component_="definitions.json" Target="[WindowsVolume]\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" Arguments="-ExecutionPolicy Bypass -File &quot;[Launcher_Dir]LauncherUI.ps1&quot;" Hotkey="0" Icon_="logoAlpha.exe" IconIndex="0" ShowCmd="1" WkDir="Launcher_Dir" CustomFlags="1"/>
+    <ROW Shortcut="A1111sWebUI" Directory_="APPDIR" Name="A1111W~2|A1111 WebUI Easy Launcher" Component_="definitions.json" Target="[WindowsVolume]\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" Arguments="-ExecutionPolicy Bypass -File &quot;[Launcher_Dir]LauncherUI.ps1&quot;" Hotkey="0" Icon_="logoAlpha_1.exe" IconIndex="0" ShowCmd="1" WkDir="Launcher_Dir" CustomFlags="1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiTextStyleComponent">
     <ROW TextStyle="BrandingStyle" FaceName="Segoe UI" Size="8" Color="2171376" MultiBuildColor="DefaultBuild:2565927" StyleBits="0" MsiKey="BrandingStyle"/>
