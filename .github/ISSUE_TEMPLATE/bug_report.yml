@@ -9,7 +9,14 @@ body:
       label: Have you read the readme, especially the Warning part ?
       description: Read the readme as either your questions are already answered there, or maybe you shouldn't answer them here to begin with.
       options:
-        - label: I have read the readme, especially the Warning Part, and this problem occured before I see the "commit hash:" line in the console
+        - label: I have read the readme, especially the Warning Part
+          required: true
+  - type: checkboxes
+    attributes:
+      label: Did this problem occur before the "commit hash:" line in the log ?
+      description: If your error happens after the "commit hash:" line in the log, you should ask it here, but on Automatic1111's repo instead, the issue will be closed without further help
+      options:
+        - label: I swear that this problem occurred before the "commit hash:" line in the log, and that if it has instead occured after, I owe the devs a $10.000 donation.
           required: true
   - type: checkboxes
     attributes:
