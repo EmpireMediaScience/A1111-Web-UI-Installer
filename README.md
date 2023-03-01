@@ -26,7 +26,7 @@ If you want to improve the installer, git clone or Fork & Pull Request (this pro
 3. **Select where you want to install the WebUI**
    >Default is fine but if you want to install things somewhere else, it is highly recommended to do it in a dedicated empty folder, else it's going to be pretty messy
 4. **"Clean Install"**: Keep it checked if this is your first install via this Auto Installer. Uncheck it if you only want to update the Launcher and keep your existing WebUI intact (with your settings/models/extensions etc.)
-      >**Note** (experimented users only): It ***may*** be possible to add the Launcher to an existing WebUI folder that you had manually git cloned (without this installer), as long as you move the WebUI folder into a subfolder, and chose said subfolder as the Install Path during the install. **But I haven't tested it and it could result in some random stuff**
+      >**Note** (experimented users only): It ***may*** be possible to add the Launcher to an existing WebUI folder that you had previously manually git cloned, as long as you move the WebUI folder into a dedicated folder, and chose said folder as the Install Path during the install. **But you might encounter errors, and you should probably delete the venv folder inside the stable-diffusion-webui folder for it to work well**
 5. Click <kbd>Install</kbd> and **remember, this can take a while**
 6.  Once installed, a folder will open with a shortcut called ***A1111 WebUI (Pin to Taskbar)***
 7.  You can drag & drop it on your taskbar if you wish, this is the launcher for the WebUI
