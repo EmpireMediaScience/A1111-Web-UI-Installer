@@ -1,0 +1,54 @@
+name: Enhancement/Feature Request
+description: Suggest an idea for this project
+title: "[Enhancement]: "
+labels: ["enhancement"]
+
+body:
+  - type: checkboxes
+    attributes:
+      label: Are you up to date ?
+      description: Please update the launcher, every update fixes some problems and adds some features and maybe yours is already in there in a new release
+      options:
+        - label: I have the latest version of the launcher
+          required: true
+  - type: checkboxes
+    attributes:
+      label: Is there an existing issue for this?
+      description: Please search to see if an issue already exists for the feature you want
+      options:
+        - label: I have searched the existing issues
+          required: true
+  - type: markdown
+    attributes:
+      value: |
+        *Please fill this form with as much information as possible*
+  - type: textarea
+    id: what-did
+    attributes:
+      label: Is your feature request related to a problem?
+      description: Please describe what's wrong in a very clear and simple way
+    validations:
+      required: true
+  - type: textarea
+    id: what-should
+    attributes:
+      label: What's the feature
+      description: Describe the feature you'd like
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: How would it work ?
+      description: Please provide us with some exemple of a step by step workflow of how your feature would work
+      value: |
+        1. Go to .... 
+        2. Press ....
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: misc
+    attributes:
+      label: Additional information, context and logs
+      description: Please provide us with any relevant additional info, context or log output.

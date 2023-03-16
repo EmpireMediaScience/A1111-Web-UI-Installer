@@ -25,3 +25,4 @@ jobs:
           stale-issue-message: "As there has been no activity in this issue for 4 days, this issue is now marked as stale. It will be closed in 24H if it remains stale."
           stale-issue-label: "stale"
           close-issue-message: "Closed stale issue."
+          exempt-issue-labels: "Looking into it"
