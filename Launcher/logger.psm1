@@ -4,7 +4,7 @@ function action {
         [switch]$success
     )
     $color = "DarkMagenta"
-    Write-Host " $([char]0x2192) " -BackgroundColor $color -ForegroundColor "Black" -NoNewline;
+    Write-Host " $([char]0x2192) " -BackgroundColor $color -ForegroundColor "Black" -NoNewline
     if ($success) {
         Write-Host (" ", "$object ") -ForegroundColor $color -NoNewline
     }

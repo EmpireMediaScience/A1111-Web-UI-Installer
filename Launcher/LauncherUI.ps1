@@ -268,7 +268,7 @@ function Makeform {
                 $UIparam.BackColor = $buttonColor
                 $paramDesc = New-Object System.Windows.Forms.LinkLabel
                 $paramDesc.LinkColor = $secondaryColor
-                $paramDesc.LinkBehavior = [System.Windows.Forms.LinkBehavior]::NeverUnderline;
+                $paramDesc.LinkBehavior = [System.Windows.Forms.LinkBehavior]::NeverUnderline
             }
             else {
                 $UIparam = New-Object System.Windows.Forms.Checkbox
@@ -315,7 +315,7 @@ function Makeform {
 
     $addDesc = New-Object System.Windows.Forms.LinkLabel
     $addDesc.LinkColor = $accentColor
-    $addDesc.LinkBehavior = [System.Windows.Forms.LinkBehavior]::NeverUnderline;
+    $addDesc.LinkBehavior = [System.Windows.Forms.LinkBehavior]::NeverUnderline
     $addDesc.Text = "Additional Launch Options (?)"
     $addDesc.TextAlign = "MiddleCenter" 
     $addDesc.Dock = "Bottom"
@@ -417,7 +417,7 @@ function Makeform {
     $HashLabel.Text = "WebUI Hash (Click to copy) : $HashText"
     $HashLabel.TextAlign = "MiddleCenter"
     $HashLabel.LinkColor = $secondaryColor
-    $HashLabel.LinkBehavior = [System.Windows.Forms.LinkBehavior]::NeverUnderline;
+    $HashLabel.LinkBehavior = [System.Windows.Forms.LinkBehavior]::NeverUnderline
     $HashLabel.Add_Click({ 
             Set-Clipboard $Hash
             logger.info $Hash, "copied to the clipboard" 
@@ -428,7 +428,7 @@ function Makeform {
     $helpLabel = New-Object System.Windows.Forms.LinkLabel
     $helpLabel.Text = "Launcher Help"
     $helpLabel.LinkColor = $secondaryColor
-    $helpLabel.LinkBehavior = [System.Windows.Forms.LinkBehavior]::NeverUnderline;
+    $helpLabel.LinkBehavior = [System.Windows.Forms.LinkBehavior]::NeverUnderline
     $helpLabel.Add_Click({ Start-Process "https://github.com/EmpireMediaScience/A1111-Web-UI-Installer/issues" })
     $helpLabel.Dock = "Bottom"
     $helpLabel.Size = "1000, 15"
@@ -438,7 +438,7 @@ function Makeform {
     $LhelpLabel = New-Object System.Windows.Forms.LinkLabel
     $LhelpLabel.Text = "WebUI Help"
     $LhelpLabel.LinkColor = $secondaryColor
-    $LhelpLabel.LinkBehavior = [System.Windows.Forms.LinkBehavior]::NeverUnderline;
+    $LhelpLabel.LinkBehavior = [System.Windows.Forms.LinkBehavior]::NeverUnderline
     $LhelpLabel.Add_Click({ Start-Process "https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/new/choose" })
     $LhelpLabel.Dock = "Bottom"
     $LhelpLabel.Size = "1000, 15"
