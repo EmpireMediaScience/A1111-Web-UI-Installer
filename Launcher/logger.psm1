@@ -1,66 +1,101 @@
-function action {
+function Write-OutputWithStyle {
     param (
-        $object,
-        [switch]$success
+        [string]$Icon,
+        [string]$Object,
+        [string]$Color,
+        [string]$BgColor = $null,
+        [switch]$NoNewline
     )
-    $color = "DarkMagenta"
-    Write-Host " $([char]0x2192) " -BackgroundColor $color -ForegroundColor "Black" -NoNewline
-    if ($success) {
-        Write-Host (" ", "$object ") -ForegroundColor $color -NoNewline
+    if ($BgColor) {
+        Write-Host " $Icon " -BackgroundColor $BgColor -ForegroundColor "Black" -NoNewline
     }
-    else {
-        Write-Host (" ", "$object ") -ForegroundColor $color
-    }
+    Write-Host (" ", $Object) -ForegroundColor $Color -NoNewline:$NoNewline
 }
-function info ($object, $path) {
-    $color = "DarkGray"
-    Write-Host " i " -BackgroundColor $color -ForegroundColor "Black" -NoNewline; Write-Host (" ", $object) -ForegroundColor $color -NoNewline; Write-Host (" ", $path) -ForegroundColor "White" 
-}
-function error ($object) {
-    Write-Host " X " -BackgroundColor "Red" -ForegroundColor "Black" -NoNewline; Write-Host (" ", $object) -ForegroundColor "Red" 
-}
-function warn ($object) {
-    Write-Host " ! " -BackgroundColor "Yellow" -ForegroundColor "Black" -NoNewline; Write-Host (" ", $object) -ForegroundColor "Yellow" 
-}
-function pop ($object) {
-    $color = "Cyan"
-    space $color
-    Write-Host (" ", $object, " ") -BackgroundColor $color -ForegroundColor "Black"
-    space $color
-}
-function web ($type, $object) {
-    $color = "Blue"
-    switch ($type) {
-        "web" { $icon = ([char]0x2601) }
-        "download" {
-            space $color
-            $icon = ([char]0x2193) 
-        }
-        "update" { 
-            space $color
-            $icon = ([char]0x21BA) 
-        }
-    }
-    Write-Host (" $icon ") -BackgroundColor $color -ForegroundColor "Black" -NoNewline; Write-Host (" ", $object) -ForegroundColor $color
-}
-function dlprogress ($object) {
-    $color = "DarkMagenta"
-    Write-Host " $([char]0x2193) " -BackgroundColor $color -ForegroundColor "Black" -NoNewline; Write-Host (" ", "$object`r") -ForegroundColor $color -NoNewline
-}
-function space ($color) {
+
+function Write-HorizontalLine {
+    param (
+        [string]$Color
+    )
     for ($i = 1; $i -le 80; $i++) {
-        Write-Host -NoNewline ([char]0x2501) -ForegroundColor $color
+        Write-Host -NoNewline ([char]0x2501) -ForegroundColor $Color
     }
     Write-Host ""
 }
-function success($object) {
+
+function Action {
+    param (
+        [string]$Object,
+        [switch]$Success
+    )
+    $color = "DarkMagenta"
+    Write-OutputWithStyle -Icon ([char]0x2192) -Object $Object -Color $Color -BgColor $Color -NoNewline:$Success
+}
+
+function Info {
+    param (
+        [string]$Object,
+        [string]$Path
+    )
+    $color = "DarkGray"
+    Write-OutputWithStyle -Icon "i" -Object "$Object $Path" -Color $Color -BgColor $Color
+}
+
+function Error {
+    param (
+        [string]$Object
+    )
+    Write-OutputWithStyle -Icon "X" -Object $Object -Color "Red" -BgColor "Red"
+}
+
+function Warn {
+    param (
+        [string]$Object
+    )
+    Write-OutputWithStyle -Icon "!" -Object $Object -Color "Yellow" -BgColor "Yellow"
+}
+
+function Pop {
+    param (
+        [string]$Object
+    )
+    $color = "Cyan"
+    Write-HorizontalLine -Color $Color
+    Write-OutputWithStyle -Icon "" -Object $Object -Color "Black" -BgColor $Color
+    Write-HorizontalLine -Color $Color
+}
+
+function Web {
+    param (
+        [string]$Type,
+        [string]$Object
+    )
+    $color = "Blue"
+    switch ($Type) {
+        "web" { $icon = ([char]0x2601) }
+        "download" {
+            Write-HorizontalLine -Color $Color
+            $icon = ([char]0x2193)
+        }
+        "update" { 
+            Write-HorizontalLine -Color $Color
+            $icon = ([char]0x21BA)
+        }
+    }
+    Write-OutputWithStyle -Icon $Icon -Object $Object -Color $Color -BgColor $Color
+}
+
+function DlProgress {
+    param (
+        [string]$Object
+    )
+    $color = "DarkMagenta"
+    Write-OutputWithStyle -Icon ([char]0x2193) -Object ("$Object`r") -Color $Color -BgColor $Color -NoNewline
+}
+
+function Success {
+    param (
+        [string]$Object
+    )
     $color = "Green"
-    if ($object) {
-        Write-Host " $([char]0x2713) " -BackgroundColor $color -ForegroundColor "Black" -NoNewline
-        Write-Host (" ", $object) -ForegroundColor $color
-    }
-    else {
-        Write-Host " $([char]0x2713) " -BackgroundColor $color -ForegroundColor "Black"
-    }
-    
+    Write-OutputWithStyle -Icon ([char]0x2713) -Object $Object -Color $Color -BgColor $Color
 }
