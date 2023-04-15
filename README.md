@@ -1,11 +1,21 @@
 A1111 WebUI Easy Installer and Launcher
 ========================
-
 This is an **unofficial** simplified installer for **[Automatic1111's Stable Diffusion WebUI](https://github.com/AUTOMATIC1111/stable-diffusion-webui)**
 
 For simple installation, download the [**Latest Realease (.exe)**](https://github.com/EmpireMediaScience/A1111-Web-UI-Installer/releases) and follow the [**Installation Instructions**](#installing)
 
 If you want to improve the installer, git clone or Fork & Pull Request (this project mainly uses [**Advanced Installer**](https://www.advancedinstaller.com/) and **Powershell**)
+## 💙 Support Development 💙
+
+I'm doing this on my free time so if you enjoy this software & want to become a beta tester,
+
+Please consider donating via : <a href='https://ko-fi.com/I3I4GUZP1' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a> it's cheap and easy !
+
+
+
+**This will greatly help me find time and motivation to keep improving things around here, so thank you !**
+
+
 
 # INSTALLING
 
